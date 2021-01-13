@@ -1,0 +1,106 @@
+'use strict'
+
+const t = require('tap')
+const sinon = require('sinon')
+
+function buildServer() {
+  return require('fastify')()
+    .decorate('pg', { query: sinon.stub() })
+    .decorate('jwt', { sign: sinon.stub() })
+    .register(require('../../routes/login'))
+}
+
+t.test('/login', async t => {
+  t.test('returns 400 with missing credentials', async t => {
+    const fastify = buildServer()
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+    })
+
+    t.strictEqual(res.statusCode, 400)
+  })
+
+  t.test('returns 400 with partial credentials', async t => {
+    const fastify = buildServer()
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+      },
+    })
+
+    t.strictEqual(res.statusCode, 400)
+  })
+
+  t.test('returns 401 with wrong credentials', async t => {
+    const fastify = buildServer()
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+        password: 'wrong password',
+      },
+    })
+
+    t.strictEqual(res.statusCode, 401)
+  })
+
+  t.test('returns 401 when user is not found in database', async t => {
+    const fastify = buildServer()
+
+    fastify.pg.query.resolves({ rows: [] })
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+        password: 'alice',
+      },
+    })
+
+    t.strictEqual(res.statusCode, 401)
+  })
+
+  t.test('returns 500 when database errors', async t => {
+    const fastify = buildServer()
+
+    fastify.pg.query.rejects(new Error('boom'))
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+        password: 'alice',
+      },
+    })
+
+    t.strictEqual(res.statusCode, 500)
+  })
+
+  t.test('obtains a token with right credentials', async t => {
+    const fastify = buildServer()
+
+    fastify.pg.query.resolves({ rows: [{ id: 1, username: 'alice' }] })
+    fastify.jwt.sign.returns('jwt token')
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+        password: 'alice',
+      },
+    })
+
+    t.strictEqual(res.statusCode, 200)
+    t.strictEqual((await res.json()).token, 'jwt token')
+  })
+})

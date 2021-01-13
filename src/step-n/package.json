@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "start": "node .",
+    "test": "npx tap"
+  }
+}
