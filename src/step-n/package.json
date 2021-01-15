@@ -1,6 +1,8 @@
 {
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "node .",
+    "start": "node server",
     "test": "npx tap"
   }
 }

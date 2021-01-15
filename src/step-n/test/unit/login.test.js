@@ -1,16 +1,17 @@
-'use strict'
+import t from 'tap'
+import fastify from 'fastify'
+import sinon from 'sinon'
 
-const t = require('tap')
-const sinon = require('sinon')
+const { test } = t
 
 function buildServer() {
-  return require('fastify')()
+  return fastify()
     .decorate('pg', { query: sinon.stub() })
     .decorate('jwt', { sign: sinon.stub() })
-    .register(require('../../routes/login'))
+    .register(import('../../routes/login.js'))
 }
 
-t.test('/login', async t => {
+test('POST /login', async t => {
   t.test('returns 400 with missing credentials', async t => {
     const fastify = buildServer()
 

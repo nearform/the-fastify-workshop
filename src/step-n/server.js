@@ -1,28 +1,14 @@
-'use strict'
+import buildServer from './index.js'
+import config from './config.js'
 
-const path = require('path')
-const autoload = require('fastify-autoload')
+const app = buildServer(config)
 
-const config = require('./services/config')
-
-function buildServer(options) {
-  const fastify = require('fastify')(options)
-
-  fastify.register(require('fastify-postgres'), {
-    connectionString: config.PG_CONNECTION_STRING,
-  })
-
-  fastify.register(autoload, {
-    dir: path.join(__dirname, 'plugins'),
-    options: config,
-  })
-
-  fastify.register(autoload, {
-    dir: path.join(__dirname, 'routes'),
-    options: config,
-  })
-
-  return fastify
+const start = async function () {
+  try {
+    await app.listen(process.env.PORT || 3000)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-module.exports = buildServer
+start()

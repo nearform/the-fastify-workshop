@@ -6,11 +6,14 @@
   "scripts": {
     "start": "nf-present deck.md --css=./styles.css --out=index.html --watch",
     "db:up": "docker-compose up -d",
+    "db:migrate": "postgrator",
     "db:down": "docker-compose down",
     "lint": "eslint ."
   },
   "dependencies": {
     "@nearform/nf-present": "^1.0.1",
+    "@nearform/sql": "^1.5.0",
+    "desm": "^1.1.0",
     "env-schema": "^2.0.1",
     "fastify": "^3.9.2",
     "fastify-autoload": "^3.4.0",
@@ -23,6 +26,8 @@
   },
   "devDependencies": {
     "eslint": "^7.17.0",
+    "eslint-plugin-sql": "^1.2.0",
+    "postgrator-cli": "^4.0.0",
     "prettier": "^2.2.1",
     "sinon": "^9.2.2",
     "tap": "^14.11.0"

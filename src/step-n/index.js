@@ -1,10 +1,26 @@
-'use strict'
+import { join } from 'desm'
+import Fastify from 'fastify'
+import autoload from 'fastify-autoload'
+import fastifyPostgres from 'fastify-postgres'
 
-const server = require('./server')({
-  logger: {
-    level: 'info',
-    prettyPrint: true,
-  },
-})
+function buildServer(options) {
+  const fastify = Fastify(options)
 
-server.listen(3000)
+  fastify.register(fastifyPostgres, {
+    connectionString: options.PG_CONNECTION_STRING,
+  })
+
+  fastify.register(autoload, {
+    dir: join(import.meta.url, 'plugins'),
+    options,
+  })
+
+  fastify.register(autoload, {
+    dir: join(import.meta.url, 'routes'),
+    options,
+  })
+
+  return fastify
+}
+
+export default buildServer

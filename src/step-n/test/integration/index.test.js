@@ -1,14 +1,15 @@
-'use strict'
+import t from 'tap'
 
-const t = require('tap')
+import buildServer from '../../index.js'
+import config from '../../config.js'
 
-const buildServer = require('../../server')
+const { test } = t
 
-t.test('server', async t => {
+test('server', async t => {
   let fastify
 
   t.beforeEach(async () => {
-    fastify = buildServer()
+    fastify = buildServer(config)
   })
 
   t.tearDown(() => fastify.close())

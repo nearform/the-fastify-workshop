@@ -1,23 +1,21 @@
-'use strict'
+import t from 'tap'
+import sinon from 'sinon'
+import errors from 'http-errors'
+import fastify from 'fastify'
 
-const t = require('tap')
-const sinon = require('sinon')
-const { Unauthorized } = require('http-errors')
+const { test } = t
 
 function buildServer(opts) {
-  return require('fastify')().register(
-    require('../../plugins/authenticate'),
-    opts
-  )
+  return fastify().register(import('../../plugins/authenticate.js'), opts)
 }
 
-t.test('authenticate', async t => {
+test('authenticate', async t => {
   t.test('replies with error when authentication fails', async t => {
     const fastify = await buildServer({
       JWT_SECRET: 'supersecret',
     })
 
-    const error = Unauthorized()
+    const error = errors.Unauthorized()
     const req = { jwtVerify: sinon.stub().rejects(error) }
     const reply = { send: sinon.stub() }
 

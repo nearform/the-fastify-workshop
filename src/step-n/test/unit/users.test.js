@@ -1,23 +1,24 @@
-'use strict'
+import t from 'tap'
+import fastify from 'fastify'
+import sinon from 'sinon'
+import errors from 'http-errors'
 
-const t = require('tap')
-const sinon = require('sinon')
-const { Unauthorized } = require('http-errors')
+const { test } = t
 
 function buildServer() {
-  return require('fastify')()
+  return fastify()
     .decorate('pg', { query: sinon.stub() })
     .decorate('authenticate', sinon.stub())
-    .register(require('../../routes/users'))
+    .register(import('../../routes/users/index.js'))
 }
 
-t.test('/users', async t => {
+test('GET /', async t => {
   t.test('returns error when authentication fails', async t => {
     const fastify = buildServer()
 
-    fastify.authenticate.rejects(Unauthorized())
+    fastify.authenticate.rejects(errors.Unauthorized())
 
-    const res = await fastify.inject('/users')
+    const res = await fastify.inject('/')
 
     sinon.assert.called(fastify.authenticate)
     t.strictEqual(res.statusCode, 401)
@@ -29,7 +30,7 @@ t.test('/users', async t => {
     fastify.authenticate.resolves()
     fastify.pg.query.rejects(new Error('database error'))
 
-    const res = await fastify.inject('/users')
+    const res = await fastify.inject('/')
 
     t.strictEqual(res.statusCode, 500)
   })
@@ -40,7 +41,7 @@ t.test('/users', async t => {
     fastify.authenticate.resolves()
     fastify.pg.query.resolves({ rows: [{ id: 1, username: 'alice' }] })
 
-    const res = await fastify.inject('/users')
+    const res = await fastify.inject('/')
 
     t.strictEqual(res.statusCode, 200)
     t.equivalent(await res.json(), [{ id: 1, username: 'alice' }])

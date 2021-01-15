@@ -1,7 +1,5 @@
-'use strict'
-
 async function authenticate(fastify, opts) {
-  fastify.register(require('fastify-jwt'), {
+  fastify.register(import('fastify-jwt'), {
     secret: opts.JWT_SECRET,
   })
 
@@ -16,4 +14,4 @@ async function authenticate(fastify, opts) {
 
 authenticate[Symbol.for('skip-override')] = true
 
-module.exports = authenticate
+export default authenticate

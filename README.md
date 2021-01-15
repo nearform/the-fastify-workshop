@@ -9,6 +9,7 @@
 
 - `npm i`
 - `npm run db:up`
+- `npm run db:migrate`
 
 ## Running the modules
 
