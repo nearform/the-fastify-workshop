@@ -1,0 +1,52 @@
+img {
+  width: 100%;
+}
+
+#slide-empty-center-page {
+  text-align: center;
+}
+
+#slide-empty-center-page img {
+  width: 50%;
+}
+
+#slide-using-inspector p img {
+  width: 80%;
+}
+
+#slide-clinic p {
+  text-align: center;
+}
+
+#slide-clinic p img {
+  width: 50% !important;
+}
+
+#slide-deopt p {
+  text-align: center;
+}
+
+#slide-deopt p img {
+  width: 90%;
+}
+
+.no-border h1 {
+  border-bottom: none;
+  padding-top: 20%;
+  text-align: center;
+}
+
+ul,
+ol {
+  font-size: 1.75rem;
+}
+
+#slide-clinic-flame-img img,
+#slide-clinic-flame-img-zoomed img {
+  height: 80%;
+}
+
+#slide-shapes-image img,
+#slide-shapes-transitions-image img {
+  height: 25rem;
+}
