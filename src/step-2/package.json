@@ -3,6 +3,6 @@
   "type": "module",
   "scripts": {
     "start": "node server",
-    "test": "npx tap"
+    "test": "tap"
   }
 }

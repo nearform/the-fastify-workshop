@@ -2,5 +2,5 @@
 
 ## Setup
 
-- start the server with `npm start`
-- run the tests with `npm test`
+- start the server with `yarn start`
+- run the tests with `yarn test`

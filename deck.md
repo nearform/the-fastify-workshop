@@ -110,12 +110,12 @@ class: branded
 
 ```bash
 git clone https://github.com/nearform/the-fastify-workshop
-npm install
-npm run db:up
-npm run db:migrate
+yarn
+yarn db:up
+yarn db:migrate
 
 # make sure you're all set
-npm test
+yarn test
 ```
 
 ---
@@ -150,7 +150,7 @@ class: branded
 
 ```bash
 cd src/step-1
-npm start
+yarn start
 ```
 
 ---
@@ -789,8 +789,8 @@ class: branded
 Make sure you setup the db first with:
 
 ```sh
-npm run db:up
-npm run db:migrate
+yarn db:up
+yarn db:migrate
 ```
 
 > 💡 check the `migrations` folder to see the database schema

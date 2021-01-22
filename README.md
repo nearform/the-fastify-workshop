@@ -5,14 +5,15 @@
 ## Requirements
 
 - Node LTS
+- yarn - you can install it with `npm i -g yarn`
 - docker
 - docker-compose
 
 ## Setup
 
-- `npm i`
-- `npm run db:up`
-- `npm run db:migrate`
+- `yarn`
+- `yarn db:up`
+- `yarn db:migrate`
 
 ## Running the modules
 
@@ -21,4 +22,4 @@
 
 ## Presenting
 
-- `npm start`
+- `yarn start`
