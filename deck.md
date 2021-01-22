@@ -113,9 +113,6 @@ git clone https://github.com/nearform/the-fastify-workshop
 npm install
 npm run db:up
 npm run db:migrate
-
-# make sure you're all set
-npm test
 ```
 
 ---
