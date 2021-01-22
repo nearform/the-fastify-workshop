@@ -1,6 +1,10 @@
 {
   "name": "the-fastify-workshop",
   "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "src/*"
+  ],
   "license": "CC-BY-SA-4.0",
   "author": "Simone Busoli <simone.busoli@nearform.com>",
   "scripts": {
