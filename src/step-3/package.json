@@ -3,6 +3,18 @@
   "type": "module",
   "scripts": {
     "start": "node server",
-    "test": "npx tap"
+    "test": "tap"
+  },
+  "dependencies": {
+    "fastify": "^3.10.1",
+    "fastify-jwt": "^2.3.0",
+    "fluent-json-schema": "^2.0.3",
+    "http-errors": "^1.8.0",
+    "desm": "^1.1.0",
+    "env-schema": "^2.0.1"
+  },
+  "devDependencies": {
+    "sinon": "^9.2.3",
+    "tap": "^14.11.0"
   }
 }
