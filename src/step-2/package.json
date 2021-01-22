@@ -3,13 +3,6 @@
   "type": "module",
   "scripts": {
     "start": "node server",
-    "test": "tap"
-  },
-  "dependencies": {
-    "fastify": "^3.10.1",
-    "fluent-json-schema": "^2.0.3"
-  },
-  "devDependencies": {
-    "tap": "^14.11.0"
+    "test": "npx tap"
   }
 }

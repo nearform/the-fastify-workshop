@@ -22,6 +22,5 @@ jobs:
           node-version: 14.x
       - run: |
           npm i
-          ls src | (while read A; do pushd src/$A; npm i; popd; done)
           npm run db:migrate
           npm test
