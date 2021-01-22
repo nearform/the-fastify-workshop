@@ -110,7 +110,6 @@ class: branded
 
 ```bash
 git clone https://github.com/nearform/the-fastify-workshop
-docker-compose up -d
 npm install
 npm run db:up
 npm run db:migrate
@@ -148,7 +147,6 @@ class: branded
 
 ```bash
 cd src/step-1
-npm install
 npm start
 ```
 
