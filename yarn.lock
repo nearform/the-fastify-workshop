@@ -1333,10 +1333,10 @@ fastify-plugin@^3.0.0:
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-3.0.0.tgz#cf1b8c8098e3b5a7c8c30e6aeb06903370c054ca"
   integrity sha512-ZdCvKEEd92DNLps5n0v231Bha8bkz1DjnPP/aEz37rz/q42Z5JVLmgnqR4DYuNn3NXAO3IDCPyRvgvxtJ4Ym4w==
 
-fastify-postgres@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/fastify-postgres/-/fastify-postgres-3.3.0.tgz#e23e86957ac826757999b92db98120e9edaf796c"
-  integrity sha512-B0yoveN1Oo9oLM4phFl5yscmj1Lpq1lD9YXXUIDRAsd0eeJdvphT+bEHARHFnoSQuFr5QGViqtpPIrRDZQxMIA==
+fastify-postgres@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/fastify-postgres/-/fastify-postgres-3.4.0.tgz#616a7b5dbfdd09b79ef829cbe09b64198331dd8f"
+  integrity sha512-snzCGKL7KaYhzsEXk3GgpDIYPN+uX4XIXT7uN9XX3LL3EK/G8m6dNJz5dJBlQqK5wbWaOTizxgQ/owB0A82Zng==
   dependencies:
     fastify-plugin "^3.0.0"
 
