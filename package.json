@@ -27,7 +27,7 @@
     "fluent-json-schema": "^2.0.3",
     "http-errors": "^1.8.0",
     "pg": "^8.5.1",
-    "pino-pretty": "^4.3.0"
+    "pino-pretty": "^4.4.0"
   },
   "devDependencies": {
     "eslint": "^7.18.0",
