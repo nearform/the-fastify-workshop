@@ -922,6 +922,134 @@ export default async function users(fastify) {
 
 ---
 
+class: branded
+
+# Step 6: Logging
+
+- Fastify ships by [default](https://www.fastify.io/docs/master/Logging/) with [`pino`](https://github.com/pinojs/pino).
+- Pino is a logger that aims to lower as much as possible its impact on the application prformance.
+
+- The 2 base principles it follows are:
+  1. log processing should be conducted in a separate process
+  2. use minimum resources for logging
+
+---
+
+class: branded
+
+# Step 6: Exercise
+
+- Add stadard logs to the application
+- Pragmatically add logs into the app
+
+---
+
+# Step 6: Solution
+
+```js
+// index.js
+function buildServer(opts) {
+  const config = {
+    ...opts,
+    logger: true,
+  }
+
+  const fastify = Fastify(config)
+  // ...
+```
+
+```js
+// routes/users/index.js
+async (request) => {
+  request.log.info('About to load the users')
+
+  const { rows: users } = await fastify.pg.query(
+    'SELECT id, username FROM users'
+  )
+
+  request.log.error(new Error('What an error!!'))
+
+  return users
+}
+
+```
+
+---
+
+class: branded
+
+# Step 7: Logging configuration
+
+- Pino can be configured to:
+  - redact informations from the each log entry
+  - log to a file/stream
+
+- Logs can also be formatted so that they are human readable
+
+---
+
+# Step 7: Exercise
+
+- Add logs to the application using the configuration env variables
+- Redact some information from the log (ie: `remoteAddress` from the requests)
+- Log to a file
+- Integrate [pretty-pino](https://github.com/pinojs/pino-pretty) to have more human readable logs for developers
+
+---
+
+# Step 7: Solution 1/3
+
+```js
+// config.js
+const schema = S.object()
+  .prop('PG_CONNECTION_STRING', S.string().required())
+  .prop('JWT_SECRET', S.string().required())
+  .prop('LOG_LEVEL', S.string().default('info'))
+  .prop('LOG_FILE', S.string())
+```
+
+---
+
+# Step 7: Solution 2/3
+
+```js
+// index.js
+function buildServer(opts) {
+  const config = {
+    ...opts,
+    logger: {
+      level: opts.LOG_LEVEL,
+      file: opts.LOG_FILE,
+      redact: [
+        'req.remoteAddress'
+      ],
+    }
+  }
+
+  const fastify = Fastify(config)
+  // ...
+```
+
+---
+
+# Step 7: Solution 3/3
+
+```js
+// package.json
+{
+  // ...
+  "scripts": {
+    "start": "node server",
+    "start:pretty": "node server | pino-pretty",
+    // ...
+  },
+  // ...
+}
+
+```
+
+---
+
 class: center, no-border, branded
 
 # 🏆 Write Tests 🏆
@@ -935,3 +1063,132 @@ class: center, no-border, branded
 # Thanks For Having Us!
 
 ## 👏👏👏
+
+---
+
+class: branded
+
+# Step 3: Logging
+
+- Fastify ships by [default](https://www.fastify.io/docs/master/Logging/) with [`pino`](https://github.com/pinojs/pino).
+- Pino is a logger that aims to lower as much as possible its impact on the application performance.
+
+- The 2 base principles it follows are:
+  1. log processing should be conducted in a separate process
+  2. use minimum resources for logging
+
+- Fastify have a `logger` option you can use to enable logging and configure it
+
+---
+
+class: branded
+
+# Step 3: Logging
+
+- Add stadard logs to the application
+
+- Pragmatically add logs into the app
+
+---
+
+class: branded
+
+# Step 3: Solution /1
+
+```js
+// indes.js
+import Fastify from 'fastify'
+
+function buildServer() {
+  const fastify = Fastify({
+    logger: true,
+  })
+
+  fastify.register(import('./routes/users.js'))
+
+  fastify.log.info('Fastify is ready to go!')
+
+  return fastify
+}
+
+export default buildServer
+```
+
+---
+
+class: branded
+
+# Step 3: Solution /2
+
+```js
+// routes/users.js
+export default async function users(fastify) {
+  fastify.get(
+    '/users',
+    {
+      schema,
+    },
+    async () => {
+      fastify.log.info('Users enpoint called.')
+
+      return [{ username: 'alice' }, { username: 'bob' }]
+    }
+  )
+}
+```
+
+---
+
+class: branded
+
+# Step 3: Solution /3
+
+### In the terminal:
+
+```a
+$ yarn start
+
+{
+  "level":30,
+  "time": ... ,
+  "msg":"Fastify is ready to go!"
+}
+{
+  "level":30,
+  "time": ... ,
+  "msg":
+  "Server listening at http://127.0.0.1:3000"
+}
+```
+
+---
+
+class: branded
+
+# Step 3: Solution /4
+
+```a
+curl http://localhost:3000/users
+
+[{"username":"alice"},{"username":"bob"}]
+```
+
+```a
+{
+  "level":30, ... ,
+  "req": {
+    "method":"GET",
+    "url":"/users",
+    ...
+}
+{
+  "level":30, ... ,
+  "msg":"Users enpoint called."
+}
+{
+  "level":30, ... ,
+  "res": {
+    "statusCode":200
+  ...
+}
+```

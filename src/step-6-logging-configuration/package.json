@@ -1,0 +1,9 @@
+{
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server",
+    "start:pretty": "node server | pino-pretty",
+    "test": "LOG_FILE=test.log LOG_LEVEL=debug tap"
+  }
+}
