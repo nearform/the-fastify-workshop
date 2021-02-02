@@ -14,6 +14,6 @@ export default async function users(fastify) {
     {
       schema,
     },
-    async () => [{ usernames: 'alice' }, { usernames: 'bob' }]
+    async () => [{ username: 'alice' }, { username: 'bob' }]
   )
 }

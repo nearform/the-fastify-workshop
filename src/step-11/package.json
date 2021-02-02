@@ -2,6 +2,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server",
+    "test": "tap"
   }
 }
