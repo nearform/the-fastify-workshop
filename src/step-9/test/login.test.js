@@ -7,7 +7,7 @@ const { test } = t
 function buildServer() {
   return fastify()
     .decorate('jwt', { sign: sinon.stub() })
-    .register(import('../../routes/login.js'))
+    .register(import('../routes/login.js'))
 }
 
 test('POST /login', async t => {
