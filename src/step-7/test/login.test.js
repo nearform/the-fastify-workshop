@@ -11,22 +11,47 @@ function buildServer() {
 }
 
 test('POST /login', async t => {
-  t.test('returns 401 with an invalid post payload', async t => {
+  t.test('returns 400 with missing credentials', async t => {
+    const fastify = buildServer()
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+    })
+
+    t.strictEqual(res.statusCode, 400)
+  })
+
+  t.test('returns 400 with partial credentials', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
       body: {
-        name: 'alice',
-        passcode: 'alice',
+        username: 'alice',
+      },
+    })
+
+    t.strictEqual(res.statusCode, 400)
+  })
+
+  t.test('returns 401 with wrong credentials', async t => {
+    const fastify = buildServer()
+
+    const res = await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+        password: 'wrong password',
       },
     })
 
     t.strictEqual(res.statusCode, 401)
   })
 
-  t.test('returns the data with valid post payload', async t => {
+  t.test('obtains a token with right credentials', async t => {
     const fastify = buildServer()
 
     fastify.jwt.sign.returns('jwt token')
@@ -41,9 +66,6 @@ test('POST /login', async t => {
     })
 
     t.strictEqual(res.statusCode, 200)
-    t.strictEqual(await res.json(), {
-      username: 'alice',
-      password: 'alice',
-    })
+    t.strictEqual((await res.json()).token, 'jwt token')
   })
 })

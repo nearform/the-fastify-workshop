@@ -103,7 +103,7 @@ class: branded
 #### Requirements
 
 - Node LTS
-- docker
+- Docker
 - docker-compose
 
 #### Setup
@@ -144,7 +144,7 @@ class: branded
 
 - `cd src/step-{n}`
 
-- check out README.md
+- Check out README.md
 
 #### Example
 
@@ -161,9 +161,9 @@ class: branded
 
 Write a Fastify program in a `server.js` file which:
 
-- exposes a `GET /` route
-- listens on port 3000
-- responds with the JSON object
+- Exposes a `GET /` route
+- Listens on port 3000
+- Responds with the JSON object
 
   ```json
   {
@@ -179,7 +179,7 @@ class: branded
 
 # Step 1: Solution
 
-```jsx
+```js
 // server.js
 import Fastify from 'fastify'
 
@@ -225,9 +225,9 @@ class: branded
 
 # Step 2: Plugins
 
-- As with JavaScript, where everything is an object, with Fastify everything is a plugin
+- As with JavaScript, where everything is an object, with Fastify everything is a plugin.
 
-- Fastify allows the user to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API that you will need to use one or more plugins, is `register`
+- Fastify allows the user to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API that you will need to use one or more plugins, is `register`.
 
 https://www.fastify.io/docs/latest/Plugins/
 
@@ -237,12 +237,12 @@ class: branded
 
 # Step 2: Exercise 💻
 
-- split `server.js` into two files:
+- Split `server.js` into two files:
 
   - `server.js` contains only the server startup logic
   - `index.js` contains the code to instantiate Fastify and register plugins
 
-- create a `GET /users` route in `routes/users.js` and export it as a Fastify plugin
+- Create a `GET /users` route in `routes/users.js` and export it as a Fastify plugin
 
 ---
 
@@ -313,13 +313,23 @@ export default async function users(fastify) {
 
 ```a
 curl http://localhost:3000/
-{"message":"Route GET:/ not found","error":"Not Found","statusCode":404}
+```
+
+```json
+{
+  "message": "Route GET:/ not found",
+  "error": "Not Found",
+  "statusCode": 404
+}
 ```
 
 #### We'll find our response at /users
 
 ```a
 curl http://localhost:3000/users
+```
+
+```json
 [{"username":"alice"},{"username":"bob"}]
 ```
 
@@ -329,24 +339,26 @@ class: branded
 
 # Step 3: Logging
 
-- Fastify ships by [default](https://www.fastify.io/docs/master/Logging/) with [`pino`](https://github.com/pinojs/pino).
+- Fastify ships by default with [`pino`](https://github.com/pinojs/pino).
 - Pino is a logger that aims to lower as much as possible its impact on the application performance.
 
 - The 2 base principles it follows are:
-  1. log processing should be conducted in a separate process
-  2. use minimum resources for logging
+  1. Log processing should be conducted in a separate process.
+  2. Use minimum resources for logging.
 
-- Fastify have a `logger` option you can use to enable logging and configure it
+- Fastify has a `logger` option you can use to enable logging and configure it.
+
+https://www.fastify.io/docs/master/Logging/
 
 ---
 
 class: branded
 
-# Step 3: Logging
+# Step 3: Exercise 💻
 
-- Add stadard logs to the application
+- Add standard logs to the application.
 
-- Pragmatically add logs into the app
+- Pragmatically add logs into the app.
 
 ---
 
@@ -355,7 +367,7 @@ class: branded
 # Step 3: Solution /1
 
 ```js
-// indes.js
+// index.js
 import Fastify from 'fastify'
 
 function buildServer() {
@@ -406,15 +418,14 @@ class: branded
 $ yarn start
 
 {
-  "level":30,
+  "level": 30,
   "time": ... ,
-  "msg":"Fastify is ready to go!"
+  "msg": "Fastify is ready to go!"
 }
 {
-  "level":30,
+  "level": 30,
   "time": ... ,
-  "msg":
-  "Server listening at http://127.0.0.1:3000"
+  "msg": "Server listening at http://127.0.0.1:3000"
 }
 ```
 
@@ -456,9 +467,9 @@ class: branded
 
 # Step 4: Serialization
 
-- Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
+- Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function.
 
-- We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information
+- We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information.
 
 https://www.fastify.io/docs/latest/Validation-and-Serialization/#serialization
 
@@ -468,16 +479,10 @@ class: branded
 
 # Step 4: Exercise 💻
 
-- respond to requests with an array of two users:
+- Validate the response in the users endpoint using a schema:
 
-```json
-[{ "username": "alice" }, { "username": "bob" }]
-```
-
-- validate the response using a schema:
-
-  - created with `fluent-json-schema`
-  - ensure that the response is serialized properly and contains the required property `username` in each array item
+  - Created with `fluent-json-schema`.
+  - Ensure that the response is serialized properly and contains the required property `username` in each array item.
 
 ---
 
@@ -498,10 +503,10 @@ const schema = {
 }
 
 export default async function users(fastify) {
-  fastify.get('/users', { schema }, async () => [
-    { username: 'alice' },
-    { username: 'bob' },
-  ])
+  fastify.get('/users', { schema }, async () => {
+    fastify.log.info('Users endpoint called.')
+    return [{ username: 'alice' }, { username: 'bob' }]
+  })
 }
 ```
 
@@ -511,17 +516,24 @@ export default async function users(fastify) {
 
 #### Make the response invalid
 
-* In routes/users.js change the hardcoded response so it doesn't match the schema:
+In routes/users.js change the hardcoded response so it doesn't match the schema:
 
 ```js
-async () => [{ name: 'alice' }, { name: 'bob' }]
+[{ name: 'alice' }, { name: 'bob' }]
 ```
 
-* You will need to restart in step-4 for these changes to take effect
+You will need to restart in step-4 for these changes to take effect.
 
 ```a
 curl http://localhost:3000/users
-{"statusCode":500,"error":"Internal Server Error","message":"\"username\" is required!"}
+```
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message":"\"username\" is required!"
+}
 ```
 
 ---
@@ -530,11 +542,11 @@ class: branded
 
 # Step 5: Testing
 
-- Fastify is very flexible when it comes to testing and is compatible with most testing frameworks
+- Fastify is very flexible when it comes to testing and is compatible with most testing frameworks.
 
-- Built-in support for fake http injection thanks to [light-my-request](https://github.com/fastify/light-my-request)
+- Built-in support for fake http injection thanks to [light-my-request](https://github.com/fastify/light-my-request).
 
-- Fastify can also be tested after starting the server with `fastify.listen()` or after initializing routes and plugins with `fastify.ready()`
+- Fastify can also be tested after starting the server with `fastify.listen()` or after initializing routes and plugins with `fastify.ready()`.
 
 https://www.fastify.io/docs/latest/Testing/
 
@@ -544,15 +556,15 @@ class: branded
 
 # Step 5: Exercise 💻
 
-- write a unit test for the `index.js` module
+- Write a unit test for the `index.js` module.
 
-- use `node-tap`
+- Use `node-tap`.
 
-- use `fastify.inject`
+- Use `fastify.inject`.
 
-- check that GETting the `/users` route:
-  - responds with status code 200
-  - returns the expected array of users
+- Check that GETting the `/users` route:
+  - Responds with status code 200.
+  - Returns the expected array of users.
 
 > 💡 you don't need to start the server
 
@@ -616,7 +628,9 @@ class: branded
 
 # Step 6: Validation
 
-- Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
+- Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator.
+
+https://www.fastify.io/docs/v2.2.x/Validation-and-Serialization/#validation
 
 ---
 
@@ -624,9 +638,9 @@ class: branded
 
 # Step 6: Exercise 💻
 
-- create and register a `POST /login` route in `routes/login.js`
+- Create and register a `POST /login` route in `routes/login.js`.
 
-- validate the body of the request to ensure it is a JSON object containing two required string properties `username` and `password`
+- Validate the body of the request to ensure it is a JSON object containing two required string properties `username` and `password`.
 
 ---
 
@@ -634,6 +648,8 @@ class: branded
 
 ```js
 // routes/login.js
+import S from 'fluent-json-schema'
+
 const schema = {
   body: S.object()
     .prop('username', S.string().required())
@@ -698,7 +714,7 @@ class: branded
 
 # Step 7: Authentication
 
-- [`fastify-jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
+- [`fastify-jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken).
 
 ---
 
@@ -706,9 +722,9 @@ class: branded
 
 # Step 7: Exercise 💻
 
-- change `index.js` so that it:
+- Change `index.js` so that it:
 
-  - registers the `fastify-jwt` plugin using the configuration option `JWT_SECRET` as the `secret` property of the plugin's configuration options
+  - Registers the `fastify-jwt` plugin using the configuration option `JWT_SECRET` as the `secret` property of the plugin's configuration options.
 
 ---
 
@@ -721,7 +737,9 @@ class: branded
 import Fastify from 'fastify'
 
 function buildServer() {
-  const fastify = Fastify()
+  const fastify = Fastify({
+    logger: true,
+  })
 
   fastify.register(import('fastify-jwt'), {
     secret: 'supersecret',
@@ -743,17 +761,17 @@ class: branded
 
 # Step 7: Exercise /2 💻
 
-- change `routes/login.js` to add an auth check:
+- Change `routes/login.js` to add an auth check:
 
-  - perform a dummy check on the auth: if `username === password` then the user is authenticated
+  - Perform a dummy check on the auth: if `username === password` then the user is authenticated.
 
-  - if the auth check fails, respond with a `401 Unauthorized` HTTP error
+  - If the auth check fails, respond with a `401 Unauthorized` HTTP error.
 
-  > 💡 you can use the `http-errors` package
+  > 💡 you can use the `http-errors` package.
 
-  - if the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `fastify-jwt` plugin
+  - If the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `fastify-jwt` plugin.
 
-  - change the schema response to ensure the `200` is correctly formatted
+  - Change the schema response to ensure the `200` is correctly formatted.
 
 ---
 
@@ -788,6 +806,24 @@ export default async function login(fastify) {
 
 # Step 7: Trying it out
 
+#### With right credentials
+
+```a
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "username": "alice", "password": "alice" }'
+http://localhost:3000/login
+```
+
+```json
+{
+  "token":"eyJhbGciOi ..."
+}
+```
+
+---
+
+# Step 7: Trying it out /2
+
 #### With wrong credentials
 
 ```a
@@ -806,21 +842,17 @@ http://localhost:3000/login
 
 ---
 
-# Step 7: Trying it out /2
+class: branded
 
-#### With right credentials
+# Step 8: Config
 
-```a
-curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "alice" }'
-http://localhost:3000/login
-```
+- It is preferable to use a config file (.env) to keep track of environment variables used in the system, for example, the JWT secret we put directly into the code in the previous step.
 
-```json
-{
-  "token":"eyJhbGciOi ..."
-}
-```
+- This makes it easier to deploy the same code into different environments as we only need to change the config file rather than having to deploy different copies of the code.
+
+- Typically config would not be committed to a repository and would be managed in different environments accordingly. For example, locally, developers might want to see everything from the log, whereas in Production we wouldn't want to generate huge log files and might restrict the log, outputting just errors.
+
+
 
 ---
 
@@ -828,17 +860,17 @@ class: branded
 
 # Step 8: Exercise 💻
 
-- create a `config.js` file which:
+- Create a `config.js` file which:
 
-  - uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
+  - Uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
 
-  - validates its value with `fluent-json-schema`
+  - Validates its value with `fluent-json-schema`
 
-- change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
+- Change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
 
-- change `index.js` so that it:
+- Change `index.js` so that it:
 
-  - accepts the configuration provided by `server.js` in the exported `buildServer` function
+  - Accepts the configuration provided by `server.js` in the exported `buildServer` function
 
 ---
 
@@ -852,7 +884,9 @@ import { join } from 'desm'
 import envSchema from 'env-schema'
 import S from 'fluent-json-schema'
 
-const schema = S.object().prop('JWT_SECRET', S.string().required())
+const schema = S.object()
+  .prop('JWT_SECRET', S.string().required())
+  .prop('LOG_LEVEL', S.string().default('info'))
 
 export default envSchema({
   schema,
@@ -895,16 +929,17 @@ class: branded
 // index.js
 import Fastify from 'fastify'
 
-function buildServer(opts) {
+function buildServer(config) {
+  const opts = {
+    ...config,
+    logger: {
+      level: config.LOG_LEVEL,
+    }
+  }
+
   const fastify = Fastify(opts)
 
-  fastify.register(import('fastify-jwt'), {
-    secret: opts.JWT_SECRET,
-  })
-  fastify.register(import('./routes/login.js'))
-  fastify.register(import('./routes/users.js'))
-
-  fastify.log.info('Fastify is ready to go!')
+  ...
 
   return fastify
 }
@@ -914,11 +949,29 @@ export default buildServer
 
 ---
 
+# Step 8: Trying it out
+
+Anything you've tried so far should still work. For example, the retrieval of a JWT token on successful login call. You should also see logs as you have done since step 3.
+
+```a
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "username": "alice", "password": "alice" }'
+http://localhost:3000/login
+```
+
+```json
+{
+  "token":"eyJhbGciOi ..."
+}
+```
+
+---
+
 class: branded
 
 # Step 9: Decorators
 
-- in the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
+- In the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
 
 https://www.fastify.io/docs/latest/Decorators/
 
@@ -936,13 +989,13 @@ class: branded
 
 # Step 9: Exercise 💻
 
-- create a `plugins/authentication.js` plugin which:
+- Create a `plugins/authentication.js` plugin which:
 
-  - registers `fastify-jwt` with a secret provided via plugin options
+  - Registers `fastify-jwt` with a secret provided via plugin options
 
   > 💡 move the plugin registration from `index.js` to the new plugin module
 
-  - exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid
+  - Exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid
 
 ---
 
@@ -985,12 +1038,12 @@ class: branded
 
 # Step 10: Exercise 💻
 
-- instead of registering the new plugin manually as we did for the existing routes in `index.js`, use `fastify-autoload`
+- Instead of registering the new plugin manually as we did for the existing routes in `index.js`, use `fastify-autoload`
 
-- register the autoload plugin two times:
+- Register the autoload plugin two times:
 
-  - one for the `plugins` folder
-  - one for the `routes` folder
+  - One for the `plugins` folder
+  - One for the `routes` folder
 
 ---
 
@@ -1043,13 +1096,13 @@ class: branded
 
 # Step 11: Exercise 💻
 
-- create a `GET /` route in `routes/user/index.js`
+- Create a `GET /` route in `routes/user/index.js`
 
-- require authentication using the `preValidation` Fastify hook
+- Require authentication using the `preValidation` Fastify hook
 
-- use the `fastify.authenticate` decorator
+- Use the `fastify.authenticate` decorator
 
-- return the information about the currently authenticated user in the response
+- Return the information about the currently authenticated user in the response
 
 > 💡 you can get the current user from `request.user`
 
@@ -1120,9 +1173,9 @@ class: branded
 
 # 🏆 Step 12: Database
 
-- use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
+- Use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
 
-- use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities
+- Use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities
 
 Make sure you setup the db first with:
 
@@ -1139,15 +1192,15 @@ class: branded
 
 # Step 12: Exercise 💻
 
-- change `config.js` to support a `PG_CONNECTION_STRING` variable
+- Change `config.js` to support a `PG_CONNECTION_STRING` variable
 
-- enrich `.env` with:
+- Enrich `.env` with:
 
   ```txt
   PG_CONNECTION_STRING=postgres://postgres:postgres@localhost:5433/postgres
   ```
 
-- register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
+- Register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
 
 ---
 
@@ -1181,11 +1234,11 @@ class: branded
 
 change `routes/login.js` so that:
 
-- after carrying out the existing dummy auth check, look up the user in the `users` database table via the `username` property provided in the request body
+- After carrying out the existing dummy auth check, look up the user in the `users` database table via the `username` property provided in the request body
 
 > 💡 write the query using `@nearform/sql`
 
-- if the user does not exist in the database, return a `401 Unauthorized` error
+- If the user does not exist in the database, return a `401 Unauthorized` error
 
 ---
 
@@ -1223,11 +1276,11 @@ class: branded
 
 # Step 12: Exercise 💻
 
-- move the existing `routes/users.js` route to `routes/users/index.js` and make it an auto-prefixed route responding to `GET /users`
+- Move the existing `routes/users.js` route to `routes/users/index.js` and make it an auto-prefixed route responding to `GET /users`
 
-- change the response schema so that it requires an array of objects with properties `username` of type `string` and `id` of type `integer`
+- Change the response schema so that it requires an array of objects with properties `username` of type `string` and `id` of type `integer`
 
-- load all users from the database instead of returning an hardcoded array of users
+- Load all users from the database instead of returning an hardcoded array of users
 
 ---
 

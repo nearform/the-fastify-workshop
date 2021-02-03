@@ -15,7 +15,7 @@ export default async function users(fastify) {
     '/',
     { preValidation: [fastify.authenticate], schema },
     async () => {
-      fastify.log.info('Users enpoint called.')
+      fastify.log.info('Users endpoint called.')
 
       const { rows: users } = await fastify.pg.query(
         'SELECT id, username FROM users'
