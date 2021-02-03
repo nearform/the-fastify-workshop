@@ -19,6 +19,8 @@ function buildServer(opts) {
     options: opts,
   })
 
+  fastify.log.info('Fastify is ready to go!')
+
   return fastify
 }
 

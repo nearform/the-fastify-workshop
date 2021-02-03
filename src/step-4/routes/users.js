@@ -14,6 +14,10 @@ export default async function users(fastify) {
     {
       schema,
     },
-    async () => [{ usernames: 'alice' }, { usernames: 'bob' }]
+    async () => {
+      fastify.log.info('Users enpoint called.')
+
+      return [{ username: 'alice' }, { username: 'bob' }]
+    }
   )
 }

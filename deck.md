@@ -327,6 +327,133 @@ curl http://localhost:3000/users
 
 class: branded
 
+# Step 3: Logging
+
+- Fastify ships by [default](https://www.fastify.io/docs/master/Logging/) with [`pino`](https://github.com/pinojs/pino).
+- Pino is a logger that aims to lower as much as possible its impact on the application performance.
+
+- The 2 base principles it follows are:
+  1. log processing should be conducted in a separate process
+  2. use minimum resources for logging
+
+- Fastify have a `logger` option you can use to enable logging and configure it
+
+---
+
+class: branded
+
+# Step 3: Logging
+
+- Add stadard logs to the application
+
+- Pragmatically add logs into the app
+
+---
+
+class: branded
+
+# Step 3: Solution /1
+
+```js
+// indes.js
+import Fastify from 'fastify'
+
+function buildServer() {
+  const fastify = Fastify({
+    logger: true,
+  })
+
+  fastify.register(import('./routes/users.js'))
+
+  fastify.log.info('Fastify is ready to go!')
+
+  return fastify
+}
+
+export default buildServer
+```
+
+---
+
+class: branded
+
+# Step 3: Solution /2
+
+```js
+// routes/users.js
+export default async function users(fastify) {
+  fastify.get(
+    '/users',
+    {
+      schema,
+    },
+    async () => {
+      fastify.log.info('Users endpoint called.')
+
+      return [{ username: 'alice' }, { username: 'bob' }]
+    }
+  )
+}
+```
+
+---
+
+class: branded
+
+# Step 3: Trying it out
+
+```a
+$ yarn start
+
+{
+  "level":30,
+  "time": ... ,
+  "msg":"Fastify is ready to go!"
+}
+{
+  "level":30,
+  "time": ... ,
+  "msg":
+  "Server listening at http://127.0.0.1:3000"
+}
+```
+
+---
+
+class: branded
+
+# Step 3: Trying it out /2
+
+```a
+curl http://localhost:3000/users
+
+[{"username":"alice"},{"username":"bob"}]
+```
+
+```a
+{
+  "level":30, ... ,
+  "req": {
+    "method":"GET",
+    "url":"/users",
+    ...
+}
+{
+  "level":30, ... ,
+  "msg":"Users endpoint called."
+}
+{
+  "level":30, ... ,
+  "res": {
+    "statusCode":200
+  ...
+}
+```
+
+---
+
+class: branded
+
 # Step 4: Serialization
 
 - Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function

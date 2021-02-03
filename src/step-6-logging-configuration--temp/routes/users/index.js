@@ -14,12 +14,14 @@ export default async function users(fastify) {
   fastify.get(
     '/',
     { preValidation: [fastify.authenticate], schema },
-    async () => {
-      fastify.log.info('Users enpoint called.')
+    async (request) => {
+      request.log.info('About to load the users')
 
       const { rows: users } = await fastify.pg.query(
         'SELECT id, username FROM users'
       )
+
+      request.log.error(new Error('What an error!!'))
 
       return users
     }
