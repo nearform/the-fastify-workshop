@@ -386,7 +386,7 @@ export default async function users(fastify) {
 
 * In routes/users.js change the hardcoded response so it doesn't match the schema:
 
-```javascript
+```js
 async () => [{ name: 'alice' }, { name: 'bob' }]
 ```
 
@@ -497,57 +497,68 @@ class: branded
 
 # Step 6: Exercise 💻
 
-- create a `config.js` file which:
+- create and register a `POST /login` route in `routes/login.js`
 
-  - uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
-
-  - validates its value with `fluent-json-schema`
-
-- change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
+- validate the body of the request to ensure it is a JSON object containing two required string properties `username` and `password`
 
 ---
-
-class: branded
 
 # Step 6: Solution
 
 ```js
-// config.js
-import { join } from 'desm'
-import envSchema from 'env-schema'
-import S from 'fluent-json-schema'
+// routes/login.js
+const schema = {
+  body: S.object()
+    .prop('username', S.string().required())
+    .prop('password', S.string().required()),
+  response: {
+    200: S.object()
+      .prop('username', S.string().required())
+      .prop('password', S.string().required())
+  },
+}
 
-const schema = S.object().prop('JWT_SECRET', S.string().required())
-
-export default envSchema({
-  schema,
-  dotenv: { path: join(import.meta.url, '.env') },
-})
+export default async function login(fastify) {
+  fastify.post('/login', { schema }, async req => {
+    const { username, password } = req.body
+    return { username, password }
+  })
+}
 ```
 
 ---
 
-class: branded
+# Step 6: Trying it out
 
-# Step 6: Solution /2
+#### With right credentials
 
-```js
-// server.js
-import buildServer from './index.js'
-import config from './config.js'
+```a
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "username": "alice", "password": "alice" }'
+http://localhost:3000/login
+```
 
-const fastify = buildServer(config)
-
-const start = async function () {
-  try {
-    await fastify.listen(3000)
-  } catch (err) {
-    fastify.log.error(err)
-    process.exit(1)
-  }
+```json
+{
+  "username": "alice",
+  "password": "alice"
 }
+```
 
-start()
+#### With wrong credentials
+
+```a
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "name": "alice", "passcode": "alice" }'
+http://localhost:3000/login
+```
+
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "body should have required property 'username'"
+}
 ```
 
 ---
@@ -568,8 +579,6 @@ class: branded
 
   - registers the `fastify-jwt` plugin using the configuration option `JWT_SECRET` as the `secret` property of the plugin's configuration options
 
-  - accepts the configuration provided by `server.js` in the exported `buildServer` function
-
 ---
 
 class: branded
@@ -580,13 +589,14 @@ class: branded
 // index.js
 import Fastify from 'fastify'
 
-function buildServer(opts) {
-  const fastify = Fastify(opts)
+function buildServer() {
+  const fastify = Fastify()
 
   fastify.register(import('fastify-jwt'), {
-    secret: opts.JWT_SECRET,
+    secret: 'supersecret',
   })
   fastify.register(import('./routes/users.js'))
+  fastify.register(import('./routes/login.js'))
 
   return fastify
 }
@@ -598,26 +608,19 @@ export default buildServer
 
 class: branded
 
-# Step 7: Exercise 💻
-
-- create and register a `POST /login` route in `routes/login.js`
-
-- validate the body of the request to ensure it is a JSON object containing two required string properties `username` and `password`
-
-- perform a dummy check on the auth:
-  - if `username === password` then the user is authenticated
-
----
-
-class: branded
-
 # Step 7: Exercise /2 💻
 
-- if the auth check fails, respond with a `401 Unauthorized` HTTP error
+- change `routes/login.js` to add an auth check:
 
-> 💡 you can use the `http-errors` package
+  - perform a dummy check on the auth: if `username === password` then the user is authenticated
 
-- if the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `fastify-jwt` plugin
+  - if the auth check fails, respond with a `401 Unauthorized` HTTP error
+
+  > 💡 you can use the `http-errors` package
+
+  - if the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `fastify-jwt` plugin
+
+  - change the schema response to ensure the `200` is correctly formatted
 
 ---
 
@@ -650,23 +653,15 @@ export default async function login(fastify) {
 
 ---
 
-# Steps 6 & 7: Trying it out
+# Step 7: Trying it out
+
+#### With wrong credentials
 
 ```a
 curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "alice" }'
+-d '{ "username": "alice", "password": "wrong" }'
 http://localhost:3000/login
 ```
-
-#### With right credentials
-
-```json
-{
-  "token": "eyJhbGciOi..."
-}
-```
-
-#### With wrong credentials
 
 ```json
 {
@@ -674,6 +669,85 @@ http://localhost:3000/login
   "error": "Unauthorized",
   "message": "Unauthorized"
 }
+```
+
+#### With right credentials
+
+```a
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "username": "alice", "password": "alice" }'
+http://localhost:3000/login
+```
+
+```json
+{
+  "statusCode": 401,
+  "error": "Unauthorized",
+  "message": "Unauthorized"
+}
+```
+
+---
+
+class: branded
+
+# Step 8: Exercise 💻
+
+- create a `config.js` file which:
+
+  - uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
+
+  - validates its value with `fluent-json-schema`
+
+- change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
+
+- change `index.js` so that it:
+
+  - accepts the configuration provided by `server.js` in the exported `buildServer` function
+
+---
+
+class: branded
+
+# Step 8: Solution
+
+```js
+// config.js
+import { join } from 'desm'
+import envSchema from 'env-schema'
+import S from 'fluent-json-schema'
+
+const schema = S.object().prop('JWT_SECRET', S.string().required())
+
+export default envSchema({
+  schema,
+  dotenv: { path: join(import.meta.url, '.env') },
+})
+```
+
+---
+
+class: branded
+
+# Step 8: Solution /2
+
+```js
+// server.js
+import buildServer from './index.js'
+import config from './config.js'
+
+const fastify = buildServer(config)
+
+const start = async function () {
+  try {
+    await fastify.listen(3000)
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
+}
+
+start()
 ```
 
 ---

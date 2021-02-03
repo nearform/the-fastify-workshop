@@ -1,13 +1,13 @@
 import Fastify from 'fastify'
 
-function buildServer(opts) {
-  const fastify = Fastify(opts)
+function buildServer() {
+  const fastify = Fastify()
 
   fastify.register(import('fastify-jwt'), {
-    secret: opts.JWT_SECRET,
+    secret: 'supersecret',
   })
-  fastify.register(import('./routes/login.js'))
   fastify.register(import('./routes/users.js'))
+  fastify.register(import('./routes/login.js'))
 
   return fastify
 }
