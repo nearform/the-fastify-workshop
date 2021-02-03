@@ -760,6 +760,31 @@ start()
 
 class: branded
 
+# Step 8: Solution /3
+
+```js
+// index.js
+import Fastify from 'fastify'
+
+function buildServer(opts) {
+  const fastify = Fastify(opts)
+
+  fastify.register(import('fastify-jwt'), {
+    secret: opts.JWT_SECRET,
+  })
+  fastify.register(import('./routes/login.js'))
+  fastify.register(import('./routes/users.js'))
+
+  return fastify
+}
+
+export default buildServer
+```
+
+---
+
+class: branded
+
 # Step 9: Decorators
 
 - in the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
