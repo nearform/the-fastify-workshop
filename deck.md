@@ -726,8 +726,10 @@ function buildServer() {
   fastify.register(import('fastify-jwt'), {
     secret: 'supersecret',
   })
-  fastify.register(import('./routes/users.js'))
   fastify.register(import('./routes/login.js'))
+  fastify.register(import('./routes/users.js'))
+
+  fastify.log.info('Fastify is ready to go!')
 
   return fastify
 }
@@ -902,6 +904,8 @@ function buildServer(opts) {
   fastify.register(import('./routes/login.js'))
   fastify.register(import('./routes/users.js'))
 
+  fastify.log.info('Fastify is ready to go!')
+
   return fastify
 }
 
@@ -1010,6 +1014,8 @@ function buildServer(opts) {
     dir: join(import.meta.url, 'routes'),
     options: opts,
   })
+
+  fastify.log.info('Fastify is ready to go!')
 
   return fastify
 }
