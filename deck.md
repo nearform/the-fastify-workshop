@@ -852,6 +852,8 @@ class: branded
 
 - Typically config values are not committed to a repository and they are managed with environment variables. An example would be the logging level: in production it's usually better to have only errors, while in a dev environment it may be useful to show more.
 
+- Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work.
+
 
 
 ---
@@ -949,29 +951,13 @@ export default buildServer
 
 ---
 
-# Step 8: Trying it out
-
-Anything you've tried so far should still work. For example, the retrieval of a JWT token on successful login call. You should also see logs as you have done since step 3.
-
-```a
-curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "alice" }'
-http://localhost:3000/login
-```
-
-```json
-{
-  "token":"eyJhbGciOi ..."
-}
-```
-
----
-
 class: branded
 
 # Step 9: Decorators
 
-- In the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
+- In the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator.
+
+- (note that steps 9 & 10 work together and we'll get to try it out after step 10).
 
 https://www.fastify.io/docs/latest/Decorators/
 
@@ -991,11 +977,11 @@ class: branded
 
 - Create a `plugins/authentication.js` plugin which:
 
-  - Registers `fastify-jwt` with a secret provided via plugin options
+  - Registers `fastify-jwt` with a secret provided via plugin options.
 
-  > 💡 move the plugin registration from `index.js` to the new plugin module
+  > 💡 move the plugin registration from `index.js` to the new plugin module.
 
-  - Exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid
+  - Exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid.
 
 ---
 
@@ -1028,59 +1014,9 @@ export default authenticate
 
 class: branded
 
-# Step 10: Fastify autoload
+# Step 10: Hooks
 
-- [`fastify-autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
-
----
-
-class: branded
-
-# Step 10: Exercise 💻
-
-- Instead of registering the new plugin manually as we did for the existing routes in `index.js`, use `fastify-autoload`
-
-- Register the autoload plugin two times:
-
-  - One for the `plugins` folder
-  - One for the `routes` folder
-
----
-
-# Step 10: Solution
-
-```js
-// index.js
-import { join } from 'desm'
-import Fastify from 'fastify'
-import autoload from 'fastify-autoload'
-
-function buildServer(opts) {
-  const fastify = Fastify(opts)
-
-  fastify.register(autoload, {
-    dir: join(import.meta.url, 'plugins'),
-    options: opts,
-  })
-
-  fastify.register(autoload, {
-    dir: join(import.meta.url, 'routes'),
-    options: opts,
-  })
-
-  fastify.log.info('Fastify is ready to go!')
-
-  return fastify
-}
-```
-
----
-
-class: branded
-
-# Step 11: Hooks
-
-- In this step we're going to build on step 9 by using a fastify hook with our decorator for the protected route
+- In this step we're going to build on step 9 by using a fastify hook with our decorator for the protected route.
 
 https://www.fastify.io/docs/latest/Hooks/
 
@@ -1094,17 +1030,17 @@ https://www.fastify.io/docs/latest/Hooks/
 
 class: branded
 
-# Step 11: Exercise 💻
+# Step 10: Exercise 💻
 
-- Create a `GET /` route in `routes/user/index.js`
+- Create a `GET /` route in `routes/user/index.js`.
 
-- Require authentication using the `preValidation` Fastify hook
+- Require authentication using the `preValidation` Fastify hook.
 
-- Use the `fastify.authenticate` decorator
+- Use the `fastify.authenticate` decorator.
 
-- Return the information about the currently authenticated user in the response
+- Return the information about the currently authenticated user in the response.
 
-> 💡 you can get the current user from `request.user`
+> 💡 you can get the current user from `request.user`.
 
 > 🏆 does the route need to be registered explicitly?
 
@@ -1114,7 +1050,7 @@ class: branded
 
 class: branded
 
-# Step 11: Solution
+# Step 10: Solution
 
 ```js
 // routes/user/index.js
@@ -1128,7 +1064,7 @@ const schema = {
 
 export default async function user(fastify) {
   fastify.get(
-    '/',
+    '/user',
     {
       preValidation: [fastify.authenticate],
       schema,
@@ -1140,7 +1076,7 @@ export default async function user(fastify) {
 
 ---
 
-# Steps 9 to 11: Trying it out
+# Steps 9 & 10: Trying it out
 
 💡 you need a valid JWT by logging in via the `POST /login` endpoint
 
@@ -1164,6 +1100,79 @@ curl http://localhost:3000/user \
   "statusCode": 401,
   "error": "Unauthorized",
   "message": "Authorization token ..."
+}
+```
+
+---
+
+class: branded
+
+# Step 11: Fastify autoload
+
+- [`fastify-autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure.
+
+- Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work.
+
+---
+
+class: branded
+
+# Step 11: Exercise 💻
+
+- Instead of registering the new plugin manually as we did for the existing routes in `index.js`, use `fastify-autoload`
+
+- Register the autoload plugin two times:
+
+  - One for the `plugins` folder
+  - One for the `routes` folder
+
+- Remove the `user` path in `user/index.js` as autoload will derive this from the folder structure
+
+---
+
+# Step 11: Solution
+
+```js
+// index.js
+import { join } from 'desm'
+import Fastify from 'fastify'
+import autoload from 'fastify-autoload'
+
+function buildServer(config) {
+  ...
+
+  fastify.register(autoload, {
+    dir: join(import.meta.url, 'plugins'),
+    options: opts,
+  })
+
+  fastify.register(autoload, {
+    dir: join(import.meta.url, 'routes'),
+    options: opts,
+  })
+
+  fastify.log.info('Fastify is ready to go!')
+
+  return fastify
+}
+```
+
+---
+
+class: branded
+
+# Step 11: Solution /2
+
+```js
+// routes/user/index.js
+...
+
+export default async function user(fastify) {
+  fastify.get(
+    '/',
+
+    ...
+  )
 }
 ```
 
@@ -1211,8 +1220,8 @@ class: branded
 ```js
 // index.js
 // ...
-function buildServer(opts) {
-  const fastify = Fastify(opts)
+function buildServer(config) {
+  ...
 
   fastify.register(import('fastify-postgres'), {
     connectionString: opts.PG_CONNECTION_STRING,

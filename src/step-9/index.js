@@ -1,6 +1,13 @@
 import Fastify from 'fastify'
 
-function buildServer(opts) {
+function buildServer(config) {
+  const opts = {
+    ...config,
+    logger: {
+      level: config.LOG_LEVEL,
+    }
+  }
+
   const fastify = Fastify(opts)
 
   fastify.register(import('fastify-jwt'), {

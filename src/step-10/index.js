@@ -1,19 +1,20 @@
-import { join } from 'desm'
 import Fastify from 'fastify'
-import autoload from 'fastify-autoload'
 
-function buildServer(opts) {
+function buildServer(config) {
+  const opts = {
+    ...config,
+    logger: {
+      level: config.LOG_LEVEL,
+    }
+  }
+
   const fastify = Fastify(opts)
 
-  fastify.register(autoload, {
-    dir: join(import.meta.url, 'plugins'),
-    options: opts,
-  })
+  fastify.register(import('./plugins/authenticate.js'), opts)
 
-  fastify.register(autoload, {
-    dir: join(import.meta.url, 'routes'),
-    options: opts,
-  })
+  fastify.register(import('./routes/user/index.js'))
+  fastify.register(import('./routes/login.js'))
+  fastify.register(import('./routes/users.js'))
 
   fastify.log.info('Fastify is ready to go!')
 
