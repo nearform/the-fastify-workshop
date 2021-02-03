@@ -522,7 +522,7 @@ In routes/users.js change the hardcoded response so it doesn't match the schema:
 [{ name: 'alice' }, { name: 'bob' }]
 ```
 
-You will need to restart in step-4 for these changes to take effect.
+You will need to restart the server in step-4 for these changes to take effect.
 
 ```a
 curl http://localhost:3000/users
@@ -724,7 +724,7 @@ class: branded
 
 - Change `index.js` so that it:
 
-  - Registers the `fastify-jwt` plugin using the configuration option `JWT_SECRET` as the `secret` property of the plugin's configuration options.
+  - Registers the `fastify-jwt` plugin using a hardcoded string as the `secret` property of the plugin's configuration options.
 
 ---
 
@@ -846,11 +846,11 @@ class: branded
 
 # Step 8: Config
 
-- It is preferable to use a config file (.env) to keep track of environment variables used in the system, for example, the JWT secret we put directly into the code in the previous step.
+- It is preferable to use environment variables to configure your app, for example, the JWT secret we put directly into the code in the previous step.
 
-- This makes it easier to deploy the same code into different environments as we only need to change the config file rather than having to deploy different copies of the code.
+- This makes it easier to deploy the same code into different environments.
 
-- Typically config would not be committed to a repository and would be managed in different environments accordingly. For example, locally, developers might want to see everything from the log, whereas in Production we wouldn't want to generate huge log files and might restrict the log, outputting just errors.
+- Typically config values are not committed to a repository and they are managed with environment variables. An example would be the logging level: in production it's usually better to have only errors, while in a dev environment it may be useful to show more.
 
 
 

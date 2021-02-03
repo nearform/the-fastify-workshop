@@ -6,7 +6,6 @@ const schema = S.object()
   .prop('PG_CONNECTION_STRING', S.string().required())
   .prop('JWT_SECRET', S.string().required())
   .prop('LOG_LEVEL', S.string().default('info'))
-  .prop('LOG_FILE', S.string())
 
 export default envSchema({
   schema,
