@@ -545,6 +545,10 @@ http://localhost:3000/login
 }
 ```
 
+---
+
+# Step 6: Trying it out /2
+
 #### With wrong credentials
 
 ```a
@@ -671,6 +675,10 @@ http://localhost:3000/login
 }
 ```
 
+---
+
+# Step 7: Trying it out /2
+
 #### With right credentials
 
 ```a
@@ -681,9 +689,7 @@ http://localhost:3000/login
 
 ```json
 {
-  "statusCode": 401,
-  "error": "Unauthorized",
-  "message": "Unauthorized"
+  "token":"eyJhbGciOi ..."
 }
 ```
 
