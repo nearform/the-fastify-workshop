@@ -1182,9 +1182,9 @@ class: branded
 
 # 🏆 Step 12: Database
 
-- Use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
+- Use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server.
 
-- Use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities
+- Use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities.
 
 Make sure you setup the db first with:
 
@@ -1193,7 +1193,7 @@ yarn db:up
 yarn db:migrate
 ```
 
-> 💡 check the `migrations` folder to see the database schema
+> 💡 check the `migrations` folder to see the database schema.
 
 ---
 
@@ -1201,7 +1201,7 @@ class: branded
 
 # Step 12: Exercise 💻
 
-- Change `config.js` to support a `PG_CONNECTION_STRING` variable
+- Change `config.js` to support a `PG_CONNECTION_STRING` variable.
 
 - Enrich `.env` with:
 
@@ -1209,7 +1209,7 @@ class: branded
   PG_CONNECTION_STRING=postgres://postgres:postgres@localhost:5433/postgres
   ```
 
-- Register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
+- Register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option.
 
 ---
 
@@ -1243,11 +1243,11 @@ class: branded
 
 change `routes/login.js` so that:
 
-- After carrying out the existing dummy auth check, look up the user in the `users` database table via the `username` property provided in the request body
+- After carrying out the existing dummy auth check, look up the user in the `users` database table via the `username` property provided in the request body.
 
-> 💡 write the query using `@nearform/sql`
+> 💡 write the query using `@nearform/sql`.
 
-- If the user does not exist in the database, return a `401 Unauthorized` error
+- If the user does not exist in the database, return a `401 Unauthorized` error.
 
 ---
 
@@ -1285,11 +1285,11 @@ class: branded
 
 # Step 12: Exercise 💻
 
-- Move the existing `routes/users.js` route to `routes/users/index.js` and make it an auto-prefixed route responding to `GET /users`
+- Move the existing `routes/users.js` route to `routes/users/index.js` and make it an auto-prefixed route responding to `GET /users`.
 
-- Change the response schema so that it requires an array of objects with properties `username` of type `string` and `id` of type `integer`
+- Change the response schema so that it requires an array of objects with properties `username` of type `string` and `id` of type `integer`.
 
-- Load all users from the database instead of returning an hardcoded array of users
+- Load all users from the database instead of returning an hardcoded array of users.
 
 ---
 
