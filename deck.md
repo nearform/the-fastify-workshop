@@ -609,23 +609,23 @@ test('GET /users', async t => {
 #### Run the tests
 
 ```a
-yarn test
-
+❯ yarn test
+yarn run v1.16.0
 $ tap
- PASS  test/index.test.js 2 OK 88.011ms
- PASS  test/login.test.js 5 OK 121.376ms
+
+ PASS  test/index.test.js 2 OK 123.827ms
 
 🌈 SUMMARY RESULTS 🌈
 
-Suites:   2 passed, 2 of 2 completed
-Asserts:  7 passed, of 7
-Time:     721.846ms
+Suites:   1 passed, 1 of 1 completed
+Asserts:  2 passed, of 2
+Time:     770.511ms
 ----------|----------|----------|----------|----------|-------------------|
 File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
 ----------|----------|----------|----------|----------|-------------------|
 All files |        0 |        0 |        0 |        0 |                   |
 ----------|----------|----------|----------|----------|-------------------|
-✨  Done in 2.85s.
+✨  Done in 2.70s.
 ```
 
 ---
@@ -1046,10 +1046,6 @@ class: branded
 
 > 💡 you can get the current user from `request.user`
 
-> 🏆 does the route need to be registered explicitly?
-
-> 🏆 what is the url the route will respond to?
-
 ---
 
 class: branded
@@ -1117,13 +1113,15 @@ class: branded
 
 - Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
 
+- In this step we have also introduced integration tests. You can see these running if you run `yarn test`
+
 ---
 
 class: branded
 
 # Step 11: Exercise 💻
 
-- Instead of registering the new plugin manually as we did for the existing routes in `index.js`, use `fastify-autoload`
+- Remove all the manual route registrations.
 
 - Register the autoload plugin two times:
 
@@ -1131,6 +1129,10 @@ class: branded
   - one for the `routes` folder
 
 - Remove the `user` path in `user/index.js` as autoload will derive this from the folder structure
+
+> 🏆 does the route need to be registered explicitly?
+
+> 🏆 what is the url the route will respond to?
 
 ---
 
