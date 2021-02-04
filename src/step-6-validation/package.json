@@ -1,6 +1,6 @@
 {
   "license": "CC-BY-SA-4.0",
-  "name": "Validation",
+  "name": "validation",
   "main": "server.js",
   "type": "module",
   "scripts": {

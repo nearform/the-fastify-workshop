@@ -1,6 +1,6 @@
 {
   "license": "CC-BY-SA-4.0",
-  "name": "Decorators",
+  "name": "decorators",
   "main": "server.js",
   "type": "module",
   "scripts": {
