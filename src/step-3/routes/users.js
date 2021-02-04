@@ -1,6 +1,7 @@
 export default async function users(fastify) {
   fastify.get('/users', async () => {
-    fastify.log.info('Users endpoint called.')
+    fastify.log.info('Users route called')
+
     return [{ username: 'alice' }, { username: 'bob' }]
   })
 }

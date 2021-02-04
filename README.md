@@ -15,6 +15,10 @@
 - `yarn db:up`
 - `yarn db:migrate`
 
+### Run automated tests
+
+- `yarn test`
+
 ## Running the modules
 
 - `cd src/step-{n}`
