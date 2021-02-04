@@ -132,7 +132,7 @@ class: branded
 
 - At each step you are asked to add features and solve problems
 
-- You will find the solution to each step in the `src/step-{n}` folder
+- You will find the solution to each step in the `src/step-{n}-{name}` folder
 
 - The 🏆 icon indicates bonus features
 
@@ -144,14 +144,14 @@ class: branded
 
 # Running the modules
 
-- `cd src/step-{n}`
+- `cd src/step-{n}-{name}`
 
 - Check out README.md
 
 #### Example
 
 ```bash
-cd src/step-1
+cd src/step-1-hello-world
 
 yarn start
 ```
@@ -528,7 +528,7 @@ In routes/users.js change the hardcoded response so it doesn't match the schema:
 [{ "wrong": "alice" }, { "wrong": "bob" }]
 ```
 
-You will need to restart the server in step-4 for these changes to take effect.
+You will need to restart the server in step-4-serialization for these changes to take effect.
 
 ```a
 curl http://localhost:3000/users
