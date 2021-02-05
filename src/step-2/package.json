@@ -1,8 +1,0 @@
-{
-  "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "start": "node server",
-    "test": "tap"
-  }
-}
