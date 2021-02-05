@@ -9,8 +9,8 @@ const schema = {
 }
 
 export default async function users(fastify) {
-  fastify.get('/users', { schema }, async () => {
-    fastify.log.info('Users route called')
+  fastify.get('/users', { schema }, async (req) => {
+    req.log.info('Users route called')
     return [{ username: 'alice' }, { username: 'bob' }]
   })
 }

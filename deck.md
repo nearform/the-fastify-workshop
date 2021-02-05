@@ -358,11 +358,27 @@ https://www.fastify.io/docs/latest/Logging/
 
 class: branded
 
+# Step 3: Logging Readability / 2
+
+- Pino provides a child logger to each route which includes the request id, enabling the developer to group log outputs under the request that generated them
+
+- We also have an option called `prettyPrint` which will output the logs in a more human readable form. Note that this option should only be used during development.
+
+- Options like this improve understandability for developers, making it easier to develop.
+
+---
+
+class: branded
+
 # Step 3: Exercise 💻
 
 - Enable built-in request logging in the application
 
-- Programmatically write logs in the application
+- Enable `prettyPrint` too.
+
+- Use the request logging that Pino provides when logging from the users route.
+
+- Programmatically write logs in the application.
 
 ---
 
@@ -376,7 +392,9 @@ import Fastify from 'fastify'
 
 function buildServer() {
   const fastify = Fastify({
-    logger: true,
+    logger: {
+      prettyPrint: true,
+    },
   })
 
   fastify.register(import('./routes/users.js'))
@@ -398,13 +416,8 @@ class: branded
 ```js
 // routes/users.js
 export default async function users(fastify) {
-  fastify.get(
-    '/users',
-    {
-      schema,
-    },
-    async () => {
-      fastify.log.info('Users route called')
+  fastify.get('/users', async (req) => {
+    req.log.info('Users route called')
 
       return [{ username: 'alice' }, { username: 'bob' }]
     }
@@ -419,18 +432,12 @@ class: branded
 # Step 3: Trying it out
 
 ```a
-$ yarn start
+yarn start
 
-{
-  "level": 30,
-  "time": ... ,
-  "msg": "Fastify is ready to go!"
-}
-{
-  "level": 30,
-  "time": ... ,
-  "msg": "Server listening at http://127.0.0.1:3000"
-}
+[1612530447393] INFO (62680 on HostComputer):
+  Fastify is ready to go!
+[1612530447411] INFO (62680 on HostComputer):
+  Server listening at http://127.0.0.1:3000
 ```
 
 ---
@@ -446,23 +453,23 @@ curl http://localhost:3000/users
 ```
 
 ```a
-{
-  "level":30, ... ,
-  "req": {
-    "method":"GET",
-    "url":"/users",
-    ...
-}
-{
-  "level":30, ... ,
-  "msg":"Users route called"
-}
-{
-  "level":30, ... ,
-  "res": {
-    "statusCode":200
-  ...
-}
+[1612531288501] INFO (63322 on Softwares-MBP): incoming request
+    req: {
+      "method": "GET",
+      "url": "/users",
+      "hostname": "localhost:3000",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 54847
+    }
+    reqId: 1
+[1612531288503] INFO (63322 on Softwares-MBP): Users route called
+    reqId: 1
+[1612531288515] INFO (63322 on Softwares-MBP): request completed
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 13.076016008853912
+    reqId: 1
 ```
 
 ---
@@ -508,8 +515,8 @@ const schema = {
 }
 
 export default async function users(fastify) {
-  fastify.get('/users', { schema }, async () => {
-    fastify.log.info('Users route called')
+  fastify.get('/users', { schema }, async (req) => {
+    req.log.info('Users route called')
 
     return [{ username: 'alice' }, { username: 'bob' }]
   })
@@ -612,7 +619,9 @@ test('GET /users', async t => {
 ❯ yarn test
 yarn run v1.16.0
 $ tap
-
+test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is ready to go!
+test/index.test.js 1> [1612531547371] INFO (63699 on Softwares-MBP): incoming request
+test/index.test.js 1>     ...
  PASS  test/index.test.js 2 OK 123.827ms
 
 🌈 SUMMARY RESULTS 🌈
@@ -745,6 +754,7 @@ import Fastify from 'fastify'
 function buildServer() {
   const fastify = Fastify({
     logger: true,
+    prettyPrint: true,
   })
 
   fastify.register(import('fastify-jwt'), {
@@ -893,6 +903,7 @@ import S from 'fluent-json-schema'
 const schema = S.object()
   .prop('JWT_SECRET', S.string().required())
   .prop('LOG_LEVEL', S.string().default('info'))
+  .prop('PRETTY_PRINT', S.string().default(true))
 
 export default envSchema({
   schema,

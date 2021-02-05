@@ -7,6 +7,7 @@ function buildServer(config) {
     ...config,
     logger: {
       level: config.LOG_LEVEL,
+      prettyPrint: config.PRETTY_PRINT,
     }
   }
 

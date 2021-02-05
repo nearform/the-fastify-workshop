@@ -2,7 +2,9 @@ import Fastify from 'fastify'
 
 function buildServer() {
   const fastify = Fastify({
-    logger: true,
+    logger: {
+      prettyPrint: true,
+    },
   })
 
   fastify.register(import('fastify-jwt'), {

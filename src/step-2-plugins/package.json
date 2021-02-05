@@ -3,6 +3,7 @@
   "name": "plugins",
   "main": "server.js",
   "type": "module",
+  "version": "1.0.0",
   "scripts": {
     "start": "node server"
   }
