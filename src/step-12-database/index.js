@@ -27,7 +27,7 @@ function buildServer(config) {
     options: opts,
   })
 
-  fastify.log.info('Fastify is ready to go!')
+  fastify.log.info('Fastify is starting up!')
 
   return fastify
 }

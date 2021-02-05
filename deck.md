@@ -399,7 +399,7 @@ function buildServer() {
 
   fastify.register(import('./routes/users.js'))
 
-  fastify.log.info('Fastify is ready to go!')
+  fastify.log.info('Fastify is starting up!')
 
   return fastify
 }
@@ -435,7 +435,7 @@ class: branded
 yarn start
 
 [1612530447393] INFO (62680 on HostComputer):
-  Fastify is ready to go!
+  Fastify is starting up!
 [1612530447411] INFO (62680 on HostComputer):
   Server listening at http://127.0.0.1:3000
 ```
@@ -619,7 +619,7 @@ test('GET /users', async t => {
 ❯ yarn test
 yarn run v1.16.0
 $ tap
-test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is ready to go!
+test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is starting up!
 test/index.test.js 1> [1612531547371] INFO (63699 on Softwares-MBP): incoming request
 test/index.test.js 1>     ...
  PASS  test/index.test.js 2 OK 123.827ms
@@ -763,7 +763,7 @@ function buildServer() {
   fastify.register(import('./routes/login.js'))
   fastify.register(import('./routes/users.js'))
 
-  fastify.log.info('Fastify is ready to go!')
+  fastify.log.info('Fastify is starting up!')
 
   return fastify
 }
@@ -1168,7 +1168,7 @@ function buildServer(config) {
     options: opts,
   })
 
-  fastify.log.info('Fastify is ready to go!')
+  fastify.log.info('Fastify is starting up!')
 
   return fastify
 }
