@@ -19,7 +19,7 @@
     "@nearform/nf-present": "^1.1.0",
     "@nearform/sql": "^1.5.0",
     "desm": "^1.1.0",
-    "env-schema": "^2.0.1",
+    "env-schema": "^2.1.0",
     "fastify": "^3.11.0",
     "fastify-autoload": "^3.4.2",
     "fastify-jwt": "^2.3.0",

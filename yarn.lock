@@ -1037,10 +1037,15 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dotenv@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-7.0.0.tgz#a2be3cd52736673206e8a85fb5210eea29628e7c"
-  integrity sha512-M3NhsLbV1i6HuGzBUH8vXrtxOk+tWmzWKDMbAVSUp3Zsjm7ywFeuwrUXhmhQyRK1q5B5GGy7hcXPbj3bnfZg2g==
+dotenv-expand@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
+  integrity sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==
+
+dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -1081,13 +1086,14 @@ enquirer@^2.3.5:
   dependencies:
     ansi-colors "^4.1.1"
 
-env-schema@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-2.0.1.tgz#fa150b53fbcd9f4131b34a20a8992d372deb5667"
-  integrity sha512-DtcMYEiJvDPItg1H/tjMH7jZwHzx1EASUdoEUVkr3JST9feGEZ+u5/nfZRQzTtlsBaGywSAFh0WyjfChLCBPVg==
+env-schema@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-2.1.0.tgz#01aa8788fa6aa5afb12fcf77e665f2f10f9a0cfa"
+  integrity sha512-qvbmiB+31WJlDs4i9/R8jxEYfq3A0K20QzjGLR4cnlX3SD55ljVEULHXHU1iaPdWOkTSho/TajNzZp3jX3Shsw==
   dependencies:
     ajv "^6.10.2"
-    dotenv "^7.0.0"
+    dotenv "^8.2.0"
+    dotenv-expand "^5.1.0"
 
 error-ex@^1.3.1:
   version "1.3.2"
