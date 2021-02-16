@@ -2,7 +2,8 @@
   "name": "the-fastify-workshop",
   "private": true,
   "workspaces": [
-    "src/*"
+    "src/*",
+    "work-here"
   ],
   "version": "1.0.0",
   "license": "CC-BY-SA-4.0",
