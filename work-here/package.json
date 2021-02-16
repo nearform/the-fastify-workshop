@@ -1,0 +1,13 @@
+{
+  "name": "the-fastify-workshop",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node src/server",
+    "test": "tap"
+  },
+  "type": "module",
+  "devDependencies": {
+    "tap": "^14.11.0"
+  }
+}
