@@ -13,7 +13,7 @@ const schema = {
 export default async function users(fastify) {
   fastify.get(
     '/',
-    { preValidation: [fastify.authenticate], schema },
+    { onRequest: [fastify.authenticate], schema },
     async (req) => {
       req.log.info('Users route called')
 

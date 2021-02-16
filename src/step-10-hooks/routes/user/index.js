@@ -10,7 +10,7 @@ export default async function user(fastify) {
   fastify.get(
     '/user',
     {
-      preValidation: [fastify.authenticate],
+      onRequest: [fastify.authenticate],
       schema,
     },
     async req => req.user

@@ -1049,7 +1049,7 @@ class: branded
 
 - Create a `GET /` route in `routes/user/index.js`
 
-- Require authentication using the `preValidation` Fastify hook
+- Require authentication using the `onRequest` Fastify hook
 
 - Use the `fastify.authenticate` decorator
 
@@ -1077,7 +1077,7 @@ export default async function user(fastify) {
   fastify.get(
     '/user',
     {
-      preValidation: [fastify.authenticate],
+      onRequest: [fastify.authenticate],
       schema,
     },
     async req => req.user
@@ -1323,7 +1323,7 @@ const schema = {
 export default async function users(fastify) {
   fastify.get(
     '/',
-    { preValidation: [fastify.authenticate], schema },
+    { onRequest: [fastify.authenticate], schema },
     async () => {
       const { rows: users } = await fastify.pg.query(
         'SELECT id, username FROM users'
