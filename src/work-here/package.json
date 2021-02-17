@@ -1,13 +1,11 @@
 {
-  "name": "the-fastify-workshop",
-  "version": "0.0.1",
-  "private": true,
+  "license": "CC-BY-SA-4.0",
+  "name": "work-here",
+  "main": "server.js",
+  "type": "module",
+  "version": "1.0.0",
   "scripts": {
     "start": "node server",
     "test": "tap"
-  },
-  "type": "module",
-  "devDependencies": {
-    "tap": "^14.11.0"
   }
 }
