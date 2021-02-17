@@ -1,0 +1,11 @@
+{
+  "license": "CC-BY-SA-4.0",
+  "name": "work-here",
+  "main": "server.js",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server",
+    "test": "tap"
+  }
+}
