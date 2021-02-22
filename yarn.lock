@@ -1500,10 +1500,10 @@ flow-remove-types@^2.112.0:
     pirates "^3.0.2"
     vlq "^0.2.1"
 
-fluent-json-schema@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/fluent-json-schema/-/fluent-json-schema-2.0.3.tgz#2a041b04cdd6db237102673a75a1e4e77609dcb9"
-  integrity sha512-Cd0Htv9mJfPVhrdBWNrKoIR/sYc4E2rlS+i3cooYwJi08uEree7daWNw0ZFw1djG4uajDxSjsiHPxAEgzgOqQQ==
+fluent-json-schema@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/fluent-json-schema/-/fluent-json-schema-2.0.4.tgz#85481631fdfb10b5e0a35e37c2662e5de100ee1b"
+  integrity sha512-SJKgDCCsCSfd7itgcCJ/94Zau03fVowqo7un7iqQVilAXMyz4C+6WGN3+2anIEtgFylzWyRvLw3pS+JmyoClOw==
   dependencies:
     deepmerge "^4.2.2"
 
