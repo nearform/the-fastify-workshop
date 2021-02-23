@@ -1323,10 +1323,10 @@ fastfall@^1.5.0:
   dependencies:
     reusify "^1.0.0"
 
-fastify-autoload@^3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.4.2.tgz#81adca19779763e01daea15eb829acb3e74558e2"
-  integrity sha512-loZM9t09dLJLqjEURkYO5awQKsflDQ3cLG5Il0sJrTr4FF0cQASYRuY7gKzFvyN3WQkqpRPojGyZyaMHAa88ug==
+fastify-autoload@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.5.0.tgz#3631b7b88efde5dcfaca918a3ff5ecaa3f1ffe62"
+  integrity sha512-rMD5jCiX/uwG6LSXNQ3TmfPUyDo5GhOvf8kiu04Ax+gXlfsFnUda5J6+uwvS5XtJoDqsunjl2esNETtPzTJzVw==
   dependencies:
     pkg-up "^3.1.0"
     semver "^7.3.2"
