@@ -363,7 +363,7 @@ acorn@^7.4.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
-ajv@^6.10.0, ajv@^6.10.2, ajv@^6.11.0, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4:
+ajv@^6.10.0, ajv@^6.11.0, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -373,10 +373,10 @@ ajv@^6.10.0, ajv@^6.10.2, ajv@^6.11.0, ajv@^6.12.2, ajv@^6.12.3, ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ajv@^7.0.2:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-7.0.3.tgz#13ae747eff125cafb230ac504b2406cf371eece2"
-  integrity sha512-R50QRlXSxqXcQP5SvKUrw8VZeypvo12i2IX0EeR5PiZ7bEKeHWgzgo264LDadUsCU42lTJVhFikTqJwNeH34gQ==
+ajv@^7.0.2, ajv@^7.1.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-7.2.1.tgz#a5ac226171912447683524fa2f1248fcf8bac83d"
+  integrity sha512-+nu0HDv7kNSOua9apAVc979qd932rrZeb3WOvoiD31A/p1mIE5/9bN2027pE2rOPYEdS3UHzsvof4hY+lM9/WQ==
   dependencies:
     fast-deep-equal "^3.1.1"
     json-schema-traverse "^1.0.0"
@@ -1098,12 +1098,12 @@ enquirer@^2.3.5:
   dependencies:
     ansi-colors "^4.1.1"
 
-env-schema@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-2.1.0.tgz#01aa8788fa6aa5afb12fcf77e665f2f10f9a0cfa"
-  integrity sha512-qvbmiB+31WJlDs4i9/R8jxEYfq3A0K20QzjGLR4cnlX3SD55ljVEULHXHU1iaPdWOkTSho/TajNzZp3jX3Shsw==
+env-schema@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-3.0.1.tgz#6bd70510931ef75f8c534b25f343949d28cbdd65"
+  integrity sha512-NvlNGY4VdtqiC+bFVLuA7EKDTekDwxRFq+0+gTw7gSdWDUvjZZ3Jq2aZibBz4iHFu2XOm13SGicyPzYFlbsdTg==
   dependencies:
-    ajv "^6.10.2"
+    ajv "^7.1.1"
     dotenv "^8.2.0"
     dotenv-expand "^5.1.0"
 
