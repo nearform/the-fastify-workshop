@@ -30,7 +30,7 @@
     "pino-pretty": "^4.7.0"
   },
   "devDependencies": {
-    "eslint": "^7.21.0",
+    "eslint": "^7.22.0",
     "eslint-plugin-sql": "^1.2.0",
     "postgrator-cli": "^4.0.0",
     "prettier": "^2.2.1",
