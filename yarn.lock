@@ -280,10 +280,10 @@
     remark "11.0.2"
     yargs "15.1.0"
 
-"@nearform/sql@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@nearform/sql/-/sql-1.5.0.tgz#0068f819748b98e56e490d47ab2255beb30b6d2d"
-  integrity sha512-goN5pmGlgKRYp3nOsC8dKhHKlB2OEJk4DHpSgR3qJCNS9Qbk3aVBOctCBtk55j7V7kKsPkzSYkyuOfJfToZWPw==
+"@nearform/sql@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@nearform/sql/-/sql-1.5.1.tgz#074a594976ed56e87d2fbc6b1a9f0a9842967063"
+  integrity sha512-gQyxLspxiGewzhCgwR6iirPhNyeFxoVhBDwSsJvbpv1A4YADvbU+tXxHelBr/s0WJPqTKnc1MJEgNgxjQHbf8Q==
 
 "@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0", "@sinonjs/commons@^1.8.1":
   version "1.8.2"
