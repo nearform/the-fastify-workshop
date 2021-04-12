@@ -416,12 +416,11 @@ class: branded
 ```js
 // routes/users.js
 export default async function users(fastify) {
-  fastify.get('/users', async (req) => {
+  fastify.get('/users', async req => {
     req.log.info('Users route called')
 
-      return [{ username: 'alice' }, { username: 'bob' }]
-    }
-  )
+    return [{ username: 'alice' }, { username: 'bob' }]
+  })
 }
 ```
 
@@ -515,7 +514,7 @@ const schema = {
 }
 
 export default async function users(fastify) {
-  fastify.get('/users', { schema }, async (req) => {
+  fastify.get('/users', { schema }, async req => {
     req.log.info('Users route called')
 
     return [{ username: 'alice' }, { username: 'bob' }]
@@ -599,9 +598,9 @@ test('GET /users', async t => {
 
     const res = await fastify.inject('/users')
 
-    t.strictEqual(res.statusCode, 200)
+    t.equal(res.statusCode, 200)
 
-    t.equivalent(await res.json(), [
+    t.same(await res.json(), [
       { username: 'alice' },
       { username: 'bob' },
     ])

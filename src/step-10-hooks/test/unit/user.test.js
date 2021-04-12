@@ -20,7 +20,7 @@ test('GET /user', async t => {
     const res = await fastify.inject('/user')
 
     sinon.assert.called(fastify.authenticate)
-    t.strictEqual(res.statusCode, 401)
+    t.equal(res.statusCode, 401)
   })
 
   t.test(
@@ -34,8 +34,8 @@ test('GET /user', async t => {
 
       const res = await fastify.inject('/user')
 
-      t.strictEqual(res.statusCode, 200)
-      t.equivalent(await res.json(), { username: 'alice' })
+      t.equal(res.statusCode, 200)
+      t.same(await res.json(), { username: 'alice' })
     }
   )
 })
