@@ -21,7 +21,7 @@ test('POST /login', async t => {
       },
     })
 
-    t.strictEqual(res.statusCode, 400)
+    t.equal(res.statusCode, 400)
   })
 
   t.test('returns the data with valid post payload', async t => {
@@ -36,8 +36,8 @@ test('POST /login', async t => {
       },
     })
 
-    t.strictEqual(res.statusCode, 200)
-    t.equivalent(await res.json(), {
+    t.equal(res.statusCode, 200)
+    t.same(await res.json(), {
       username: 'alice',
       password: 'alice',
     })

@@ -19,7 +19,7 @@ test('POST /login', async t => {
       method: 'POST',
     })
 
-    t.strictEqual(res.statusCode, 400)
+    t.equal(res.statusCode, 400)
   })
 
   t.test('returns 400 with partial credentials', async t => {
@@ -33,7 +33,7 @@ test('POST /login', async t => {
       },
     })
 
-    t.strictEqual(res.statusCode, 400)
+    t.equal(res.statusCode, 400)
   })
 
   t.test('returns 401 with wrong credentials', async t => {
@@ -48,7 +48,7 @@ test('POST /login', async t => {
       },
     })
 
-    t.strictEqual(res.statusCode, 401)
+    t.equal(res.statusCode, 401)
   })
 
   t.test('obtains a token with right credentials', async t => {
@@ -65,7 +65,7 @@ test('POST /login', async t => {
       },
     })
 
-    t.strictEqual(res.statusCode, 200)
-    t.strictEqual((await res.json()).token, 'jwt token')
+    t.equal(res.statusCode, 200)
+    t.equal((await res.json()).token, 'jwt token')
   })
 })

@@ -12,7 +12,7 @@ test('server', async t => {
     fastify = buildServer(config)
   })
 
-  t.tearDown(() => fastify.close())
+  t.teardown(() => fastify.close())
 
   t.test('authenticates users and lists users', async t => {
     const loginRes = await fastify.inject({
@@ -26,7 +26,7 @@ test('server', async t => {
 
     const { token } = await loginRes.json()
 
-    t.strictEqual(loginRes.statusCode, 200)
+    t.equal(loginRes.statusCode, 200)
     t.type(token, 'string')
 
     const usersRes = await fastify.inject({
@@ -36,13 +36,13 @@ test('server', async t => {
       },
     })
 
-    t.strictEqual(usersRes.statusCode, 200)
+    t.equal(usersRes.statusCode, 200)
 
     const users = await usersRes.json()
 
     t.ok(Array.isArray(users))
 
-    t.equivalent(users, [
+    t.same(users, [
       { id: 1, username: 'alice' },
       { id: 2, username: 'bob' },
     ])
