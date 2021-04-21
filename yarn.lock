@@ -3592,10 +3592,10 @@ tap-yaml@^1.0.0:
   dependencies:
     yaml "^1.5.0"
 
-tap@^15.0.3:
-  version "15.0.3"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-15.0.3.tgz#861c465eab79f93b0b4cdf4eddd3297b67063c22"
-  integrity sha512-TSsb2SbdudiseTFEFQANJagvTQC0pW0d9+qzt+S8pnBGnas1g+EE2wx8MdfGMPyR9mUZ5pSbAa68Q+DeKAw9iA==
+tap@^15.0.4:
+  version "15.0.4"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-15.0.4.tgz#81131578ac8be071566ef6b99445e6a7f602e157"
+  integrity sha512-OCOm+CaXU1OleruihHk/9pX3xFYFfwQIEo+mbSsMZTIqG2b8qMrzJ/g3+3cEWx63/2u7SYJQ5/TwmYfFLElHbQ==
   dependencies:
     "@types/react" "^16.9.23"
     chokidar "^3.3.0"
@@ -3622,7 +3622,7 @@ tap@^15.0.3:
     tap-parser "^10.0.1"
     tap-yaml "^1.0.0"
     tcompare "^5.0.4"
-    treport "^2.0.0"
+    treport "^2.0.1"
     which "^2.0.2"
 
 tcompare@^5.0.1, tcompare@^5.0.4:
@@ -3676,10 +3676,10 @@ tough-cookie@~2.5.0:
     psl "^1.1.28"
     punycode "^2.1.1"
 
-treport@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/treport/-/treport-2.0.0.tgz#f4f11adea298e3a2e1c83c05b82fd4d424b110dc"
-  integrity sha512-SBUraVmpkJoGAhd97alZDsSS8kYyFVza0SOcImVaiweTEv9aPGROyIYeCAgLJtyp8R2/7ZynSPLE4uPFh/R+3A==
+treport@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/treport/-/treport-2.0.1.tgz#dddb78cfaedabe8103d19130b790249bb9b4cf6b"
+  integrity sha512-H5cD3qH3YZ1MeSDvcAgijxRVMgsByfgvaJvUqosq9oWJgg8eIhSntW3e6ZuweRQBZ6NqnOqcbAVl/Ps3hJ14kQ==
   dependencies:
     cardinal "^2.1.1"
     chalk "^3.0.0"
