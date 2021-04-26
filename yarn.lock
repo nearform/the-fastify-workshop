@@ -3592,10 +3592,10 @@ tap-yaml@^1.0.0:
   dependencies:
     yaml "^1.5.0"
 
-tap@^15.0.4:
-  version "15.0.4"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-15.0.4.tgz#81131578ac8be071566ef6b99445e6a7f602e157"
-  integrity sha512-OCOm+CaXU1OleruihHk/9pX3xFYFfwQIEo+mbSsMZTIqG2b8qMrzJ/g3+3cEWx63/2u7SYJQ5/TwmYfFLElHbQ==
+tap@^15.0.5:
+  version "15.0.5"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-15.0.5.tgz#b84d8103d3303994c9229425ca461600bba013be"
+  integrity sha512-9txwiDv7Sj8e4O15bjWtjSsPSJOiBGFbQj8gW0Wc7GXPXe6Zy46q9Eax71Ez7gAwhElnu7f9qgtfiCYzH8U2/w==
   dependencies:
     "@types/react" "^16.9.23"
     chokidar "^3.3.0"
