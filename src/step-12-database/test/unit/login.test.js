@@ -109,4 +109,27 @@ test('POST /login', async t => {
     t.equal(res.statusCode, 200)
     t.equal((await res.json()).token, 'jwt token')
   })
+
+  t.test('stores the signed JWT', async t => {
+    const fastify = buildServer()
+
+    fastify.pg.query.resolves({
+      rows: [{ id: 1, username: 'alice' }],
+    })
+    fastify.jwt.sign.returns('jwt token')
+
+    await fastify.inject({
+      url: '/login',
+      method: 'POST',
+      body: {
+        username: 'alice',
+        password: 'alice',
+      },
+    })
+
+    t.equal(fastify.jwt.sign.callCount, 1)
+    t.same(fastify.jwt.sign.getCall(0).args[0], {
+      username: 'alice'
+    })
+  })
 })
