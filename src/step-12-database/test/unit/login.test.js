@@ -110,7 +110,7 @@ test('POST /login', async t => {
     t.equal((await res.json()).token, 'jwt token')
   })
 
-  t.test('stores the signed JWT', async t => {
+  t.test('stores the signed JWT', async () => {
     const fastify = buildServer()
 
     fastify.pg.query.resolves({
@@ -127,8 +127,8 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(fastify.jwt.sign.callCount, 1)
-    t.same(fastify.jwt.sign.getCall(0).args[0], {
+    sinon.assert.called(fastify.jwt.sign)
+    sinon.assert.calledWith(fastify.jwt.sign, {
       username: 'alice'
     })
   })
