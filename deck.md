@@ -997,6 +997,8 @@ class: branded
 
   - Exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid
 
+- Register the new plugin in `index.js`
+
 ---
 
 # Step 9: Solution
@@ -1023,6 +1025,36 @@ export default authenticate
 ```
 
 #### 🏆 why is `skip-override` necessary? what is the alternative?
+
+---
+
+class: branded
+
+# Step 9: Solution/2
+
+```js
+// index.js
+import Fastify from 'fastify'
+
+function buildServer(config) {
+  const opts = {
+    ...
+  }
+
+  const fastify = Fastify(opts)
+
+  fastify.register(import('./plugins/authenticate.js'), opts)
+
+  fastify.register(import('./routes/login.js'))
+  fastify.register(import('./routes/users.js'))
+
+  fastify.log.info('Fastify is starting up!')
+
+  return fastify
+}
+
+export default buildServer
+```
 
 ---
 
