@@ -1319,7 +1319,7 @@ export default async function login(fastify) {
 
     if (!user) throw errors.Unauthorized()
 
-    return { token: fastify.jwt.sign({ payload: user }) }
+    return { token: fastify.jwt.sign({ username }) }
   })
 }
 ```
