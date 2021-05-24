@@ -1545,10 +1545,10 @@ fastify-error@^0.3.0:
   resolved "https://registry.yarnpkg.com/fastify-error/-/fastify-error-0.3.0.tgz#08866323d521156375a8be7c7fcaf98df946fafb"
   integrity sha512-Jm2LMTB5rsJqlS1+cmgqqM9tTs0UrlgYR7TvDT3ZgXsUI5ib1NjQlqZHf+tDK5tVPdFGwyq02wAoJtyYIRSiFA==
 
-fastify-jwt@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/fastify-jwt/-/fastify-jwt-2.4.0.tgz#95805760b8935f8e02e8808e4f231b2ed77e9367"
-  integrity sha512-RZ6TjDmMNajmMwh1xakR0iQcjP3NfrcFhwOc0leWp56G6+g7XX73TCzQxmxDNmLsclWDkgG8WTLUJETfaQWIQg==
+fastify-jwt@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/fastify-jwt/-/fastify-jwt-2.5.0.tgz#6cd4d9b979638edccb6fd3d7f9972c0157cd3bf7"
+  integrity sha512-QXOSfo65OxSk30TTecLh8J0LEmuQJwRPqXMDvPA9HfLdsX/xPdq/QSvQFvR5Aj1kwrFFjsyb1SNAOQmbkmpj4w==
   dependencies:
     "@types/jsonwebtoken" "^8.5.0"
     fastify-plugin "^3.0.0"
