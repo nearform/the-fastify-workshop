@@ -1,6 +1,6 @@
 # Welcome to the Fastify Workshop
 
-We will create a small HTTP application that read something
+We will create a small HTTP application to read something
 from a database.
 
 ## Step 1
