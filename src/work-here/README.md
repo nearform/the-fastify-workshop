@@ -57,3 +57,23 @@ Hint: https://www.fastify.io/ has all you need.
   - `LOG_LEVEL`, default `'info'`
   - `PRETTY_PRINT`, default `true`
 * Use `config.js` within `server.js` to parse the configuration for the server.
+
+## Step 9
+
+* Read https://www.fastify.io/docs/latest/Decorators/
+* Create a plugin at `plugins/authenticate.js` and register it inside `index.js`
+* Move the registration of `fastify-jwt` inside the `authenticate.js` plugin.
+* Create a server decorator `'authenticate'` that accepts a Fatify `Request` and that calls `req.jwtVerify()`
+* Add unit tests for this decorator (optional)
+
+## Step 10
+
+* Read https://www.fastify.io/docs/latest/Hooks/
+* Create a new file `routes/user/index.js` with a `GET /user` route that returns the content of `req.user`.
+* Add a `onRequest` hook to the route that calls `fastify.authenticate`
+* Add unit tests for this route (optional)
+
+## Step 11
+
+* Take a look at https://github.com/fastify/fastify-autoload
+* Use fastify-autoload to load all plugins and routes automatically
