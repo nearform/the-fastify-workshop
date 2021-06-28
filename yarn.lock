@@ -1333,10 +1333,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-plugin-sql@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-sql/-/eslint-plugin-sql-1.2.0.tgz#2a62c2159d72d89d0944f9df1b49eee31ff760f6"
-  integrity sha512-1VwYY/cIk2z8xBmL/8e5fv5Hca4B9n1BlcF/xKYvqEpEyki0ykYUb+3MYFbMWdcQ2zjhUbbK1dgGwmPbSIYUwQ==
+eslint-plugin-sql@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-sql/-/eslint-plugin-sql-1.2.1.tgz#9cdbb1241aa2b366f6510834bf2f42d7f4522517"
+  integrity sha512-S9piGVNw6dQI+g5YmsCgH8VwKGEeAQdvhBNB8NXg1MT5qF23202rVuDB/2EHyPzh4Ts+CfsHubC963DUO27N0g==
   dependencies:
     astring "^1.4.3"
     debug "^4.1.1"
