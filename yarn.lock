@@ -1303,10 +1303,10 @@ enquirer@^2.3.5:
   dependencies:
     ansi-colors "^4.1.1"
 
-env-schema@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-3.1.0.tgz#371b1162f9e1ce5c68d44f5498c8ca27c8b0edde"
-  integrity sha512-xwdKxT6JZLvUIcYFiueoOOrS47JlXV7rfrYC4L8MijA15qhGS/A/JXbpPvgc6VH5Fwivq3fQU48h8iz9KIyttw==
+env-schema@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-3.2.0.tgz#4bc0634fd1e4140f0b1368695e7eef3ef9be5993"
+  integrity sha512-eyOKVThKWFVjhwGe5bAOb7g7HBtEpMhDyCiapqvxWrf3R8i1dbbm+SxXIRbI4XmQ80F5XjzE+ADonfXCt2qsJA==
   dependencies:
     ajv "^8.0.0"
     dotenv "^10.0.0"
