@@ -20,7 +20,7 @@
     "@nearform/sql": "^1.8.0",
     "desm": "^1.1.0",
     "env-schema": "^3.2.0",
-    "fastify": "^3.20.1",
+    "fastify": "^3.20.2",
     "fastify-autoload": "^3.8.0",
     "fastify-jwt": "^3.0.1",
     "fastify-postgres": "^3.6.0",
