@@ -1227,10 +1227,10 @@ depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
-desm@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/desm/-/desm-1.1.0.tgz#27ce8f936eb16c20a9f77746b5841bb2f4913264"
-  integrity sha512-hvmmTnhf+Dac0W/KdZbec/dHizAZo1M1MgnvbFUEXDYd4sRBNg4KGMrKG+Mzwe2y0jlcKvHt0VgU/Mt6j79Zqw==
+desm@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/desm/-/desm-1.2.0.tgz#89ed05728cf6ec4ce64c2c87a5ab5555681210a4"
+  integrity sha512-/sHgwtz8V4kzHc/cii4OTtpEssvYe/yDDlPnZyMP5wO5KXYGfUoh22n+8OMhepStjhq6o577SRgTrdfcRepDbw==
 
 diff@^4.0.1, diff@^4.0.2:
   version "4.0.2"
