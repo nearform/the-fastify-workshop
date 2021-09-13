@@ -491,10 +491,10 @@
     remark "11.0.2"
     yargs "15.1.0"
 
-"@nearform/sql@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@nearform/sql/-/sql-1.8.0.tgz#a281805e6e55edf797f0447b11c2875a1a5c161f"
-  integrity sha512-ae6IJP9LSzFGUuDXiMNRNRTmC46/RCzcLRJusUPAjGjcfnAYnnF4f04VA9SXgDM+zR45sDfG34927mrZkcl/7A==
+"@nearform/sql@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@nearform/sql/-/sql-1.9.0.tgz#f33d07816427c1d69a08c7ed5655ea4700a17cc4"
+  integrity sha512-fSoRE4qbzZ1NQaOItOt1A8BUvXf9xEW5nNTk+po/55sIPfWKeLVPYVDAgv2I886ntlU83q/F815h+oXYNnteOA==
 
 "@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0", "@sinonjs/commons@^1.8.3":
   version "1.8.3"
