@@ -1529,10 +1529,10 @@ fastfall@^1.5.0:
   dependencies:
     reusify "^1.0.0"
 
-fastify-autoload@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.8.1.tgz#28f0903f4a881b80d1881a0978b01f99bbb806e7"
-  integrity sha512-csx6TT9EKwY+f2NEA9/QQIEc83BfpG7jTXR5PNOk/uwQikDyfHf4JODGkYyH3GVd3TpxyisI+So/6vyqq9z7eg==
+fastify-autoload@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.9.0.tgz#9e5ccd0bd5867970233f54ef21b636e7c077f2e9"
+  integrity sha512-GNal/ijLiuwCJBmr7oVVQH/cuDQ9ytm/HbDZLbSWSGr3GW8doGp88vChN3SN87o99isL65whgoqwB97E+XoegQ==
   dependencies:
     pkg-up "^3.1.0"
     semver "^7.3.2"
