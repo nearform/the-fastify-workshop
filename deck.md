@@ -151,7 +151,7 @@ class: branded
 #### Example
 
 ```bash
-cd src/step-1-hello-world
+cd src/step-01-hello-world
 
 yarn start
 ```
