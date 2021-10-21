@@ -5,19 +5,23 @@
 ## Requirements
 
 - Node LTS
-- yarn - you can install it with `npm i -g yarn`
+- npm >=7 - you can install it with [`npm install -g npm@latest`](https://docs.npmjs.com/try-the-latest-stable-version-of-npm)
 - docker
 - docker-compose
 
 ## Setup
 
-- `yarn`
-- `yarn db:up`
-- `yarn db:migrate`
+- `npm ci`
+- `npm run db:up`
+- `npm run db:migrate`
 
 ### Run automated tests
 
-- `yarn test`
+- `npm test --workspaces`
+
+#### Run automated tests on a single project
+
+- `npm test -w src/step-05-testing`
 
 ## Running the modules
 
@@ -26,4 +30,4 @@
 
 ## Presenting
 
-- `yarn start`
+- `npm start`
