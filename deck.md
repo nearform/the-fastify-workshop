@@ -616,7 +616,6 @@ test('GET /users', async t => {
 
 ```a
 ❯ npm run test
-npm run run v1.16.0
 $ tap
 test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is starting up!
 test/index.test.js 1> [1612531547371] INFO (63699 on Softwares-MBP): incoming request
