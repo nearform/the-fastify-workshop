@@ -17,7 +17,7 @@
 
 ### Run automated tests
 
-- `npm test --workspaces`
+- `npm test`
 
 #### Run automated tests on a single project
 
