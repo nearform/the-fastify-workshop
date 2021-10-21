@@ -104,7 +104,7 @@ class: branded
 #### Requirements
 
 - Node LTS
-- yarn
+- npm >= 7
 - docker
 - docker-compose
 
@@ -112,12 +112,12 @@ class: branded
 
 ```bash
 git clone https://github.com/nearform/the-fastify-workshop
-yarn
-yarn db:up
-yarn db:migrate
+npm ci
+npm run db:up
+npm run db:migrate
 
 # make sure you're all set
-yarn test
+npm test --workspaces
 ```
 
 ---
@@ -153,7 +153,7 @@ class: branded
 ```bash
 cd src/step-01-hello-world
 
-yarn start
+npm run start
 ```
 
 ---
@@ -431,7 +431,7 @@ class: branded
 # Step 3: Trying it out
 
 ```a
-yarn start
+npm run start
 
 [1612530447393] INFO (62680 on HostComputer):
   Fastify is starting up!
@@ -615,8 +615,7 @@ test('GET /users', async t => {
 #### Run the tests
 
 ```a
-❯ yarn test
-yarn run v1.16.0
+❯ npm run test
 $ tap
 test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is starting up!
 test/index.test.js 1> [1612531547371] INFO (63699 on Softwares-MBP): incoming request
@@ -1155,7 +1154,7 @@ class: branded
 
 - Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
 
-- In this step we have also introduced integration tests. You can see these running if you run `yarn test`
+- In this step we have also introduced integration tests. You can see these running if you run `npm run test`
 
 ---
 
@@ -1237,8 +1236,8 @@ class: branded
 Make sure you setup the db first with:
 
 ```sh
-yarn db:up
-yarn db:migrate
+npm run db:up
+npm run db:migrate
 ```
 
 > 💡 check the `migrations` folder to see the database schema.

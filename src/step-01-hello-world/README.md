@@ -2,4 +2,4 @@
 
 ## Setup
 
-- `yarn start`
+- `npm run start`

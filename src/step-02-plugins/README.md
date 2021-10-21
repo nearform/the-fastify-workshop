@@ -2,6 +2,6 @@
 
 ## Setup
 
-- start the server with `yarn start`
+- start the server with `npm run start`
 
 http://localhost:3000/users
