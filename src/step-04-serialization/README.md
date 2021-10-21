@@ -2,4 +2,4 @@
 
 ## Setup
 
-- start the server with `yarn start`
+- start the server with `npm run start`
