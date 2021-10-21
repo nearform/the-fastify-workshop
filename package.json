@@ -30,11 +30,19 @@
     "pino-pretty": "^6.0.0"
   },
   "devDependencies": {
+    "@istanbuljs/esm-loader-hook": "^0.1.2",
     "eslint": "^8.0.1",
     "eslint-plugin-sql": "^1.2.1",
     "postgrator-cli": "^4.0.0",
     "prettier": "^2.4.1",
     "sinon": "^11.1.2",
     "tap": "^15.0.10"
+  },
+  "tap": {
+    "node-arg": [
+      "--no-warnings",
+      "--experimental-loader",
+      "@istanbuljs/esm-loader-hook"
+    ]
   }
 }
