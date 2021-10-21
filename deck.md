@@ -66,7 +66,7 @@ class: branded
 
 # Ecosystem
 
-- There are 42 core plugins and 124 community plugins
+- There are 45 core plugins and 155 community plugins
 
 - Can't find the plugin you are looking for? No problem, it's very easy to write one!
 
