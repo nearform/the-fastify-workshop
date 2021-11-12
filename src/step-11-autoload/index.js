@@ -8,7 +8,7 @@ function buildServer(config) {
     logger: {
       level: config.LOG_LEVEL,
       prettyPrint: config.PRETTY_PRINT,
-    }
+    },
   }
 
   const fastify = Fastify(opts)

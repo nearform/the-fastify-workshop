@@ -1,3 +1,6 @@
+/**
+ * @type {import('fastify').FastifyPluginAsync<{ JWT_SECRET: string }>}
+ * */
 async function authenticate(fastify, opts) {
   fastify.register(import('fastify-jwt'), {
     secret: opts.JWT_SECRET,

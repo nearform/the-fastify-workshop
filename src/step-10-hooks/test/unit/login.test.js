@@ -28,7 +28,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
       },
     })
@@ -42,7 +42,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'wrong password',
       },
@@ -59,7 +59,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'alice',
       },

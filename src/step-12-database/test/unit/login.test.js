@@ -29,7 +29,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
       },
     })
@@ -43,7 +43,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'wrong password',
       },
@@ -62,7 +62,7 @@ test('POST /login', async t => {
       const res = await fastify.inject({
         url: '/login',
         method: 'POST',
-        body: {
+        payload: {
           username: 'alice',
           password: 'alice',
         },
@@ -80,7 +80,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'alice',
       },
@@ -100,7 +100,7 @@ test('POST /login', async t => {
     const res = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'alice',
       },
@@ -121,7 +121,7 @@ test('POST /login', async t => {
     await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'alice',
       },
@@ -129,7 +129,7 @@ test('POST /login', async t => {
 
     sinon.assert.called(fastify.jwt.sign)
     sinon.assert.calledWith(fastify.jwt.sign, {
-      username: 'alice'
+      username: 'alice',
     })
   })
 })

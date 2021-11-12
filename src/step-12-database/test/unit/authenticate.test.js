@@ -5,20 +5,30 @@ import fastify from 'fastify'
 
 const { test } = t
 
+/**
+ * @callback Authenticate
+ * @param {Partial<import('fastify').FastifyRequest>} req
+ * @param {Partial<import('fastify').FastifyReply>} reply
+ */
+
 function buildServer(opts) {
-  return fastify().register(
-    import('../../plugins/authenticate.js'),
-    opts
-  )
+  const server = fastify()
+  server.register(import('../../plugins/authenticate.js'), opts)
+  return server
 }
 
 test('authenticate', async t => {
-  t.test('replies with error when authentication fails', async t => {
-    const fastify = await buildServer({
-      JWT_SECRET: 'supersecret',
-    })
+  /**
+   * @type {import('fastify').FastifyInstance & { authenticate?: Authenticate }})}
+   */
+  let fastify
 
-    const error = errors.Unauthorized()
+  t.beforeEach(async () => {
+    fastify = buildServer({ JWT_SECRET: 'supersecret' })
+  })
+
+  t.test('replies with error when authentication fails', async t => {
+    const error = new errors.Unauthorized()
     const req = { jwtVerify: sinon.stub().rejects(error) }
     const reply = { send: sinon.stub() }
 
@@ -29,10 +39,6 @@ test('authenticate', async t => {
   t.test(
     'resolves successfully when authentication succeeds',
     async t => {
-      const fastify = await buildServer({
-        JWT_SECRET: 'supersecret',
-      })
-
       const req = { jwtVerify: sinon.stub().resolves() }
       const reply = { send: sinon.stub() }
 

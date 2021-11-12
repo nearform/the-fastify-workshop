@@ -8,8 +8,11 @@ const schema = {
   },
 }
 
+/**
+ * @type {import('fastify').FastifyPluginAsync}
+ * */
 export default async function users(fastify) {
-  fastify.get('/users', { schema }, async (req) => {
+  fastify.get('/users', { schema }, async req => {
     req.log.info('Users route called')
 
     return [{ username: 'alice' }, { username: 'bob' }]

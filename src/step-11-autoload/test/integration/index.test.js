@@ -18,7 +18,7 @@ test('server', async t => {
     const loginRes = await fastify.inject({
       url: '/login',
       method: 'POST',
-      body: {
+      payload: {
         username: 'alice',
         password: 'alice',
       },

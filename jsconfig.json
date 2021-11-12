@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "system",
+    "moduleResolution": "node",
+    "maxNodeModuleJsDepth": 0
+  }
+}

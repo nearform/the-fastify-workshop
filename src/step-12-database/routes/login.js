@@ -11,25 +11,35 @@ const schema = {
   },
 }
 
+/**
+ * @type {import('fastify').FastifyPluginAsync<{ JWT_SECRET: string }>}
+ * */
 export default async function login(fastify) {
-  fastify.post('/login', { schema }, async req => {
-    const { username, password } = req.body
+  fastify.post(
+    '/login',
+    { schema },
+    /**
+     * @type {import('fastify').RouteHandler<{ Body: { username: string; password: string } }>}
+     * */
+    async req => {
+      const { username, password } = req.body
 
-    // sample auth check
-    if (username !== password) {
-      throw errors.Unauthorized()
+      // sample auth check
+      if (username !== password) {
+        throw new errors.Unauthorized()
+      }
+
+      const {
+        rows: [user],
+      } = await fastify.pg.query(
+        SQL`SELECT id, username FROM users WHERE username = ${username}`
+      )
+
+      if (!user) {
+        throw new errors.Unauthorized()
+      }
+
+      return { token: fastify.jwt.sign({ username }) }
     }
-
-    const {
-      rows: [user],
-    } = await fastify.pg.query(
-      SQL`SELECT id, username FROM users WHERE username = ${username}`
-    )
-
-    if (!user) {
-      throw errors.Unauthorized()
-    }
-
-    return { token: fastify.jwt.sign({ username }) }
-  })
+  )
 }

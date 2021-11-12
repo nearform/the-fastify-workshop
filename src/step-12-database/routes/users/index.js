@@ -10,11 +10,21 @@ const schema = {
   },
 }
 
+/**
+ * @callback Authenticate
+ * @param {Partial<import('fastify').FastifyRequest>} req
+ * @param {Partial<import('fastify').FastifyReply>} reply
+ */
+
+/**
+ * @type {import('fastify').FastifyPluginAsync}
+ * @param {import('fastify').FastifyInstance & { authenticate: Authenticate}} fastify
+ * */
 export default async function users(fastify) {
   fastify.get(
     '/',
     { onRequest: [fastify.authenticate], schema },
-    async (req) => {
+    async req => {
       req.log.info('Users route called')
 
       const { rows: users } = await fastify.pg.query(

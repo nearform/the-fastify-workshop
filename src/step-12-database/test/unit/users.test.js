@@ -16,7 +16,7 @@ test('GET /', async t => {
   t.test('returns error when authentication fails', async t => {
     const fastify = buildServer()
 
-    fastify.authenticate.rejects(errors.Unauthorized())
+    fastify.authenticate.rejects(new errors.Unauthorized())
 
     const res = await fastify.inject('/')
 
