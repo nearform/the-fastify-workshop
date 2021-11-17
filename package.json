@@ -36,7 +36,7 @@
     "postgrator-cli": "^4.0.0",
     "prettier": "^2.4.1",
     "sinon": "^12.0.1",
-    "tap": "^15.0.10"
+    "tap": "^15.1.1"
   },
   "tap": {
     "node-arg": [
