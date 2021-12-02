@@ -1404,7 +1404,9 @@ type ResponseSchema = Static<typeof ResponseSchema>
 
 const schema = {
   body: BodySchema,
-  response: ResponseSchema
+  response: {
+    200: ResponseSchema
+  }
 }
 ```
 

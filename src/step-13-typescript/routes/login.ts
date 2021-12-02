@@ -17,7 +17,9 @@ type ResponseSchema = Static<typeof ResponseSchema>
 
 const schema = {
   body: BodySchema,
-  response: ResponseSchema
+  response: {
+    200: ResponseSchema
+  }
 }
 
 export default async function login(fastify: FastifyInstance) {

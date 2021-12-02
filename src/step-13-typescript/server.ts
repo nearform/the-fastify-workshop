@@ -1,6 +1,7 @@
 import buildServer from './index'
+import configSchema from './config'
 
-const fastify = buildServer()
+const fastify = buildServer(configSchema)
 
 const start = async function (): Promise<void> {
   try {
@@ -12,8 +13,3 @@ const start = async function (): Promise<void> {
 }
 
 start()
-// import Fastify from 'fastify'
-
-// const fastify = Fastify({ logger: true })
-
-// fastify.listen(3000)
