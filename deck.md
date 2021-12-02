@@ -1366,6 +1366,123 @@ export default async function users(fastify) {
 
 ---
 
+class: branded
+
+# Step 13: Exercise 💻
+
+- Let's create an Fastify application using **Typescript**.
+
+- We will transpose the application that you did in the [Step 09](#step-9-decorators) to Typescript.
+
+- Use `declaration merging` to add the custom decorator (authenticate) property to `FastifyInstance`
+
+- Use `typebox` to transform JSON Schema into types
+
+---
+
+# Step 13: Solution/1
+
+```ts
+// routes/login.ts
+import { Type, Static } from '@sinclair/typebox'
+import { FastifyInstance, FastifyRequest } from 'fastify'
+
+const BodySchema = Type.Object({
+  username: Type.String(),
+  password: Type.String(),
+})
+
+// Generate type from JSON Schema
+type BodySchema = Static<typeof BodySchema>
+
+const ResponseSchema = Type.Object({
+  username: Type.String(),
+  password: Type.String(),
+})
+
+type ResponseSchema = Static<typeof ResponseSchema>
+
+const schema = {
+  body: BodySchema,
+  response: ResponseSchema
+}
+```
+
+---
+
+# Step 13: Solution/2
+
+```ts
+// routes/login.ts
+export default async function login(fastify: FastifyInstance) {
+  fastify.post(
+    '/login',
+    { schema },
+    async (
+      // Declare the type expected on `body`
+      req: FastifyRequest<{ Body: BodySchema }>
+    ): Promise<ResponseSchema> => {
+      const { username, password } = req.body
+      return { username, password }
+    }
+  )
+}
+```
+
+---
+
+class: branded
+
+# Step 13: Solution/3
+
+```ts
+// plugins/authenticate.ts
+async function authenticate(
+  fastify: FastifyInstance,
+  opts: FastifyPluginOptions
+): Promise<void> {
+  fastify.register(fastifyJwt, { secret: opts.JWT_SECRET })
+  fastify.decorate(
+    'authenticate',
+    async (req: FastifyRequest, reply: FastifyReply) => {
+      try {
+        await req.jwtVerify()
+      } catch (err) {
+        reply.send(err)
+      }
+    }
+  )
+}
+
+export default fp(authenticate)
+```
+
+---
+
+class: branded
+
+# Step 13: Solution/4
+
+```ts
+// @types/index.d.ts
+import type { FastifyRequest, FastifyReply } from 'fastify'
+
+declare module 'fastify' {
+  export interface FastifyInstance {
+    authenticate: (
+      request: FastifyRequest,
+      reply: FastifyReply
+    ) => Promise<void>
+  }
+}
+```
+
+It adds the `authenticate` property to `FastifyInstance`:
+
+<img src="assets/declaration-merging.png">
+
+---
+
 class: center, no-border, branded
 
 # 🏆 Write Tests 🏆
