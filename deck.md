@@ -1391,7 +1391,6 @@ const BodySchema = Type.Object({
   username: Type.String(),
   password: Type.String(),
 })
-
 // Generate type from JSON Schema
 type BodySchema = Static<typeof BodySchema>
 
@@ -1399,7 +1398,6 @@ const ResponseSchema = Type.Object({
   username: Type.String(),
   password: Type.String(),
 })
-
 type ResponseSchema = Static<typeof ResponseSchema>
 
 const schema = {
