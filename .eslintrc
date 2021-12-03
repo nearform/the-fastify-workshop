@@ -1,6 +1,6 @@
 {
   "extends": "eslint:recommended",
-  "parser": "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser",
   "plugins": ["sql", "@typescript-eslint"],
   "parserOptions": {
     "sourceType": "module",
