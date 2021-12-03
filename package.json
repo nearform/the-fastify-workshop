@@ -34,6 +34,8 @@
     "@istanbuljs/esm-loader-hook": "^0.1.2",
     "@tsconfig/node16": "^1.0.2",
     "@types/node": "^16.11.11",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
     "eslint": "^8.3.0",
     "eslint-plugin-sql": "^2.0.0",
     "postgrator-cli": "^4.0.0",

@@ -1,6 +1,7 @@
 {
   "extends": "eslint:recommended",
-  "plugins": ["sql"],
+  "parser": "@typescript-eslint/parser"
+  "plugins": ["sql", "@typescript-eslint"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2020
