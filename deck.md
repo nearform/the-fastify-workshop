@@ -1370,9 +1370,9 @@ class: branded
 
 # Step 13: Exercise 💻
 
-- Let's create an Fastify application using **Typescript**.
+- Let's create an Fastify application using **TypeScript**.
 
-- We will transpose the application that you did in the [Step 09](#step-9-decorators) to Typescript.
+- We will transpose the application that you did in the [Step 09](#step-9-decorators) to TypeScript.
 
 - Use `declaration merging` to add the custom decorator (authenticate) property to `FastifyInstance`
 
