@@ -1372,11 +1372,11 @@ class: branded
 
 - Let's create an Fastify application using **TypeScript**.
 
-- We will transpose the application that you did in the [Step 09](#step-9-decorators) to TypeScript.
+- We will transpose the application that you did in the [Step 09](#step-9-decorators) to TypeScript
 
-- Use `declaration merging` to add the custom decorator (authenticate) property to `FastifyInstance`
+- Use `declaration merging` to add the custom `authenticate` decorator property to `FastifyInstance`
 
-- Use `typebox` to transform JSON Schema into types
+- Use [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox) to transform JSON Schema into types
 
 ---
 
