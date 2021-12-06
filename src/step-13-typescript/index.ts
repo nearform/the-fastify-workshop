@@ -1,20 +1,20 @@
-import Fastify, { FastifyInstance, FastifyServerOptions } from 'fastify'
+import Fastify, { FastifyInstance } from 'fastify'
 import loginRoute from './routes/login'
 import usersRoute from './routes/users'
 import authenticatePlugin from './plugins/authenticate'
+import type { EnvConfig } from './config'
 
-function buildServer(config: Record<string, unknown>): FastifyInstance {
+function buildServer(config: EnvConfig): FastifyInstance {
   const opts = {
-    ...config,
     logger: {
       level: config.LOG_LEVEL,
       prettyPrint: config.PRETTY_PRINT,
     },
   }
 
-  const fastify = Fastify(opts as unknown as FastifyServerOptions)
+  const fastify = Fastify(opts)
 
-  fastify.register(authenticatePlugin, opts)
+  fastify.register(authenticatePlugin, config)
   fastify.register(loginRoute)
   fastify.register(usersRoute)
 

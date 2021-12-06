@@ -1,5 +1,6 @@
 import { Type, Static } from '@sinclair/typebox'
 import { FastifyInstance, FastifyRequest } from 'fastify'
+import errors from 'http-errors'
 
 const BodySchema = Type.Object({
   username: Type.String(),
@@ -9,8 +10,7 @@ const BodySchema = Type.Object({
 type BodySchema = Static<typeof BodySchema>
 
 const ResponseSchema = Type.Object({
-  username: Type.String(),
-  password: Type.String(),
+  token: Type.String(),
 })
 
 type ResponseSchema = Static<typeof ResponseSchema>
@@ -29,6 +29,11 @@ export default async function login(fastify: FastifyInstance) {
     async (req: FastifyRequest<{ Body: BodySchema }>
   ): Promise<ResponseSchema> => {
     const { username, password } = req.body
-    return { username, password }
+
+    if (username !== password) {
+      throw new errors.Unauthorized()
+    }
+
+    return { token: fastify.jwt.sign({ username }) }
   })
 }
