@@ -1,6 +1,6 @@
 import t from 'tap'
 import fastify, { FastifyInstance } from 'fastify'
-import sinon, { SinonStub } from 'sinon'
+import sinon from 'sinon'
 import loginRoute from '../routes/login'
 
 function buildServer(): FastifyInstance {
