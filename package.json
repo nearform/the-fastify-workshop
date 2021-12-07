@@ -12,7 +12,7 @@
     "db:up": "docker-compose up -d",
     "db:migrate": "postgrator",
     "db:down": "docker-compose down",
-    "lint": "eslint --ext .",
+    "lint": "eslint --ext .ts,.js ./src",
     "test": "TS_NODE_FILES=1 tap --ts"
   },
   "dependencies": {
