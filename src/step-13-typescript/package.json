@@ -1,0 +1,10 @@
+{
+  "license": "CC-BY-SA-4.0",
+  "name": "typescript-t",
+  "main": "server.ts",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node-dev --project ./tsconfig.json server.ts",
+    "test": "TS_NODE_FILES=1 tap --ts"
+  }
+}
