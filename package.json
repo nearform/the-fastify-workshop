@@ -18,7 +18,7 @@
   "dependencies": {
     "@nearform/nf-present": "^2.0.0",
     "@nearform/sql": "^1.9.0",
-    "@sinclair/typebox": "^0.23.0",
+    "@sinclair/typebox": "^0.23.1",
     "desm": "^1.2.0",
     "env-schema": "^3.5.0",
     "fastify": "^3.24.1",
