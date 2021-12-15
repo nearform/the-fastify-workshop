@@ -21,7 +21,7 @@
     "@sinclair/typebox": "^0.23.1",
     "desm": "^1.2.0",
     "env-schema": "^3.5.0",
-    "fastify": "^3.24.1",
+    "fastify": "^3.25.0",
     "fastify-autoload": "^3.9.0",
     "fastify-jwt": "^4.1.1",
     "fastify-postgres": "^3.6.0",
