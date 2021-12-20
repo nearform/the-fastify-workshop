@@ -26,7 +26,7 @@
     "fastify-jwt": "^4.1.1",
     "fastify-postgres": "^3.6.0",
     "fluent-json-schema": "^3.0.1",
-    "http-errors": "^1.8.1",
+    "http-errors": "^2.0.0",
     "pg": "^8.7.1",
     "pino-pretty": "^7.3.0"
   },
