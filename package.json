@@ -23,7 +23,7 @@
     "env-schema": "^3.5.1",
     "fastify": "^3.25.2",
     "fastify-autoload": "^3.9.0",
-    "fastify-jwt": "^4.1.1",
+    "fastify-jwt": "^4.1.2",
     "fastify-postgres": "^3.6.0",
     "fluent-json-schema": "^3.0.1",
     "http-errors": "^2.0.0",
