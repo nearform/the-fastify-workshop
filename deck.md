@@ -232,7 +232,7 @@ class: branded
 
 - Fastify allows the user to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API that you will need to use one or more plugins, is `register`
 
-https://www.fastify.io/docs/latest/Plugins/
+https://www.fastify.io/docs/latest/Reference/Plugins/
 
 ---
 
@@ -352,7 +352,7 @@ class: branded
 
 - Fastify has a `logger` option you can use to enable logging and configure it
 
-https://www.fastify.io/docs/latest/Logging/
+https://www.fastify.io/docs/latest/Reference/Logging/
 
 ---
 
@@ -481,7 +481,7 @@ class: branded
 
 - We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information
 
-https://www.fastify.io/docs/latest/Validation-and-Serialization/#serialization
+https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 
 ---
 
@@ -560,7 +560,7 @@ class: branded
 
 - Fastify can also be tested after starting the server with `fastify.listen()` or after initializing routes and plugins with `fastify.ready()`
 
-https://www.fastify.io/docs/latest/Testing/
+https://www.fastify.io/docs/latest/Guides/Testing/
 
 ---
 
@@ -643,7 +643,7 @@ class: branded
 
 - Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
 
-https://www.fastify.io/docs/latest/Validation-and-Serialization/#validation
+https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#validation
 
 ---
 
@@ -972,7 +972,7 @@ class: branded
 
 > 💡 This step and the next one work together and we'll get to try it all out after the next step
 
-https://www.fastify.io/docs/latest/Decorators/
+https://www.fastify.io/docs/latest/Reference/Decorators/
 
 ---
 
@@ -1063,7 +1063,7 @@ class: branded
 
 - In this step we're going to build on the previous step by using a fastify hook with our decorator for the protected route
 
-https://www.fastify.io/docs/latest/Hooks/
+https://www.fastify.io/docs/latest/Reference/Hooks/
 
 ---
 
@@ -1403,8 +1403,8 @@ type ResponseSchema = Static<typeof ResponseSchema>
 const schema = {
   body: BodySchema,
   response: {
-    200: ResponseSchema
-  }
+    200: ResponseSchema,
+  },
 }
 ```
 
@@ -1418,16 +1418,18 @@ export default async function login(fastify: FastifyInstance) {
   fastify.post(
     '/login',
     { schema },
-    async (req: FastifyRequest<{ Body: BodySchema }>
-  ): Promise<ResponseSchema> => {
-    const { username, password } = req.body
+    async (
+      req: FastifyRequest<{ Body: BodySchema }>
+    ): Promise<ResponseSchema> => {
+      const { username, password } = req.body
 
-    if (username !== password) {
-      throw new errors.Unauthorized()
+      if (username !== password) {
+        throw new errors.Unauthorized()
+      }
+
+      return { token: fastify.jwt.sign({ username }) }
     }
-
-    return { token: fastify.jwt.sign({ username }) }
-  })
+  )
 }
 ```
 
