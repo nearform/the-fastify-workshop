@@ -783,6 +783,15 @@ class: branded
 
   > 💡 you can use the [`http-errors`](https://github.com/jshttp/http-errors) package
 
+
+---
+
+class: branded
+
+# Step 7: Exercise /2 💻
+
+- Still on `routes/login.js`:
+
   - If the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `fastify-jwt` plugin
 
   - Change the response schema to ensure the `200` response is correctly formatted
