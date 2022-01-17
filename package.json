@@ -20,7 +20,7 @@
     "@nearform/sql": "^1.9.0",
     "@sinclair/typebox": "^0.23.2",
     "desm": "^1.2.0",
-    "env-schema": "^3.5.1",
+    "env-schema": "^3.5.2",
     "fastify": "^3.25.3",
     "fastify-autoload": "^3.9.0",
     "fastify-jwt": "^4.1.3",
