@@ -38,7 +38,7 @@
     "@types/sinon": "^10.0.9",
     "@types/tap": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
-    "@typescript-eslint/parser": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.2",
     "eslint": "^8.8.0",
     "eslint-plugin-sql": "^2.1.0",
     "postgrator-cli": "^4.0.0",
