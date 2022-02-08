@@ -34,7 +34,7 @@
     "@istanbuljs/esm-loader-hook": "^0.1.2",
     "@tsconfig/node16": "^1.0.2",
     "@types/http-errors": "^1.8.2",
-    "@types/node": "^17.0.14",
+    "@types/node": "^17.0.16",
     "@types/sinon": "^10.0.10",
     "@types/tap": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
