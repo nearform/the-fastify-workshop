@@ -262,6 +262,7 @@ curl http://localhost:3000
 # Step 2: Plugins
 
 <div class="flex-row">
+
 - As with JavaScript, where everything is an object, with Fastify everything is a plugin
 
 - Fastify allows the user to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API that you will need to use one or more plugins, is `register`
@@ -274,6 +275,7 @@ https://www.fastify.io/docs/latest/Reference/Plugins/
 # Step 2: Exercise 💻
 
 <div class="flex-row">
+
 - Split `server.js` into two files:
 
   - `server.js` contains only the server startup logic
@@ -545,6 +547,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 # Step 4: Exercise 💻
 
 <div class="flex-row">
+
 - Validate the response in the users route using a schema:
 
   - Created with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
@@ -1687,5 +1690,3 @@ It adds the `authenticate` property to `FastifyInstance`:
 ## 👏👏👏
 
 </div>
-
----
