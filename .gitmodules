@@ -1,0 +1,5 @@
+[submodule "theme"]
+	path = theme
+	url = https://github.com/nearform/slidev-theme.git
+	branch = master
+
