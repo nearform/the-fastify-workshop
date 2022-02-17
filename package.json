@@ -21,7 +21,6 @@
     "@nearform/sql": "^1.9.0",
     "@sinclair/typebox": "^0.23.3",
     "@slidev/cli": "^0.28.5",
-    "@slidev/theme-default": "^0.21.1",
     "@vueuse/shared": "^7.6.2",
     "desm": "^1.2.0",
     "env-schema": "^3.5.2",
