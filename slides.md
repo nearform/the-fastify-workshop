@@ -21,7 +21,7 @@ lineNumbers: false
 
 # Introduction: Why Fastify
 
-<div class="flex-row">
+<div>
 
 - An efficient server implies a lower cost of the infrastructure, a better responsiveness under load and happy users
 
@@ -33,7 +33,7 @@ lineNumbers: false
 
 # Introduction: Why Fastify /2
 
-<div class="flex-row">
+<div>
 
 - Fastify is a Node.js web framework focused on performance and developer experience
 - The Fastify team has spent considerable time building a highly supportive and encouraging community
@@ -46,7 +46,7 @@ lineNumbers: false
 
 # Core features
 
-<div class="flex-row">
+<div>
 
 - **Highly performant**: as far as we know, Fastify is one of the fastest web frameworks in town, depending on the code complexity we can serve up to 30 thousand requests per second
 
@@ -60,7 +60,7 @@ lineNumbers: false
 
 # Core features /2
 
-<div class="flex-row">
+<div>
 
 - **Logging**: logs are extremely important but are costly; we chose the best logger to almost remove this cost, Pino!
 
@@ -74,7 +74,7 @@ lineNumbers: false
 
 # Who is using Fastify
 
-<div class="flex-row">
+<div>
 
 ![Who is using Fastify](assets/who.png)
 
@@ -86,7 +86,7 @@ https://www.fastify.io/organisations/
 
 # Ecosystem
 
-<div class="flex-row">
+<div>
 
 - There are 45 core plugins and 155 community plugins
 
@@ -100,7 +100,7 @@ https://www.fastify.io/ecosystem/
 
 # Benchmarks
 
-<div class="flex-row">
+<div>
 
   <div style="display: flex">
     <div style="flex: 1; margin-right: 1rem">
@@ -127,7 +127,7 @@ https://www.fastify.io/ecosystem/
 
 # Getting setup
 
-<div class="flex-row">
+<div>
 
 #### Requirements
 
@@ -154,7 +154,7 @@ npm test --workspaces
 
 # Workshop structure
 
-<div class="flex-row">
+<div>
 
 - This workshop is made of multiple, incremental modules
 - Each module builds on top of the previous one
@@ -169,7 +169,7 @@ npm test --workspaces
 
 # Running the modules
 
-<div class="flex-row">
+<div>
 
 - `cd src/step-{n}-{name}`
 
@@ -189,7 +189,7 @@ npm run start
 
 # Step 1: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 Write a Fastify program in a `server.js` file which:
 
@@ -211,7 +211,7 @@ Write a Fastify program in a `server.js` file which:
 
 # Step 1: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // server.js
@@ -241,7 +241,7 @@ start()
 
 # Step 1: Trying it out
 
-<div class="flex-row">
+<div>
 
 ### In the terminal:
 
@@ -261,7 +261,7 @@ curl http://localhost:3000
 
 # Step 2: Plugins
 
-<div class="flex-row">
+<div>
 
 - As with JavaScript, where everything is an object, with Fastify everything is a plugin
 
@@ -274,7 +274,7 @@ https://www.fastify.io/docs/latest/Reference/Plugins/
 
 # Step 2: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Split `server.js` into two files:
 
@@ -288,7 +288,7 @@ https://www.fastify.io/docs/latest/Reference/Plugins/
 
 # Step 2: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -311,7 +311,7 @@ export default buildServer
 
 # Step 2: Solution /2
 
-<div class="flex-row">
+<div>
 
 ```js
 // server.js
@@ -337,7 +337,7 @@ start()
 
 # Step 2: Solution /3
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/users.js
@@ -355,7 +355,7 @@ export default async function users(fastify) {
 
 # Step 2: Trying it out
 
-<div class="flex-row">
+<div>
 
 #### Note that the / route is now not found
 
@@ -387,7 +387,7 @@ curl http://localhost:3000/users
 
 # Step 3: Logging
 
-<div class="flex-row">
+<div>
 
 - Fastify ships by default with [`pino`](https://github.com/pinojs/pino)
 - Pino is a logger that aims to lower as much as possible its impact on the application performance
@@ -404,7 +404,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 
 # Step 3: Logging Readability / 2
 
-<div class="flex-row">
+<div>
 
 - Pino provides a child logger to each route which includes the request id, enabling the developer to group log outputs under the request that generated them
 
@@ -418,7 +418,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 
 # Step 3: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Enable built-in request logging in the application
 
@@ -434,7 +434,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 
 # Step 3: Solution /1
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -463,7 +463,7 @@ export default buildServer
 
 # Step 3: Solution /2
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/users.js
@@ -482,7 +482,7 @@ export default async function users(fastify) {
 
 # Step 3: Trying it out
 
-<div class="flex-row">
+<div>
 
 ```bash
 npm run start
@@ -499,7 +499,7 @@ npm run start
 
 # Step 3: Trying it out /2
 
-<div class="flex-row">
+<div>
 
 ```bash
 curl http://localhost:3000/users
@@ -533,7 +533,7 @@ curl http://localhost:3000/users
 
 # Step 4: Serialization
 
-<div class="flex-row">
+<div>
 
 - Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
 
@@ -546,7 +546,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 
 # Step 4: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Validate the response in the users route using a schema:
 
@@ -560,7 +560,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 
 # Step 4: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/users.js
@@ -589,7 +589,7 @@ export default async function users(fastify) {
 
 # Step 4: Trying it out
 
-<div class="flex-row">
+<div>
 
 #### Make the response invalid
 
@@ -618,7 +618,7 @@ curl http://localhost:3000/users
 
 # Step 5: Testing
 
-<div class="flex-row">
+<div>
 
 - Fastify is very flexible when it comes to testing and is compatible with most testing frameworks
 
@@ -633,7 +633,7 @@ https://www.fastify.io/docs/latest/Guides/Testing/
 
 # Step 5: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Write a unit test for the `index.js` module
 - Use `node-tap`
@@ -650,7 +650,7 @@ https://www.fastify.io/docs/latest/Guides/Testing/
 
 # Step 5: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // test/index.test.js
@@ -682,7 +682,7 @@ test('GET /users', async t => {
 
 # Step 5: Trying it out
 
-<div class="flex-row">
+<div>
 
 #### Run the tests
 
@@ -713,7 +713,7 @@ All files |        0 |        0 |        0 |        0 |                   |
 
 # Step 6: Validation
 
-<div class="flex-row">
+<div>
 
 - Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
 
@@ -725,7 +725,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#valid
 
 # Step 6: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Create and register a `POST /login` route in `routes/login.js`
 
@@ -737,7 +737,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#valid
 
 # Step 6: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/login.js
@@ -767,7 +767,7 @@ export default async function login(fastify) {
 
 # Step 6: Trying it out
 
-<div class="flex-row">
+<div>
 
 #### With right credentials
 
@@ -790,7 +790,7 @@ http://localhost:3000/login
 
 # Step 6: Trying it out /2
 
-<div class="flex-row">
+<div>
 
 #### With wrong credentials
 
@@ -813,7 +813,7 @@ http://localhost:3000/login
 
 # Step 7: Authentication
 
-<div class="flex-row">
+<div>
 
 - [`fastify-jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
@@ -823,7 +823,7 @@ http://localhost:3000/login
 
 # Step 7: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Change `index.js` so that it:
 
@@ -835,7 +835,7 @@ http://localhost:3000/login
 
 # Step 7: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -867,7 +867,7 @@ export default buildServer
 
 # Step 7: Exercise /2 💻
 
-<div class="flex-row">
+<div>
 
 - Change `routes/login.js` to add an auth check:
 
@@ -883,7 +883,7 @@ export default buildServer
 
 # Step 7: Exercise /2 💻
 
-<div class="flex-row">
+<div>
 
 - Still on `routes/login.js`:
 
@@ -897,7 +897,7 @@ export default buildServer
 
 # Step 7: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/login.js
@@ -930,7 +930,7 @@ export default async function login(fastify) {
 
 # Step 7: Trying it out
 
-<div class="flex-row">
+<div>
 
 #### With right credentials
 
@@ -952,7 +952,7 @@ http://localhost:3000/login
 
 # Step 7: Trying it out /2
 
-<div class="flex-row">
+<div>
 
 #### With wrong credentials
 
@@ -976,7 +976,7 @@ http://localhost:3000/login
 
 # Step 8: Config
 
-<div class="flex-row">
+<div>
 
 - It is preferable to use environment variables to configure your app. For example, the JWT secret we hard-coded in previous step
 - This makes it easier to deploy the same code into different environments
@@ -990,7 +990,7 @@ http://localhost:3000/login
 
 # Step 8: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Create a `config.js` file which:
   - Uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
@@ -1005,7 +1005,7 @@ http://localhost:3000/login
 
 # Step 8: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // config.js
@@ -1030,7 +1030,7 @@ export default envSchema({
 
 # Step 8: Solution /2
 
-<div class="flex-row">
+<div>
 
 ```js
 // server.js
@@ -1057,7 +1057,7 @@ start()
 
 # Step 8: Solution /3
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -1087,7 +1087,7 @@ export default buildServer
 
 # Step 9: Decorators
 
-<div class="flex-row">
+<div>
 
 - In the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
 
@@ -1101,7 +1101,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 # Fastify extensibility
 
-<div class="flex-row">
+<div>
 
 <img src="assets/extensibility.png" style="height: 55%; width: 55%; object-fit: contain;" />
 
@@ -1111,7 +1111,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 # Step 9: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Create a `plugins/authentication.js` plugin which:
 
@@ -1129,7 +1129,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 # Step 9: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // plugins/authenticate.js
@@ -1160,7 +1160,7 @@ export default authenticate
 
 # Step 9: Solution/2
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -1192,7 +1192,7 @@ export default buildServer
 
 # Step 10: Hooks
 
-<div class="flex-row">
+<div>
 
 - In this step we're going to build on the previous step by using a fastify hook with our decorator for the protected route
 
@@ -1204,7 +1204,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Fastify lifecycle hooks
 
-<div class="flex-row">
+<div>
 
 <img src="assets/hooks.png" style="height: 55%; width: 55%; object-fit: contain;" />
 
@@ -1214,7 +1214,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Step 10: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Create a `GET /` route in `routes/user/index.js`
 
@@ -1232,7 +1232,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Step 10: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/user/index.js
@@ -1261,7 +1261,7 @@ export default async function user(fastify) {
 
 # Steps 9 & 10: Trying it out
 
-<div class="flex-row">
+<div>
 
 💡 you need a valid JWT by logging in via the `POST /login` route
 
@@ -1294,7 +1294,7 @@ curl http://localhost:3000/user \
 
 # Step 11: Fastify autoload
 
-<div class="flex-row">
+<div>
 
 - [`fastify-autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
 
@@ -1308,7 +1308,7 @@ curl http://localhost:3000/user \
 
 # Step 11: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Remove all the manual route registrations.
 
@@ -1329,7 +1329,7 @@ curl http://localhost:3000/user \
 
 # Step 11: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -1362,7 +1362,7 @@ function buildServer(config) {
 
 # Step 11: Solution /2
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/user/index.js
@@ -1383,7 +1383,7 @@ export default async function user(fastify) {
 
 # 🏆 Step 12: Database
 
-<div class="flex-row">
+<div>
 
 - Use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
 
@@ -1404,7 +1404,7 @@ npm run db:migrate
 
 # Step 12: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Change `config.js` to support a `PG_CONNECTION_STRING` variable
 
@@ -1422,7 +1422,7 @@ npm run db:migrate
 
 # Step 12: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // index.js
@@ -1445,7 +1445,7 @@ export default buildServer
 
 # Step 12: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 Change `routes/login.js`:
 
@@ -1461,7 +1461,7 @@ Change `routes/login.js`:
 
 # Step 12: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/login.js
@@ -1493,7 +1493,7 @@ export default async function login(fastify) {
 
 # Step 12: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Move the existing `routes/users.js` route to `routes/users/index.js` and make it an auto-prefixed route responding to `GET /users`
 
@@ -1507,7 +1507,7 @@ export default async function login(fastify) {
 
 # Step 12: Solution
 
-<div class="flex-row">
+<div>
 
 ```js
 // routes/users/index.js
@@ -1540,7 +1540,7 @@ export default async function users(fastify) {
 
 # Step 13: Exercise 💻
 
-<div class="flex-row">
+<div>
 
 - Let's create an Fastify application using **TypeScript**.
 
@@ -1556,7 +1556,7 @@ export default async function users(fastify) {
 
 # Step 13: Solution/1
 
-<div class="flex-row">
+<div>
 
 ```ts
 // routes/login.ts
@@ -1590,7 +1590,7 @@ const schema = {
 
 # Step 13: Solution/2
 
-<div class="flex-row">
+<div>
 
 ```ts
 // routes/login.ts
@@ -1619,7 +1619,7 @@ export default async function login(fastify: FastifyInstance) {
 
 # Step 13: Solution/3
 
-<div class="flex-row">
+<div>
 
 ```ts
 // plugins/authenticate.ts
@@ -1649,7 +1649,7 @@ export default fp(authenticate)
 
 # Step 13: Solution/4
 
-<div class="flex-row">
+<div>
 
 ```ts
 // @types/index.d.ts
@@ -1675,7 +1675,7 @@ It adds the `authenticate` property to `FastifyInstance`:
 
 # 🏆 Write Tests 🏆
 
-<div class="flex-row">
+<div>
 
 > 💡 inspire from the code in the completed steps
 
@@ -1685,7 +1685,7 @@ It adds the `authenticate` property to `FastifyInstance`:
 
 # Thanks For Having Us!
 
-<div class="flex-row">
+<div>
 
 ## 👏👏👏
 
