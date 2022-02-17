@@ -1,5 +1,5 @@
 ---
-theme: ./theme
+theme: slidev-theme-nearform
 layout: image-right
 highlighter: shiki
 lineNumbers: false
