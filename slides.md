@@ -1,12 +1,21 @@
-class: center, title-page
+---
+theme: slidev-theme-nearform
+layout: image-right
+highlighter: shiki
+lineNumbers: false
+---
+
+<img class=logo src="/images/nearform.svg">
 
 # The Fastify Workshop
 
-<img src="assets/fastify.png" style="width: 30%">
+<img src="assets/fastify.png" style="width: 30%;">
+
+<div class="copyright">
+
+© Copyright 2019-2022 NearForm Ltd. All Rights Reserved.
 
 ---
-
-class: branded
 
 # Introduction: Why Fastify
 
@@ -16,19 +25,14 @@ class: branded
 
 ---
 
-class: branded
-
 # Introduction: Why Fastify /2
 
 - Fastify is a Node.js web framework focused on performance and developer experience
-
 - The Fastify team has spent considerable time building a highly supportive and encouraging community
 
 - Fastify gained adoption by solving real needs of Node.js developers
 
 ---
-
-class: branded
 
 # Core features
 
@@ -40,8 +44,6 @@ class: branded
 
 ---
 
-class: branded
-
 # Core features /2
 
 - **Logging**: logs are extremely important but are costly; we chose the best logger to almost remove this cost, Pino!
@@ -52,8 +54,6 @@ class: branded
 
 ---
 
-class: branded
-
 # Who is using Fastify
 
 ![Who is using Fastify](assets/who.png)
@@ -61,8 +61,6 @@ class: branded
 https://www.fastify.io/organisations/
 
 ---
-
-class: branded
 
 # Ecosystem
 
@@ -76,28 +74,26 @@ https://www.fastify.io/ecosystem/
 
 # Benchmarks
 
-<div style="display: flex">
-  <div style="flex: 1; margin-right: 1rem">
-    <ul>
-      <li>
-        Leveraging our experience with Node.js performance, Fastify has been built from the ground up to be as fast as possible
-      </li>
-      <br />
-      <li>
-        All the code used for our benchmarks is <a href="https://github.com/fastify/benchmarks">available on GitHub</a>
-      </li>
-    </ul>
+  <div style="display: flex">
+    <div style="flex: 1; margin-right: 1rem">
+      <ul>
+        <li>
+          Leveraging our experience with Node.js performance, Fastify has been built from the ground up to be as fast as possible
+        </li>
+        <br />
+        <li>
+          All the code used for our benchmarks is <a href="https://github.com/fastify/benchmarks">available on GitHub</a>
+        </li>
+      </ul>
+    </div>
+    <div style="flex: .5">
+      <a href="https://github.com/fastify/benchmarks">
+        <img src="assets/benchmarks.png" style="background-color: #E5F0FF">
+      </a>
+    </div>
   </div>
-  <div style="flex: .8">
-    <a href="https://github.com/fastify/benchmarks">
-      <img src="assets/benchmarks.png">
-    </a>
-  </div>
-</div>
 
 ---
-
-class: branded
 
 # Getting setup
 
@@ -122,25 +118,16 @@ npm test --workspaces
 
 ---
 
-class: branded
-
 # Workshop structure
 
 - This workshop is made of multiple, incremental modules
-
 - Each module builds on top of the previous one
-
 - At each step you are asked to add features and solve problems
-
 - You will find the solution to each step in the `src/step-{n}-{name}` folder
-
 - The 🏆 icon indicates bonus features
-
 - The 💡 icon indicates hints
 
 ---
-
-class: branded
 
 # Running the modules
 
@@ -157,8 +144,6 @@ npm run start
 ```
 
 ---
-
-class: branded
 
 # Step 1: Exercise 💻
 
@@ -177,8 +162,6 @@ Write a Fastify program in a `server.js` file which:
 > 🏆 use ES modules!
 
 ---
-
-class: branded
 
 # Step 1: Solution
 
@@ -206,13 +189,11 @@ start()
 
 ---
 
-class: branded
-
 # Step 1: Trying it out
 
 ### In the terminal:
 
-```a
+```bash
 curl http://localhost:3000
 
 {"hello":"world"}
@@ -224,8 +205,6 @@ curl http://localhost:3000
 
 ---
 
-class: branded
-
 # Step 2: Plugins
 
 - As with JavaScript, where everything is an object, with Fastify everything is a plugin
@@ -233,10 +212,7 @@ class: branded
 - Fastify allows the user to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API that you will need to use one or more plugins, is `register`
 
 https://www.fastify.io/docs/latest/Reference/Plugins/
-
 ---
-
-class: branded
 
 # Step 2: Exercise 💻
 
@@ -246,10 +222,7 @@ class: branded
   - `index.js` contains the code to instantiate Fastify and register plugins
 
 - Create a `GET /users` route in `routes/users.js` and export it as a Fastify plugin
-
 ---
-
-class: branded
 
 # Step 2: Solution
 
@@ -269,8 +242,6 @@ export default buildServer
 ```
 
 ---
-
-class: branded
 
 # Step 2: Solution /2
 
@@ -294,8 +265,6 @@ start()
 
 ---
 
-class: branded
-
 # Step 2: Solution /3
 
 ```js
@@ -314,7 +283,7 @@ export default async function users(fastify) {
 
 #### Note that the / route is now not found
 
-```a
+```bash
 curl http://localhost:3000/
 ```
 
@@ -328,7 +297,7 @@ curl http://localhost:3000/
 
 #### We'll find our response at /users
 
-```a
+```bash
 curl http://localhost:3000/users
 ```
 
@@ -338,25 +307,18 @@ curl http://localhost:3000/users
 
 ---
 
-class: branded
-
 # Step 3: Logging
 
 - Fastify ships by default with [`pino`](https://github.com/pinojs/pino)
 - Pino is a logger that aims to lower as much as possible its impact on the application performance
-
 - The 2 base principles it follows are:
-
   1. Log processing should be conducted in a separate process
   2. Use minimum resources for logging
-
 - Fastify has a `logger` option you can use to enable logging and configure it
 
 https://www.fastify.io/docs/latest/Reference/Logging/
 
 ---
-
-class: branded
 
 # Step 3: Logging Readability / 2
 
@@ -367,8 +329,6 @@ class: branded
 - Options like this improve understandability for developers, making it easier to develop.
 
 ---
-
-class: branded
 
 # Step 3: Exercise 💻
 
@@ -381,8 +341,6 @@ class: branded
 - Programmatically write logs in the application.
 
 ---
-
-class: branded
 
 # Step 3: Solution /1
 
@@ -409,8 +367,6 @@ export default buildServer
 
 ---
 
-class: branded
-
 # Step 3: Solution /2
 
 ```js
@@ -426,11 +382,9 @@ export default async function users(fastify) {
 
 ---
 
-class: branded
-
 # Step 3: Trying it out
 
-```a
+```bash
 npm run start
 
 [1612530447393] INFO (62680 on HostComputer):
@@ -441,17 +395,15 @@ npm run start
 
 ---
 
-class: branded
-
 # Step 3: Trying it out /2
 
-```a
+```bash
 curl http://localhost:3000/users
 
 [{"username":"alice"},{"username":"bob"}]
 ```
 
-```a
+```bash
 [1612531288501] INFO (63322 on Softwares-MBP): incoming request
     req: {
       "method": "GET",
@@ -473,8 +425,6 @@ curl http://localhost:3000/users
 
 ---
 
-class: branded
-
 # Step 4: Serialization
 
 - Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
@@ -482,10 +432,7 @@ class: branded
 - We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information
 
 https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
-
 ---
-
-class: branded
 
 # Step 4: Exercise 💻
 
@@ -496,8 +443,6 @@ class: branded
   - Ensure that the response is serialized properly and contains the required property `username` in each array item
 
 ---
-
-class: branded
 
 # Step 4: Solution
 
@@ -536,7 +481,7 @@ In routes/users.js change the hardcoded response so it doesn't match the schema:
 
 You will need to restart the server in step-4-serialization for these changes to take effect.
 
-```a
+```bash
 curl http://localhost:3000/users
 ```
 
@@ -547,10 +492,7 @@ curl http://localhost:3000/users
   "message": "\"username\" is required!"
 }
 ```
-
 ---
-
-class: branded
 
 # Step 5: Testing
 
@@ -561,19 +503,13 @@ class: branded
 - Fastify can also be tested after starting the server with `fastify.listen()` or after initializing routes and plugins with `fastify.ready()`
 
 https://www.fastify.io/docs/latest/Guides/Testing/
-
 ---
-
-class: branded
 
 # Step 5: Exercise 💻
 
 - Write a unit test for the `index.js` module
-
 - Use `node-tap`
-
 - Use `fastify.inject`
-
 - Check that GETting the `/users` route:
   - Responds with status code 200
   - Returns the expected array of users
@@ -614,7 +550,7 @@ test('GET /users', async t => {
 
 #### Run the tests
 
-```a
+```bash
 ❯ npm run test
 $ tap
 test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is starting up!
@@ -637,8 +573,6 @@ All files |        0 |        0 |        0 |        0 |                   |
 
 ---
 
-class: branded
-
 # Step 6: Validation
 
 - Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
@@ -646,8 +580,6 @@ class: branded
 https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#validation
 
 ---
-
-class: branded
 
 # Step 6: Exercise 💻
 
@@ -681,14 +613,13 @@ export default async function login(fastify) {
   })
 }
 ```
-
 ---
 
 # Step 6: Trying it out
 
 #### With right credentials
 
-```a
+```bash
 curl -X POST -H "Content-Type: application/json" \
 -d '{ "username": "alice", "password": "alice" }'
 http://localhost:3000/login
@@ -707,7 +638,7 @@ http://localhost:3000/login
 
 #### With wrong credentials
 
-```a
+```bash
 curl -X POST -H "Content-Type: application/json" \
 -d '{ "name": "alice", "passcode": "alice" }'
 http://localhost:3000/login
@@ -720,18 +651,13 @@ http://localhost:3000/login
   "message": "body should have required property 'username'"
 }
 ```
-
 ---
-
-class: branded
 
 # Step 7: Authentication
 
 - [`fastify-jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
 ---
-
-class: branded
 
 # Step 7: Exercise 💻
 
@@ -740,8 +666,6 @@ class: branded
   - Registers the `fastify-jwt` plugin using a hardcoded string as the `secret` property of the plugin's configuration options
 
 ---
-
-class: branded
 
 # Step 7: Solution
 
@@ -771,8 +695,6 @@ export default buildServer
 
 ---
 
-class: branded
-
 # Step 7: Exercise /2 💻
 
 - Change `routes/login.js` to add an auth check:
@@ -783,10 +705,7 @@ class: branded
 
   > 💡 you can use the [`http-errors`](https://github.com/jshttp/http-errors) package
 
-
 ---
-
-class: branded
 
 # Step 7: Exercise /2 💻
 
@@ -831,7 +750,7 @@ export default async function login(fastify) {
 
 #### With right credentials
 
-```a
+```bash
 curl -X POST -H "Content-Type: application/json" \
 -d '{ "username": "alice", "password": "alice" }'
 http://localhost:3000/login
@@ -849,7 +768,7 @@ http://localhost:3000/login
 
 #### With wrong credentials
 
-```a
+```bash
 curl -X POST -H "Content-Type: application/json" \
 -d '{ "username": "alice", "password": "wrong" }'
 http://localhost:3000/login
@@ -865,39 +784,26 @@ http://localhost:3000/login
 
 ---
 
-class: branded
-
 # Step 8: Config
 
-- It is preferable to use environment variables to configure your app. For example, the JWT secret we hard-coded in the previous step
-
+- It is preferable to use environment variables to configure your app. For example, the JWT secret we hard-coded in previous step
 - This makes it easier to deploy the same code into different environments
-
-- Typically config values are not committed to a repository and they are managed with environment variables. An example would be the logging level: in production it's usually better to have only important information, while in a dev environment it may be useful to show more
+- Typically config values are not committed to a repository and they are managed with environment variables. An example would be the logging level: in production it's usually better to have only important info, while in a dev env it may be useful to show more
 
 > 💡 As we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
 
 ---
 
-class: branded
-
 # Step 8: Exercise 💻
 
 - Create a `config.js` file which:
-
   - Uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
-
   - Validates its value with `fluent-json-schema`
-
 - Change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
-
 - Change `index.js` so that it:
-
   - Accepts the configuration provided by `server.js` in the exported `buildServer` function
 
 ---
-
-class: branded
 
 # Step 8: Solution
 
@@ -919,8 +825,6 @@ export default envSchema({
 ```
 
 ---
-
-class: branded
 
 # Step 8: Solution /2
 
@@ -944,8 +848,6 @@ start()
 ```
 
 ---
-
-class: branded
 
 # Step 8: Solution /3
 
@@ -973,8 +875,6 @@ export default buildServer
 
 ---
 
-class: branded
-
 # Step 9: Decorators
 
 - In the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
@@ -985,15 +885,11 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 ---
 
-class: branded
-
 # Fastify extensibility
 
-<img src="assets/extensibility.png" style="width: 80%; margin-left: auto; margin-right: auto; display: block;" />
+<img src="assets/extensibility.png" style="height: 55%; width: 55%; object-fit: contain;" />
 
 ---
-
-class: branded
 
 # Step 9: Exercise 💻
 
@@ -1036,8 +932,6 @@ export default authenticate
 
 ---
 
-class: branded
-
 # Step 9: Solution/2
 
 ```js
@@ -1066,8 +960,6 @@ export default buildServer
 
 ---
 
-class: branded
-
 # Step 10: Hooks
 
 - In this step we're going to build on the previous step by using a fastify hook with our decorator for the protected route
@@ -1078,11 +970,9 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Fastify lifecycle hooks
 
-<img src="assets/hooks.png" style="width: 80%; margin-left: auto; margin-right: auto; display: block;" />
+<img src="assets/hooks.png" style="height: 55%; width: 55%; object-fit: contain;" />
 
 ---
-
-class: branded
 
 # Step 10: Exercise 💻
 
@@ -1097,8 +987,6 @@ class: branded
 > 💡 you can get the current user from `request.user`
 
 ---
-
-class: branded
 
 # Step 10: Solution
 
@@ -1123,7 +1011,6 @@ export default async function user(fastify) {
   )
 }
 ```
-
 ---
 
 # Steps 9 & 10: Trying it out
@@ -1132,7 +1019,7 @@ export default async function user(fastify) {
 
 #### Hit the user route with a token in the headers
 
-```a
+```bash
 curl http://localhost:3000/user \
 -H "Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5c..."
 ```
@@ -1155,8 +1042,6 @@ curl http://localhost:3000/user \
 
 ---
 
-class: branded
-
 # Step 11: Fastify autoload
 
 - [`fastify-autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
@@ -1166,8 +1051,6 @@ class: branded
 - In this step we have also introduced integration tests. You can see these running if you run `npm run test`
 
 ---
-
-class: branded
 
 # Step 11: Exercise 💻
 
@@ -1215,8 +1098,6 @@ function buildServer(config) {
 
 ---
 
-class: branded
-
 # Step 11: Solution /2
 
 ```js
@@ -1233,8 +1114,6 @@ export default async function user(fastify) {
 ```
 
 ---
-
-class: branded
 
 # 🏆 Step 12: Database
 
@@ -1253,8 +1132,6 @@ npm run db:migrate
 
 ---
 
-class: branded
-
 # Step 12: Exercise 💻
 
 - Change `config.js` to support a `PG_CONNECTION_STRING` variable
@@ -1268,8 +1145,6 @@ class: branded
 - Register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
 
 ---
-
-class: branded
 
 # Step 12: Solution
 
@@ -1290,8 +1165,6 @@ export default buildServer
 
 ---
 
-class: branded
-
 # Step 12: Exercise 💻
 
 Change `routes/login.js`:
@@ -1303,8 +1176,6 @@ Change `routes/login.js`:
 - If the user does not exist in the database, return a `401 Unauthorized` error
 
 ---
-
-class: branded
 
 # Step 12: Solution
 
@@ -1333,8 +1204,6 @@ export default async function login(fastify) {
 ```
 
 ---
-
-class: branded
 
 # Step 12: Exercise 💻
 
@@ -1374,8 +1243,6 @@ export default async function users(fastify) {
 ```
 
 ---
-
-class: branded
 
 # Step 13: Exercise 💻
 
@@ -1444,8 +1311,6 @@ export default async function login(fastify: FastifyInstance) {
 
 ---
 
-class: branded
-
 # Step 13: Solution/3
 
 ```ts
@@ -1472,8 +1337,6 @@ export default fp(authenticate)
 
 ---
 
-class: branded
-
 # Step 13: Solution/4
 
 ```ts
@@ -1496,15 +1359,11 @@ It adds the `authenticate` property to `FastifyInstance`:
 
 ---
 
-class: center, no-border, branded
-
 # 🏆 Write Tests 🏆
 
 > 💡 inspire from the code in the completed steps
 
 ---
-
-class: center, no-border, branded
 
 # Thanks For Having Us!
 
