@@ -15,6 +15,8 @@ lineNumbers: false
 
 © Copyright 2019-2022 NearForm Ltd. All Rights Reserved.
 
+</div>
+
 ---
 
 # Introduction: Why Fastify
