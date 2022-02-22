@@ -9,7 +9,7 @@ lineNumbers: false
 
 # The Fastify Workshop
 
-<img src="assets/fastify.png" style="width: 30%;">
+<img src="/assets/fastify.png" style="width: 30%;">
 
 <div class="copyright">
 
@@ -57,7 +57,7 @@ lineNumbers: false
 
 # Who is using Fastify
 
-![Who is using Fastify](assets/who.png)
+![Who is using Fastify](/assets/who.png)
 
 https://www.fastify.io/organisations/
 
@@ -89,7 +89,7 @@ https://www.fastify.io/ecosystem/
     </div>
     <div style="flex: .5">
       <a href="https://github.com/fastify/benchmarks">
-        <img src="assets/benchmarks.png" style="background-color: #E5F0FF">
+        <img src="/assets/benchmarks.png" style="background-color: #E5F0FF">
       </a>
     </div>
   </div>
@@ -202,7 +202,7 @@ curl http://localhost:3000
 
 ### In the browser:
 
-<img style="width: 50%; text-align: center" src="assets/hello-world.png">
+<img style="width: 50%; text-align: center" src="/assets/hello-world.png">
 
 ---
 
@@ -888,7 +888,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 # Fastify extensibility
 
-<img src="assets/extensibility.png" style="height: 55%; width: 55%; object-fit: contain;" />
+<img src="/assets/extensibility.png" style="height: 55%; width: 55%; object-fit: contain;" />
 
 ---
 
@@ -971,7 +971,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Fastify lifecycle hooks
 
-<img src="assets/hooks.png" style="height: 55%; width: 55%; object-fit: contain;" />
+<img src="/assets/hooks.png" style="height: 55%; width: 55%; object-fit: contain;" />
 
 ---
 
@@ -1356,7 +1356,7 @@ declare module 'fastify' {
 
 It adds the `authenticate` property to `FastifyInstance`:
 
-<img src="assets/declaration-merging.png">
+<img src="/assets/declaration-merging.png">
 
 ---
 
