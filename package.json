@@ -32,7 +32,7 @@
     "http-errors": "^2.0.0",
     "pg": "^8.7.3",
     "pino-pretty": "^7.5.1",
-    "slidev-theme-nearform": "^1.2.0"
+    "slidev-theme-nearform": "^1.2.1"
   },
   "devDependencies": {
     "@istanbuljs/esm-loader-hook": "^0.1.2",
