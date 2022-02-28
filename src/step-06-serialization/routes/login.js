@@ -7,7 +7,7 @@ const schema = {
   response: {
     200: S.object()
       .prop('username', S.string().required())
-      .prop('password', S.string().required())
+      .prop('password', S.string().required()),
   },
 }
 

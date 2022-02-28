@@ -6,9 +6,19 @@ const schema = {
     .prop('password', S.string().required()),
 }
 
+/**
+ * @type {import('fastify').FastifyPluginAsync}
+ * */
 export default async function login(fastify) {
-  fastify.post('/login', { schema }, async req => {
-    const { username, password } = req.body
-    return { username, password }
-  })
+  fastify.post(
+    '/login',
+    { schema },
+    /**
+     * @type {import('fastify').RouteHandler<{ Body: { username: string; password: string } }>}
+     * */
+    async req => {
+      const { username, password } = req.body
+      return { username, password }
+    }
+  )
 }
