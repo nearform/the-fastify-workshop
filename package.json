@@ -20,7 +20,7 @@
   "dependencies": {
     "@nearform/sql": "^1.9.0",
     "@sinclair/typebox": "^0.23.4",
-    "@slidev/cli": "^0.28.8",
+    "@slidev/cli": "^0.28.9",
     "@vueuse/shared": "^7.7.0",
     "desm": "^1.2.0",
     "env-schema": "^3.5.2",
