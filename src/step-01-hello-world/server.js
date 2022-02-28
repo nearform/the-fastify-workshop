@@ -3,7 +3,7 @@ import Fastify from 'fastify'
 const start = async function () {
   const fastify = Fastify()
 
-  fastify.get('/', () => {
+  fastify.get('/', async () => {
     return { hello: 'world' }
   })
 
