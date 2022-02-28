@@ -15,7 +15,7 @@
     "db:migrate": "postgrator",
     "db:down": "docker-compose down",
     "lint": "eslint --ext .ts,.js ./src",
-    "test": "TS_NODE_FILES=1 tap --ts"
+    "test": "TS_NODE_FILES=1 c8 --100 tap --no-cov --ts"
   },
   "dependencies": {
     "@nearform/sql": "^1.9.0",
@@ -43,6 +43,7 @@
     "@types/tap": "^15.0.6",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
+    "c8": "^7.11.0",
     "eslint": "^8.9.0",
     "eslint-plugin-sql": "^2.1.0",
     "postgrator-cli": "^4.0.0",
