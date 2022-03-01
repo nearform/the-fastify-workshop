@@ -6,6 +6,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node server",
-    "test": "tap"
+    "test": "c8 tap --no-cov"
   }
 }

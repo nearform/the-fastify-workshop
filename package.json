@@ -15,7 +15,7 @@
     "db:migrate": "postgrator",
     "db:down": "docker-compose down",
     "lint": "eslint --ext .ts,.js ./src",
-    "test": "TS_NODE_FILES=1 tap --ts"
+    "test": "TS_NODE_FILES=1 c8 tap --no-cov --ts"
   },
   "dependencies": {
     "@nearform/sql": "^1.9.0",
@@ -35,7 +35,6 @@
     "slidev-theme-nearform": "^1.2.1"
   },
   "devDependencies": {
-    "@istanbuljs/esm-loader-hook": "^0.1.2",
     "@tsconfig/node16": "^1.0.2",
     "@types/http-errors": "^1.8.2",
     "@types/node": "^17.0.21",
@@ -43,6 +42,7 @@
     "@types/tap": "^15.0.6",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
+    "c8": "^7.11.0",
     "eslint": "^8.9.0",
     "eslint-plugin-sql": "^2.1.0",
     "postgrator-cli": "^4.0.0",
