@@ -426,71 +426,77 @@ curl http://localhost:3000/users
 
 ---
 
-# Step 4: Serialization
+# Step 4 Validation
 
-- Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
+- Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
 
-- We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information
+https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#validation
 
-https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 ---
 
 # Step 4: Exercise 💻
 
-- Validate the response in the users route using a schema:
+- Create and register a `POST /login` route in `routes/login.js`
 
-  - Created with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
-
-  - Ensure that the response is serialized properly and contains the required property `username` in each array item
+- Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password`
 
 ---
 
 # Step 4: Solution
 
 ```js
-// routes/users.js
+// routes/login.js
 import S from 'fluent-json-schema'
 
 const schema = {
-  response: {
-    200: S.array().items(
-      S.object().prop('username', S.string().required())
-    ),
-  },
+  body: S.object()
+    .prop('username', S.string().required())
+    .prop('password', S.string().required()),
 }
 
-export default async function users(fastify) {
-  fastify.get('/users', { schema }, async req => {
-    req.log.info('Users route called')
-
-    return [{ username: 'alice' }, { username: 'bob' }]
+export default async function login(fastify) {
+  fastify.post('/login', { schema }, async req => {
+    const { username, password } = req.body
+    return { username, password }
   })
+}
+```
+---
+
+# Step 4: Trying it out
+
+#### With right credentials
+
+```bash
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "username": "alice", "password": "alice" }'
+http://localhost:3000/login
+```
+
+```json
+{
+  "username": "alice",
+  "password": "alice"
 }
 ```
 
 ---
 
-# Step 4: Trying it out
+# Step 4: Trying it out /2
 
-#### Make the response invalid
-
-In routes/users.js change the hardcoded response so it doesn't match the schema:
-
-```json
-[{ "wrong": "alice" }, { "wrong": "bob" }]
-```
-
-You will need to restart the server in step-4-serialization for these changes to take effect.
+#### With wrong credentials
 
 ```bash
-curl http://localhost:3000/users
+curl -X POST -H "Content-Type: application/json" \
+-d '{ "name": "alice", "passcode": "alice" }'
+http://localhost:3000/login
 ```
 
 ```json
 {
-  "statusCode": 500,
-  "error": "Internal Server Error",
-  "message": "\"username\" is required!"
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "body should have required property 'username'"
 }
 ```
 ---
@@ -574,82 +580,71 @@ All files |        0 |        0 |        0 |        0 |                   |
 
 ---
 
-# Step 6: Validation
+# Step 6: Serialization
 
-- Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
+- Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
 
-https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#validation
+- We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information
 
+https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 ---
 
 # Step 6: Exercise 💻
 
-- Create and register a `POST /login` route in `routes/login.js`
+- Validate the response in the users route using a schema:
 
-- Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password`
+  - Created with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
+
+  - Ensure that the response is serialized properly and contains the required property `username` in each array item
 
 ---
 
 # Step 6: Solution
 
 ```js
-// routes/login.js
+// routes/users.js
 import S from 'fluent-json-schema'
 
 const schema = {
-  body: S.object()
-    .prop('username', S.string().required())
-    .prop('password', S.string().required()),
   response: {
-    200: S.object()
-      .prop('username', S.string().required())
-      .prop('password', S.string().required()),
+    200: S.array().items(
+      S.object().prop('username', S.string().required())
+    ),
   },
 }
 
-export default async function login(fastify) {
-  fastify.post('/login', { schema }, async req => {
-    const { username, password } = req.body
-    return { username, password }
+export default async function users(fastify) {
+  fastify.get('/users', { schema }, async req => {
+    req.log.info('Users route called')
+
+    return [{ username: 'alice' }, { username: 'bob' }]
   })
 }
 ```
+
 ---
 
 # Step 6: Trying it out
 
-#### With right credentials
+#### Make the response invalid
+
+In routes/users.js change the hardcoded response so it doesn't match the schema:
+
+```json
+[{ "wrong": "alice" }, { "wrong": "bob" }]
+```
+
+You will need to restart the server in step-4-serialization for these changes to take effect.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "alice" }'
-http://localhost:3000/login
+curl http://localhost:3000/users
 ```
 
 ```json
 {
-  "username": "alice",
-  "password": "alice"
-}
-```
-
----
-
-# Step 6: Trying it out /2
-
-#### With wrong credentials
-
-```bash
-curl -X POST -H "Content-Type: application/json" \
--d '{ "name": "alice", "passcode": "alice" }'
-http://localhost:3000/login
-```
-
-```json
-{
-  "statusCode": 400,
-  "error": "Bad Request",
-  "message": "body should have required property 'username'"
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "\"username\" is required!"
 }
 ```
 ---
@@ -669,7 +664,7 @@ http://localhost:3000/login
 ---
 
 # Step 7: Solution
-
+  
 ```js
 // index.js
 import Fastify from 'fastify'

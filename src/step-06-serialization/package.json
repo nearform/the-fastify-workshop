@@ -5,6 +5,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "test": "c8 tap --no-cov"
   }
 }
