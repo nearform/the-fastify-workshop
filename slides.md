@@ -430,6 +430,8 @@ curl http://localhost:3000/users
 
 - Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
 
+ Created 
+
 https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#validation
 
 ---
@@ -438,7 +440,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#valid
 
 - Create and register a `POST /login` route in `routes/login.js`
 
-- Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password`
+- Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password`  with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
 
 ---
 
@@ -591,11 +593,9 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 
 # Step 6: Exercise 💻
 
-- Validate the response in the users route using a schema:
+- Validate the response in the users route
 
-  - Created with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
-
-  - Ensure that the response is serialized properly and contains the required property `username` in each array item
+- Ensure that the response is serialized properly and contains the required property `username` in each array item
 
 ---
 
