@@ -3,10 +3,7 @@ import fastify from 'fastify'
 
 const { test } = t
 
-function buildServer() {
-  return fastify()
-    .register(import('../routes/login.js'))
-}
+import buildServer from '../index.js'
 
 test('POST /login', async t => {
   t.test('returns 400 with an invalid post payload', async t => {

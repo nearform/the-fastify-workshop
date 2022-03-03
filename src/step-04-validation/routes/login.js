@@ -4,11 +4,6 @@ const schema = {
   body: S.object()
     .prop('username', S.string().required())
     .prop('password', S.string().required()),
-  response: {
-    200: S.object()
-      .prop('username', S.string().required())
-      .prop('password', S.string().required())
-  },
 }
 
 /**
@@ -22,7 +17,8 @@ export default async function login(fastify) {
      * @type {import('fastify').RouteHandler<{ Body: { username: string; password: string } }>}
      * */
     async req => {
-    const { username, password } = req.body
-    return { username, password }
-  })
+      const { username, password } = req.body
+      return { username, password }
+    }
+  )
 }
