@@ -107,6 +107,8 @@ https://www.fastify.io/ecosystem/
 
 ---
 
+<div class="middle-flex dense">
+
 # Getting setup
 
 #### Requirements
@@ -128,7 +130,11 @@ npm run db:migrate
 npm test --workspaces
 ```
 
+</div>
+
 ---
+
+<div class="middle-flex dense">
 
 # Workshop structure
 
@@ -138,6 +144,8 @@ npm test --workspaces
 - You will find the solution to each step in the `src/step-{n}-{name}` folder
 - The 🏆 icon indicates bonus features
 - The 💡 icon indicates hints
+
+</div>
 
 ---
 
@@ -157,6 +165,8 @@ npm run start
 
 ---
 
+<div class="middle-flex dense">
+
 # Step 1: Exercise 💻
 
 Write a Fastify program in a `server.js` file which:
@@ -172,6 +182,8 @@ Write a Fastify program in a `server.js` file which:
 ```
 
 > 🏆 use ES modules!
+
+</div>
 
 ---
 
@@ -217,14 +229,21 @@ curl http://localhost:3000
 
 ---
 
+<div class="middle-flex dense">
+
 # Step 2: Plugins
 
 - As with JavaScript, where everything is an object, with Fastify everything is a plugin
 
-- Fastify allows the user to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API that you will need to use one or more plugins, is `register`
+- Fastify allows you to extend its functionalities with plugins. A plugin can be a set of routes, a server decorator or whatever. The API to use one or more plugins is `register`
 
 https://www.fastify.io/docs/latest/Reference/Plugins/
+
+</div>
+
 ---
+
+<div class="middle-flex dense">
 
 # Step 2: Exercise 💻
 
@@ -234,6 +253,9 @@ https://www.fastify.io/docs/latest/Reference/Plugins/
   - `index.js` contains the code to instantiate Fastify and register plugins
 
 - Create a `GET /users` route in `routes/users.js` and export it as a Fastify plugin
+
+</div>
+
 ---
 
 # Step 2: Solution
@@ -319,6 +341,8 @@ curl http://localhost:3000/users
 
 ---
 
+<div class="middle-flex dense">
+
 # Step 3: Logging
 
 - Fastify ships by default with [`pino`](https://github.com/pinojs/pino)
@@ -330,27 +354,32 @@ curl http://localhost:3000/users
 
 https://www.fastify.io/docs/latest/Reference/Logging/
 
+</div>
+
 ---
+
+<div class="middle-flex dense">
 
 # Step 3: Logging Readability / 2
 
 - Pino provides a child logger to each route which includes the request id, enabling the developer to group log outputs under the request that generated them
-
 - We also have an option called `prettyPrint` which will output the logs in a more human readable form. Note that this option should only be used during development.
-
 - Options like this improve understandability for developers, making it easier to develop.
 
+</div>
+
 ---
+
+<div class="middle-flex dense">
 
 # Step 3: Exercise 💻
 
 - Enable built-in request logging in the application
-
 - Enable `prettyPrint` too.
-
 - Use the request logging that Pino provides when logging from the users route.
-
 - Programmatically write logs in the application.
+
+</div>
 
 ---
 
@@ -447,11 +476,15 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#valid
 
 ---
 
+<div class="middle-flex dense">
+
 # Step 4: Exercise 💻
 
 - Create and register a `POST /login` route in `routes/login.js`
 
 - Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password`  with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
+
+</div>
 
 ---
 
