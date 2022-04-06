@@ -1,6 +1,6 @@
 ---
 theme: slidev-theme-nearform
-layout: image-right
+layout: default
 highlighter: shiki
 lineNumbers: false
 ---
@@ -18,40 +18,51 @@ lineNumbers: false
 </div>
 ---
 
+<div class="middle-flex dense">
+
 # Introduction: Why Fastify
 
-- An efficient server implies a lower cost of the infrastructure, a better responsiveness under load and happy users
+- An efficient server implies lower infrastructure costs, better responsiveness under load, and happy users
 
-- How can you efficiently handle the resources of your server, knowing that you are serving the highest number of requests possible, without sacrificing security validations and handy development?
+- How can you efficiently handle the server resources, while serving the highest number of requests possible, without sacrificing security validations and handy development?
+
+</div>
 
 ---
+
+<div class="middle-flex dense">
 
 # Introduction: Why Fastify /2
 
 - Fastify is a Node.js web framework focused on performance and developer experience
 - The Fastify team has spent considerable time building a highly supportive and encouraging community
-
 - Fastify gained adoption by solving real needs of Node.js developers
 
+</div>
+
 ---
+
+<div class="middle-flex dense">
 
 # Core features
 
-- **Highly performant**: as far as we know, Fastify is one of the fastest web frameworks in town, depending on the code complexity we can serve up to 30 thousand requests per second
+- **Highly performant**: as far as we know, Fastify is one of the fastest web frameworks in town, depending on the code complexity we can serve up to 30k requests per second.
+- **Extensible**: fully extensible via hooks, plugins and decorators.
+- **Schema based**: It isn't mandatory, but we recommend to use JSON Schema to validate your routes and serialize your outputs. Fastify compiles the schema in a highly performant function.
 
-- **Extensible**: Fastify is fully extensible via its hooks, plugins and decorators
-
-- **Schema based**: even if it is not mandatory we recommend to use JSON Schema to validate your routes and serialize your outputs, internally Fastify compiles the schema in a highly performant function
+</div>
 
 ---
+
+<div class="middle-flex dense">
 
 # Core features /2
 
 - **Logging**: logs are extremely important but are costly; we chose the best logger to almost remove this cost, Pino!
-
 - **Developer friendly**: the framework is built to be very expressive and to help developers in their daily use, without sacrificing performance and security
-
 - **TypeScript ready**: we work hard to maintain a TypeScript type declaration file so we can support the growing TypeScript community
+
+</div>
 
 ---
 
@@ -76,7 +87,7 @@ https://www.fastify.io/ecosystem/
 # Benchmarks
 
   <div style="display: flex">
-    <div style="flex: 1; margin-right: 1rem">
+    <div style="flex: 1; margin-right: 1rem" class="dense">
       <ul>
         <li>
           Leveraging our experience with Node.js performance, Fastify has been built from the ground up to be as fast as possible
