@@ -48,7 +48,7 @@
     "postgrator-cli": "^4.0.0",
     "prettier": "^2.5.1",
     "sinon": "^13.0.1",
-    "tap": "^15.1.6",
+    "tap": "^16.0.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.2"
   },
