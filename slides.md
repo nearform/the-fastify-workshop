@@ -883,7 +883,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 # Fastify extensibility
 
-<img src="/assets/extensibility.png" style="height: 55%; width: 55%; object-fit: contain;" />
+<img src="/assets/extensibility.png" style="height: 90%; width: 100%; object-fit: contain;" />
 
 ---
 
@@ -966,7 +966,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Fastify lifecycle hooks
 
-<img src="/assets/hooks.png" style="height: 55%; width: 55%; object-fit: contain;" />
+<img src="/assets/hooks.png" style="height: 90%; width: 100%; object-fit: contain;" />
 
 ---
 
