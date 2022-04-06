@@ -18,7 +18,7 @@
     "test": "TS_NODE_FILES=1 c8 tap --no-cov --ts"
   },
   "dependencies": {
-    "@nearform/sql": "^1.9.0",
+    "@nearform/sql": "^1.9.2",
     "@sinclair/typebox": "^0.23.4",
     "@slidev/cli": "^0.29.2",
     "@vueuse/shared": "^7.7.0",
