@@ -23,7 +23,7 @@
     "@slidev/cli": "^0.29.2",
     "@vueuse/shared": "^7.7.0",
     "desm": "^1.2.0",
-    "env-schema": "^3.5.2",
+    "env-schema": "^4.0.0",
     "fastify": "^3.27.2",
     "fastify-autoload": "^3.11.0",
     "fastify-jwt": "^4.1.3",
