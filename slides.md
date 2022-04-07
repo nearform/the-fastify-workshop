@@ -18,9 +18,9 @@ lineNumbers: false
 </div>
 ---
 
-<div class="middle-flex dense">
-
 # Introduction: Why Fastify
+
+<div class="dense">
 
 - An efficient server implies lower infrastructure costs, better responsiveness under load, and happy users
 
@@ -30,9 +30,9 @@ lineNumbers: false
 
 ---
 
-<div class="middle-flex dense">
-
 # Introduction: Why Fastify /2
+
+<div class="dense">
 
 - Fastify is a Node.js web framework focused on performance and developer experience
 - The Fastify team has spent considerable time building a highly supportive and encouraging community
@@ -42,9 +42,9 @@ lineNumbers: false
 
 ---
 
-<div class="middle-flex dense">
-
 # Core features
+
+<div class="dense">
 
 - **Highly performant**: as far as we know, Fastify is one of the fastest web frameworks in town, depending on the code complexity we can serve up to 30k requests per second.
 - **Extensible**: fully extensible via hooks, plugins and decorators.
@@ -54,9 +54,9 @@ lineNumbers: false
 
 ---
 
-<div class="middle-flex dense">
-
 # Core features /2
+
+<div class="dense">
 
 - **Logging**: logs are extremely important but are costly; we chose the best logger to almost remove this cost, Pino!
 - **Developer friendly**: the framework is built to be very expressive and to help developers in their daily use, without sacrificing performance and security
@@ -107,9 +107,9 @@ https://www.fastify.io/ecosystem/
 
 ---
 
-<div class="middle-flex dense">
-
 # Getting setup
+
+<div class="dense">
 
 #### Requirements
 
@@ -134,9 +134,9 @@ npm test --workspaces
 
 ---
 
-<div class="middle-flex dense">
-
 # Workshop structure
+
+<div class="dense">
 
 - This workshop is made of multiple, incremental modules
 - Each module builds on top of the previous one
@@ -165,9 +165,9 @@ npm run start
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 1: Exercise 💻
+
+<div class="dense">
 
 Write a Fastify program in a `server.js` file which:
 
@@ -229,9 +229,9 @@ curl http://localhost:3000
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 2: Plugins
+
+<div class="dense">
 
 - As with JavaScript, where everything is an object, with Fastify everything is a plugin
 
@@ -243,9 +243,9 @@ https://www.fastify.io/docs/latest/Reference/Plugins/
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 2: Exercise 💻
+
+<div class="dense">
 
 - Split `server.js` into two files:
 
@@ -341,9 +341,9 @@ curl http://localhost:3000/users
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 3: Logging
+
+<div class="dense">
 
 - Fastify ships by default with [`pino`](https://github.com/pinojs/pino)
 - Pino is a logger that aims to lower as much as possible its impact on the application performance
@@ -358,9 +358,9 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 3: Logging Readability / 2
+
+<div class="dense">
 
 - Pino provides a child logger to each route which includes the request id, enabling the developer to group log outputs under the request that generated them
 - We also have an option called `prettyPrint` which will output the logs in a more human readable form. Note that this option should only be used during development.
@@ -370,9 +370,9 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 3: Exercise 💻
+
+<div class="dense">
 
 - Enable built-in request logging in the application
 - Enable `prettyPrint` too.
@@ -476,9 +476,9 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#valid
 
 ---
 
-<div class="middle-flex dense">
-
 # Step 4: Exercise 💻
+
+<div class="dense">
 
 - Create and register a `POST /login` route in `routes/login.js`
 
@@ -549,16 +549,21 @@ http://localhost:3000/login
 
 # Step 5: Testing
 
+<div class="dense">
+
 - Fastify is very flexible when it comes to testing and is compatible with most testing frameworks
-
 - Built-in support for fake http injection thanks to [light-my-request](https://github.com/fastify/light-my-request)
-
 - Fastify can also be tested after starting the server with `fastify.listen()` or after initializing routes and plugins with `fastify.ready()`
 
 https://www.fastify.io/docs/latest/Guides/Testing/
+
+</div>
+
 ---
 
 # Step 5: Exercise 💻
+
+<div class="dense">
 
 - Write a unit test for the `index.js` module
 - Use `node-tap`
@@ -568,6 +573,8 @@ https://www.fastify.io/docs/latest/Guides/Testing/
   - Returns the expected array of users
 
 💡 you don't need to start the server
+
+</div>
 
 ---
 
@@ -628,17 +635,20 @@ All files |        0 |        0 |        0 |        0 |                   |
 
 # Step 6: Serialization
 
-- Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
+<div class="dense">
 
+- Fastify uses a schema-based approach, and even if it is not mandatory we recommend using JSON Schema to validate your routes and serialize your outputs. Internally, Fastify compiles the schema into a highly performant function
 - We encourage you to use an output schema, as it can drastically increase throughput and help prevent accidental disclosure of sensitive information
 
 https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
+
+</div>
+
 ---
 
 # Step 6: Exercise 💻
 
 - Validate the response in the users route
-
 - Ensure that the response is serialized properly and contains the required property `username` in each array item
 
 ---
@@ -826,9 +836,13 @@ http://localhost:3000/login
 
 # Step 8: Config
 
-- It is preferable to use environment variables to configure your app. For example, the JWT secret we hard-coded in previous step
+<div class="dense">
+
+- It is preferable to use environment variables to configure your app. Example: the JWT secret from the previous step
 - This makes it easier to deploy the same code into different environments
 - Typically config values are not committed to a repository and they are managed with environment variables. An example would be the logging level: in production it's usually better to have only important info, while in a dev env it may be useful to show more
+
+</div>
 
 > 💡 As we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
 
@@ -836,12 +850,16 @@ http://localhost:3000/login
 
 # Step 8: Exercise 💻
 
+<div class="dense">
+
 - Create a `config.js` file which:
   - Uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
   - Validates its value with `fluent-json-schema`
 - Change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
 - Change `index.js` so that it:
   - Accepts the configuration provided by `server.js` in the exported `buildServer` function
+
+</div>
 
 ---
 
@@ -917,21 +935,27 @@ export default buildServer
 
 # Step 9: Decorators
 
+<div class="dense">
+
 - In the previous step we generated a JWT token that can be used to access protected routes. In this step we're going to create a protected route and allow access only to authenticated users via a Fastify decorator
 
 > 💡 This step and the next one work together and we'll get to try it all out after the next step
 
 https://www.fastify.io/docs/latest/Reference/Decorators/
 
+</div>
+
 ---
 
 # Fastify extensibility
 
-<img src="/assets/extensibility.png" style="height: 55%; width: 55%; object-fit: contain;" />
+<img src="/assets/extensibility.png" style="height: 80%; width: 80%; object-fit: contain;" />
 
 ---
 
 # Step 9: Exercise 💻
+
+<div class="dense">
 
 - Create a `plugins/authentication.js` plugin which:
 
@@ -942,6 +966,8 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
   - Exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid
 
 - Register the new plugin in `index.js`
+
+</div>
 
 ---
 
@@ -1010,21 +1036,22 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 # Fastify lifecycle hooks
 
-<img src="/assets/hooks.png" style="height: 55%; width: 55%; object-fit: contain;" />
+<img src="/assets/hooks.png" style="height: 80%; width: 80%; object-fit: contain;" />
 
 ---
 
 # Step 10: Exercise 💻
 
+<div class="dense">
+
 - Create a `GET /` route in `routes/user/index.js`
-
 - Require authentication using the `onRequest` Fastify hook
-
 - Use the `fastify.authenticate` decorator
-
 - Return the information about the currently authenticated user in the response
 
 > 💡 you can get the current user from `request.user`
+
+</div>
 
 ---
 
@@ -1084,28 +1111,33 @@ curl http://localhost:3000/user \
 
 # Step 11: Fastify autoload
 
+<div class="dense">
+
 - [`fastify-autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
-
 - Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
-
 - In this step we have also introduced integration tests. You can see these running if you run `npm run test`
+
+</div>
 
 ---
 
 # Step 11: Exercise 💻
 
+<div class="dense">
+
 - Remove all the manual route registrations.
-
 - Register the autoload plugin two times:
-
   - one for the `plugins` folder
   - one for the `routes` folder
-
 - Remove the `user` path in `user/index.js` as autoload will derive this from the folder structure
 
 > 🏆 does the route need to be registered explicitly?
 
+<br/>
+
 > 🏆 what is the url the route will respond to?
+
+</div>
 
 ---
 
@@ -1155,10 +1187,11 @@ export default async function user(fastify) {
 
 ---
 
-# 🏆 Step 12: Database
+# Step 12: Database 🏆
+
+<div class="dense">
 
 - Use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
-
 - Use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities
 
 Make sure you setup the db first with:
@@ -1168,21 +1201,26 @@ npm run db:up
 npm run db:migrate
 ```
 
+<br/>
+
 > 💡 check the `migrations` folder to see the database schema.
+
+</div>
 
 ---
 
 # Step 12: Exercise 💻
 
+<div class="dense">
+
 - Change `config.js` to support a `PG_CONNECTION_STRING` variable
-
 - Enrich `.env` with:
-
   ```txt
   PG_CONNECTION_STRING=postgres://postgres:postgres@localhost:5433/postgres
   ```
-
 - Register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
+
+</div>
 
 ---
 
@@ -1209,11 +1247,17 @@ export default buildServer
 
 Change `routes/login.js`:
 
+<div class="dense">
+
 - After carrying out the existing dummy auth check, look up the user in the `users` database table via the `username` property provided in the request body
 
 > 💡 write the query using `@nearform/sql`
 
+<br/>
+
 - If the user does not exist in the database, return a `401 Unauthorized` error
+
+</div>
 
 ---
 
@@ -1247,11 +1291,13 @@ export default async function login(fastify) {
 
 # Step 12: Exercise 💻
 
+<div class="dense">
+
 - Move the existing `routes/users.js` route to `routes/users/index.js` and make it an auto-prefixed route responding to `GET /users`
-
 - Change the response schema so that it requires an array of objects with properties `username` of type `string` and `id` of type `integer`
-
 - Load all users from the database instead of returning an hardcoded array of users
+
+</div>
 
 ---
 
@@ -1286,13 +1332,14 @@ export default async function users(fastify) {
 
 # Step 13: Exercise 💻
 
+<div class="dense">
+
 - Let's create an Fastify application using **TypeScript**.
-
 - We will transpose the application that you did in the [Step 09](#step-9-decorators) to TypeScript
-
 - Use `declaration merging` to add the custom `authenticate` decorator property to `FastifyInstance`
-
 - Use [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox) to transform JSON Schema into types
+
+</div>
 
 ---
 
@@ -1318,9 +1365,7 @@ type ResponseSchema = Static<typeof ResponseSchema>
 
 const schema = {
   body: BodySchema,
-  response: {
-    200: ResponseSchema,
-  },
+  response: { 200: ResponseSchema },
 }
 ```
 
