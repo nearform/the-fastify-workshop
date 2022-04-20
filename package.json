@@ -46,7 +46,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.13.0",
     "eslint-plugin-sql": "^2.1.0",
-    "postgrator-cli": "^5.2.0",
+    "postgrator-cli": "^6.0.0",
     "prettier": "^2.5.1",
     "sinon": "^13.0.2",
     "tap": "^16.0.1",
