@@ -21,7 +21,7 @@
     "@nearform/sql": "^1.9.2",
     "@sinclair/typebox": "^0.23.4",
     "@slidev/cli": "^0.30.3",
-    "@vueuse/shared": "^8.3.0",
+    "@vueuse/shared": "^8.3.1",
     "desm": "^1.2.0",
     "env-schema": "^4.0.0",
     "fastify": "^3.28.0",
