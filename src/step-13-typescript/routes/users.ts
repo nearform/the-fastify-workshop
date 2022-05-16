@@ -21,8 +21,10 @@ export default async function users(fastify: FastifyInstance) {
     { schema },
     async (req: FastifyRequest): Promise<ResponseSchema> => {
       req.log.info('Users route called')
-
-      return [{ username: 'alice' }, { username: 'bob' }]
+      const { rows: users } = await fastify.pg.query(
+        'SELECT id, username FROM users'
+      )
+      return users
     }
   )
 }
