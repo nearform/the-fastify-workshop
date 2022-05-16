@@ -1,11 +1,12 @@
 import { join } from 'desm'
 import envSchema from 'env-schema'
-import S from 'fluent-json-schema'
+import { Type } from '@sinclair/typebox'
 
-const schema = S.object()
-  .prop('JWT_SECRET', S.string().required())
-  .prop('LOG_LEVEL', S.string().default('info'))
-  .prop('PRETTY_PRINT', S.string().default(true))
+const schema = Type.Strict(Type.Object({
+  JWT_SECRET: Type.String(),
+  LOG_LEVEL: Type.String(),
+  PRETTY_PRINT: Type.String(),
+}))
 
 export default envSchema({
   schema,

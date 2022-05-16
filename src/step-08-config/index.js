@@ -6,7 +6,13 @@ function buildServer(config) {
     logger: {
       level: config.LOG_LEVEL,
       prettyPrint: config.PRETTY_PRINT,
-    }
+    },
+    // ajv: {
+    //   customOptions: {
+    //     strict: 'log',
+    //     keywords: ['kind', 'modifier'],
+    //   },
+    // },
   }
 
   const fastify = Fastify(opts)

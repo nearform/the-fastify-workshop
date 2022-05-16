@@ -4,9 +4,11 @@ async function authenticate(fastify, opts) {
   })
 
   fastify.decorate('authenticate', async (req, reply) => {
+    console.log(77777, req)
     try {
       await req.jwtVerify()
     } catch (err) {
+      console.log(11111, err)
       reply.send(err)
     }
   })

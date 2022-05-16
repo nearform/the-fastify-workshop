@@ -6,5 +6,8 @@
   "scripts": {
     "start": "ts-node-dev --project ./tsconfig.json server.ts",
     "test": "TS_NODE_FILES=1 tap --ts"
+  },
+  "dependencies": {
+    "@fastify/autoload": "^4.0.1"
   }
 }

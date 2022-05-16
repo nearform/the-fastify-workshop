@@ -6,5 +6,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node server"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.23.5"
   }
 }
