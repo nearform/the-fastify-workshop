@@ -20,3 +20,10 @@ async function authenticate(
 }
 
 export default fp(authenticate)
+
+type AuthenticateType = (req: FastifyRequest, reply: FastifyReply) => Promise<void>
+declare module 'fastify' {
+  interface FastifyInstance {
+    authenticate: AuthenticateType;
+  }
+}

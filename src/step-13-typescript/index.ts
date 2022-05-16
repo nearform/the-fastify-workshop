@@ -1,7 +1,6 @@
+import autoload from '@fastify/autoload'
 import Fastify, { FastifyInstance } from 'fastify'
-import loginRoute from './routes/login'
-import usersRoute from './routes/users'
-import authenticatePlugin from './plugins/authenticate'
+import path from 'path'
 import type { EnvConfig } from './config'
 
 function buildServer(config: EnvConfig): FastifyInstance {
@@ -14,9 +13,19 @@ function buildServer(config: EnvConfig): FastifyInstance {
 
   const fastify = Fastify(opts)
 
-  fastify.register(authenticatePlugin, config)
-  fastify.register(loginRoute)
-  fastify.register(usersRoute)
+  fastify.register(import('@fastify/postgres'), {
+    connectionString: config.PG_CONNECTION_STRING
+  })
+
+  fastify.register(autoload, {
+    dir: path.join(__dirname, 'plugins'),
+    options: config,
+  })
+
+  fastify.register(autoload, {
+    dir: path.join(__dirname, 'routes'),
+    options: config,
+  })
 
   fastify.log.info('Fastify is starting up!')
 
