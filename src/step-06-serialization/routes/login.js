@@ -1,13 +1,30 @@
-import S from 'fluent-json-schema'
+import { Type } from '@sinclair/typebox'
 
-const schema = {
-  body: S.object()
-    .prop('username', S.string().required())
-    .prop('password', S.string().required()),
+const commonResponses = {
+  404: Type.String({
+    description: 'Not Found',
+    example: 'Not Found',
+  }),
+  406: Type.String({
+    description: 'Not Acceptable',
+    example: 'Not Acceptable',
+  }),
+  500: Type.String({
+    description: 'Internal server error',
+    example: 'Internal server error',
+  }),
+}
+const loginSchema = {
+  body: Type.Object({
+    username: Type.String(),
+    password:Type.String(),
+  }),
   response: {
-    200: S.object()
-      .prop('username', S.string().required())
-      .prop('password', S.string().required()),
+    ...commonResponses,
+    200: Type.Object({
+      username: Type.String(),
+      password:Type.String(),
+    })
   },
 }
 
@@ -17,7 +34,7 @@ const schema = {
 export default async function login(fastify) {
   fastify.post(
     '/login',
-    { schema },
+    { schema: loginSchema },
     /**
      * @type {import('fastify').RouteHandler<{ Body: { username: string; password: string } }>}
      * */

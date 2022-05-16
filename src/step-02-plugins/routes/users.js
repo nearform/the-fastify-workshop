@@ -1,9 +1,17 @@
-/**
- * @type {import('fastify').FastifyPluginAsync}
- */
-export default async function users(fastify) {
-  fastify.get('/users', async () => [
-    { username: 'alice' },
-    { username: 'bob' },
-  ])
+const users = async (fastify) => {
+  // fastify.get('/users', (req) => {
+  //   req.log.info('Users route called')
+  //   return [{ username: 'alice' }, { username: 'alice' }]
+  // })
+
+  fastify.route({
+    method: 'GET',
+    url: '/users',
+    handler: (req) => {
+      req.log.info('Users route called')
+      return [{ username: 'alice' }, { username: 'alice' }]
+    }
+  })
 }
+
+export default users
