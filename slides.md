@@ -16,6 +16,7 @@ lineNumbers: false
 © Copyright 2019-2022 NearForm Ltd. All Rights Reserved.
 
 </div>
+
 ---
 
 # Introduction: Why Fastify
@@ -470,7 +471,7 @@ curl http://localhost:3000/users
 
 - Route validation internally relies upon [Ajv](https://www.npmjs.com/package/ajv), which is a high-performance JSON Schema validator
 
- Created 
+Created
 
 https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#validation
 
@@ -482,7 +483,7 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#valid
 
 - Create and register a `POST /login` route in `routes/login.js`
 
-- Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password`  with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
+- Validate the body of the request to ensure it is a JSON object containing two required string properties: `username` and `password` with [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema)
 
 </div>
 
@@ -507,6 +508,7 @@ export default async function login(fastify) {
   })
 }
 ```
+
 ---
 
 # Step 4: Trying it out
@@ -545,6 +547,7 @@ http://localhost:3000/login
   "message": "body should have required property 'username'"
 }
 ```
+
 ---
 
 # Step 5: Testing
@@ -701,11 +704,12 @@ curl http://localhost:3000/users
   "message": "\"username\" is required!"
 }
 ```
+
 ---
 
 # Step 7: Authentication
 
-- [`fastify-jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
+- [`@fastify/jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
 ---
 
@@ -713,12 +717,12 @@ curl http://localhost:3000/users
 
 - Change `index.js` so that it:
 
-  - Registers the `fastify-jwt` plugin using a hardcoded string as the `secret` property of the plugin's configuration options
+  - Registers the `@fastify/jwt` plugin using a hardcoded string as the `secret` property of the plugin's configuration options
 
 ---
 
 # Step 7: Solution
-  
+
 ```js
 // index.js
 import Fastify from 'fastify'
@@ -729,7 +733,7 @@ function buildServer() {
     prettyPrint: true,
   })
 
-  fastify.register(import('fastify-jwt'), {
+  fastify.register(import('@fastify/jwt'), {
     secret: 'supersecret',
   })
   fastify.register(import('./routes/login.js'))
@@ -761,7 +765,7 @@ export default buildServer
 
 - Still on `routes/login.js`:
 
-  - If the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `fastify-jwt` plugin
+  - If the auth check succeeds, respond with a JSON object containing a `token` property, whose value is the result of signing the object `{ username }` using the `fastify.jwt.sign` decorator added by the `@fastify/jwt` plugin
 
   - Change the response schema to ensure the `200` response is correctly formatted
 
@@ -959,7 +963,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 - Create a `plugins/authentication.js` plugin which:
 
-  - Registers `fastify-jwt` with a secret provided via plugin options
+  - Registers `@fastify/jwt` with a secret provided via plugin options
 
   > 💡 move the plugin registration from `index.js` to the new plugin module
 
@@ -976,7 +980,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 ```js
 // plugins/authenticate.js
 async function authenticate(fastify, opts) {
-  fastify.register(import('fastify-jwt'), {
+  fastify.register(import('@fastify/jwt'), {
     secret: opts.JWT_SECRET,
   })
 
@@ -1078,6 +1082,7 @@ export default async function user(fastify) {
   )
 }
 ```
+
 ---
 
 # Steps 9 & 10: Trying it out

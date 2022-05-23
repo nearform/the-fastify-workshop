@@ -7,7 +7,7 @@ function buildServer() {
     },
   })
 
-  fastify.register(import('fastify-jwt'), {
+  fastify.register(import('@fastify/jwt'), {
     secret: 'supersecret',
   })
   fastify.register(import('./routes/login.js'))
