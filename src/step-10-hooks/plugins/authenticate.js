@@ -1,5 +1,5 @@
 async function authenticate(fastify, opts) {
-  fastify.register(import('fastify-jwt'), {
+  fastify.register(import('@fastify/jwt'), {
     secret: opts.JWT_SECRET,
   })
 

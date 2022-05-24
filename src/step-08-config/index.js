@@ -6,12 +6,12 @@ function buildServer(config) {
     logger: {
       level: config.LOG_LEVEL,
       prettyPrint: config.PRETTY_PRINT,
-    }
+    },
   }
 
   const fastify = Fastify(opts)
 
-  fastify.register(import('fastify-jwt'), {
+  fastify.register(import('@fastify/jwt'), {
     secret: opts.JWT_SECRET,
   })
   fastify.register(import('./routes/login.js'))
