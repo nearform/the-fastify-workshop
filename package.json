@@ -24,7 +24,7 @@
     "@slidev/cli": "^0.32.2",
     "@vueuse/shared": "^8.5.0",
     "desm": "^1.2.0",
-    "env-schema": "^4.0.0",
+    "env-schema": "^5.0.0",
     "fastify": "^3.29.0",
     "fastify-autoload": "^3.13.0",
     "fastify-postgres": "^3.7.0",
