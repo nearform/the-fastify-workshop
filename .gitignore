@@ -3,3 +3,4 @@ node_modules/
 index.html
 coverage/
 dist/
+.nyc_output/

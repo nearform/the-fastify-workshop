@@ -1,6 +1,6 @@
 import { join } from 'desm'
 import Fastify from 'fastify'
-import autoload from 'fastify-autoload'
+import autoload from '@fastify/autoload'
 
 function buildServer(config) {
   const opts = {
@@ -17,7 +17,7 @@ function buildServer(config) {
 
   const fastify = Fastify(opts)
 
-  fastify.register(import('fastify-postgres'), {
+  fastify.register(import('@fastify/postgres'), {
     connectionString: opts.PG_CONNECTION_STRING,
   })
 

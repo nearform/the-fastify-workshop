@@ -1,6 +1,6 @@
 import { join } from 'desm'
 import Fastify from 'fastify'
-import autoload from 'fastify-autoload'
+import autoload from '@fastify/autoload'
 
 function buildServer(config) {
   const opts = {
