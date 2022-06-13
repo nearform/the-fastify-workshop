@@ -364,7 +364,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 <div class="dense">
 
 - Pino provides a child logger to each route which includes the request id, enabling the developer to group log outputs under the request that generated them
-- We also have an option called `prettyPrint` which will output the logs in a more human readable form. Note that this option should only be used during development.
+- By using transports we can also send logs for further processing, for example the `pino-pretty` transport will output the logs in a more human readable form. Note that this option should only be used during development.
 - Options like this improve understandability for developers, making it easier to develop.
 
 </div>
@@ -376,7 +376,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 <div class="dense">
 
 - Enable built-in request logging in the application
-- Enable `prettyPrint` too.
+- Use the `pino-pretty` transport for pretty printing of logs
 - Use the request logging that Pino provides when logging from the users route.
 - Programmatically write logs in the application.
 
@@ -393,7 +393,9 @@ import Fastify from 'fastify'
 function buildServer() {
   const fastify = Fastify({
     logger: {
-      prettyPrint: true,
+      transport: {
+        target: 'pino-pretty',
+      },
     },
   })
 
@@ -729,8 +731,11 @@ import Fastify from 'fastify'
 
 function buildServer() {
   const fastify = Fastify({
-    logger: true,
-    prettyPrint: true,
+    logger: {
+      transport: {
+        target: 'pino-pretty',
+      },
+    },
   })
 
   fastify.register(import('@fastify/jwt'), {
@@ -1118,7 +1123,7 @@ curl http://localhost:3000/user \
 
 <div class="dense">
 
-- [`fastify-autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
+- [`@fastify/autoload`](https://github.com/fastify/@fastify/autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
 - Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
 - In this step we have also introduced integration tests. You can see these running if you run `npm run test`
 
@@ -1152,7 +1157,7 @@ curl http://localhost:3000/user \
 // index.js
 import { join } from 'desm'
 import Fastify from 'fastify'
-import autoload from 'fastify-autoload'
+import autoload from '@fastify/autoload'
 
 function buildServer(config) {
   ...
@@ -1196,7 +1201,7 @@ export default async function user(fastify) {
 
 <div class="dense">
 
-- Use [`fastify-postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
+- Use [`@fastify/postgres`](https://github.com/fastify/@fastify/postgres), which allows to share the same PostgreSQL connection pool in every part of your server
 - Use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities
 
 Make sure you setup the db first with:
@@ -1223,7 +1228,7 @@ npm run db:migrate
   ```txt
   PG_CONNECTION_STRING=postgres://postgres:postgres@localhost:5433/postgres
   ```
-- Register `fastify-postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
+- Register `@fastify/postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
 
 </div>
 
@@ -1235,7 +1240,7 @@ npm run db:migrate
 // index.js
 function buildServer(config) {
   //...
-  fastify.register(import('fastify-postgres'), {
+  fastify.register(import('@fastify/postgres'), {
     connectionString: opts.PG_CONNECTION_STRING,
   })
   // ...
@@ -1356,16 +1361,20 @@ import { Type, Static } from '@sinclair/typebox'
 import { FastifyInstance, FastifyRequest } from 'fastify'
 import errors from 'http-errors'
 
-const BodySchema = Type.Object({
-  username: Type.String(),
-  password: Type.String(),
-})
+const BodySchema = Type.Strict(
+  Type.Object({
+    username: Type.String(),
+    password: Type.String(),
+  })
+)
 // Generate type from JSON Schema
 type BodySchema = Static<typeof BodySchema>
 
-const ResponseSchema = Type.Object({
-  token: Type.String(),
-})
+const ResponseSchema = Type.Strict(
+  Type.Object({
+    token: Type.String(),
+  })
+)
 type ResponseSchema = Static<typeof ResponseSchema>
 
 const schema = {

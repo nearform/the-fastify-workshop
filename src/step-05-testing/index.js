@@ -3,7 +3,9 @@ import Fastify from 'fastify'
 function buildServer() {
   const fastify = Fastify({
     logger: {
-      prettyPrint: true,
+      transport: {
+        target: 'pino-pretty',
+      },
     },
   })
 
