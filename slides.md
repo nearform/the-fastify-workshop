@@ -364,7 +364,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 <div class="dense">
 
 - Pino provides a child logger to each route which includes the request id, enabling the developer to group log outputs under the request that generated them
-- We also have an option called `prettyPrint` which will output the logs in a more human readable form. Note that this option should only be used during development.
+- By using transports we can also send logs for further processing, for example the `pino-pretty` transport will output the logs in a more human readable form. Note that this option should only be used during development.
 - Options like this improve understandability for developers, making it easier to develop.
 
 </div>
@@ -376,7 +376,7 @@ https://www.fastify.io/docs/latest/Reference/Logging/
 <div class="dense">
 
 - Enable built-in request logging in the application
-- Enable `prettyPrint` too.
+- Use the `pino-pretty` transport for pretty printing of logs
 - Use the request logging that Pino provides when logging from the users route.
 - Programmatically write logs in the application.
 
@@ -393,7 +393,9 @@ import Fastify from 'fastify'
 function buildServer() {
   const fastify = Fastify({
     logger: {
-      prettyPrint: true,
+      transport: {
+        target: 'pino-pretty',
+      },
     },
   })
 
@@ -729,8 +731,11 @@ import Fastify from 'fastify'
 
 function buildServer() {
   const fastify = Fastify({
-    logger: true,
-    prettyPrint: true,
+    logger: {
+      transport: {
+        target: 'pino-pretty',
+      },
+    },
   })
 
   fastify.register(import('@fastify/jwt'), {

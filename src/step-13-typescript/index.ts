@@ -8,7 +8,11 @@ function buildServer(config: EnvConfig): FastifyInstance {
   const opts = {
     logger: {
       level: config.LOG_LEVEL,
-      prettyPrint: config.PRETTY_PRINT,
+      ...(config.PRETTY_PRINT && {
+        transport: {
+          target: 'pino-pretty',
+        },
+      }),
     },
   }
 
