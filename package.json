@@ -44,7 +44,7 @@
     "@typescript-eslint/parser": "^5.30.4",
     "c8": "^7.11.3",
     "cross-env": "^7.0.3",
-    "eslint": "^8.18.0",
+    "eslint": "^8.19.0",
     "eslint-plugin-sql": "^2.1.0",
     "postgrator-cli": "^6.0.0",
     "prettier": "^2.7.1",
