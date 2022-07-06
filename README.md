@@ -2,6 +2,10 @@
 
 ![ci](https://github.com/nearform/the-fastify-workshop/workflows/ci/badge.svg)
 
+## Slideshow Presentation
+
+[The Fastify Workshop Slides](https://nearform.github.io/the-fastify-workshop)
+
 ## Requirements
 
 - Node LTS
