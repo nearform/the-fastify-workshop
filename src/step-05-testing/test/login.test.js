@@ -1,5 +1,4 @@
 import t from 'tap'
-import fastify from 'fastify'
 
 const { test } = t
 
