@@ -38,7 +38,7 @@
     "@tsconfig/node16": "^1.0.3",
     "@types/http-errors": "^1.8.2",
     "@types/node": "^18.0.6",
-    "@types/sinon": "^10.0.12",
+    "@types/sinon": "^10.0.13",
     "@types/tap": "^15.0.7",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
