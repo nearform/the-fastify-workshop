@@ -1,11 +1,11 @@
 name: ci
-
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
-    branches: [master]
-
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,10 +16,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
         ports:
           - 5433:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -30,7 +27,6 @@ jobs:
           npm ci
           npm run db:migrate
           npm test
-
   automerge:
     needs: build
     runs-on: ubuntu-latest
@@ -39,5 +35,3 @@ jobs:
       contents: write
     steps:
       - uses: fastify/github-action-merge-dependabot@v3
-        with:
-          github-token: ${{ secrets.github_token }}
