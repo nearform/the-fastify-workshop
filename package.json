@@ -15,7 +15,7 @@
     "db:migrate": "postgrator",
     "db:down": "docker-compose down",
     "lint": "eslint --ext .ts,.js ./src",
-    "test": "cross-env TS_NODE_FILES=1 c8 tap --no-cov --ts"
+    "test": "cross-env TS_NODE_FILES=1 c8 tap --no-cov -j1 --ts"
   },
   "dependencies": {
     "@fastify/autoload": "^5.4.0",
@@ -37,11 +37,11 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/http-errors": "^1.8.2",
-    "@types/node": "^16.7.16",
+    "@types/node": "^18.7.18",
     "@types/sinon": "^10.0.13",
     "@types/tap": "^15.0.7",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
     "c8": "^7.12.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.23.1",
