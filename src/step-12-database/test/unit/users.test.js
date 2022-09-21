@@ -46,6 +46,6 @@ test('GET /', async t => {
     const res = await fastify.inject('/')
 
     t.equal(res.statusCode, 200)
-    t.same(await res.json(), [{ id: 1, username: 'alice' }])
+    t.same(res.json(), [{ id: 1, username: 'alice' }])
   })
 })
