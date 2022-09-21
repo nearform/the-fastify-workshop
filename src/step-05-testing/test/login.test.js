@@ -33,7 +33,7 @@ test('POST /login', async t => {
     })
 
     t.equal(res.statusCode, 200)
-    t.same(await res.json(), {
+    t.same(res.json(), {
       username: 'alice',
       password: 'alice',
     })

@@ -38,8 +38,6 @@ test('server', async t => {
 
     t.equal(userRes.statusCode, 200)
 
-    const user = await userRes.json()
-
-    t.same(user, { username: 'alice' })
+    t.same(userRes.json(), { username: 'alice' })
   })
 })

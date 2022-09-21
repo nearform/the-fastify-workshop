@@ -107,7 +107,7 @@ test('POST /login', async t => {
     })
 
     t.equal(res.statusCode, 200)
-    t.equal((await res.json()).token, 'jwt token')
+    t.equal(res.json().token, 'jwt token')
   })
 
   t.test('stores the signed JWT', async () => {
