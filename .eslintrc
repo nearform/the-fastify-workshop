@@ -12,6 +12,6 @@
   },
   "rules": {
     "sql/format": "error",
-    "sql/no-unsafe-query": "error"
+    "sql/no-unsafe-query": ["error", { "allowLiteral": false }]
   }
 }
