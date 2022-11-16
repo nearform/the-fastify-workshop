@@ -569,7 +569,7 @@ https://www.fastify.io/docs/latest/Reference/Routes/#constraints
 - Add a new `GET /version` route that only accepts requests matching version `1.0.0`
 
 > 💡 The `Accept-Version` header should accept 1.x, 1.0.x and 1.0.0
-</br>
+
 > 🏆 Add `Vary` header to the response to avoid cache poisoning
 
 </div>
