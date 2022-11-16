@@ -26,6 +26,7 @@ jobs:
       - run: |
           npm ci
           npm run db:migrate
+          npm run lint
           npm test
   automerge:
     needs: build

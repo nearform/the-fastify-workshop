@@ -552,7 +552,89 @@ http://localhost:3000/login
 
 ---
 
-# Step 5: Testing
+# Step 5 Constraints
+
+- Route validation can also be constrained to match properties of the request. By default fastify supports `version` (via `Accept-Version` header) and `host` (via `Host` header)
+
+> 🏆 Custom constraints can be added via [`find-my-way`](https://github.com/delvedor/find-my-way)
+
+https://www.fastify.io/docs/latest/Reference/Routes/#constraints
+
+---
+
+# Step 5: Exercise 💻
+
+<div class="dense">
+
+- Add a new `GET /version` route that only accepts requests matching version `1.0.0`
+
+> 💡 The `Accept-Version` header should accept 1.x, 1.0.x and 1.0.0
+
+> 🏆 Add `Vary` header to the response to avoid cache poisoning
+
+</div>
+
+---
+
+# Step 5: Solution
+
+```js
+// routes/version.js
+export default async function version(fastify) {
+  fastify.route({ 
+    method: 'GET',
+    url: '/verion',
+    constraints: { version: '1.0.0' },
+    handler: async (req) => {
+      return { version: '1.0.0' }
+    },
+  })
+}
+```
+
+---
+
+# Step 5: Trying it out
+
+#### With right version
+
+```bash
+curl -X GET -H "Content-Type: application/json" \
+-H "Accept-Version: 1.0.0" \
+http://localhost:3000/version
+```
+
+```json
+{
+  "version": "1.0.0"
+}
+```
+
+---
+
+# Step 5: Trying it out /2
+
+#### With wrong version
+
+```bash
+curl -X GET -H "Content-Type: application/json" \
+-H "Accept-Version: 2.0.0" \
+http://localhost:3000/version
+```
+
+```json
+{
+  "statusCode": 404,
+  "error": "Not Found",
+  "message": "Route GET:/version not found"
+}
+```
+
+> For the rest of the workshop the `GET /version` route will be removed
+
+---
+
+# Step 6: Testing
 
 <div class="dense">
 
@@ -566,7 +648,7 @@ https://www.fastify.io/docs/latest/Guides/Testing/
 
 ---
 
-# Step 5: Exercise 💻
+# Step 6: Exercise 💻
 
 <div class="dense">
 
@@ -577,13 +659,13 @@ https://www.fastify.io/docs/latest/Guides/Testing/
   - Responds with status code 200
   - Returns the expected array of users
 
-💡 you don't need to start the server
+> 💡 you don't need to start the server
 
 </div>
 
 ---
 
-# Step 5: Solution
+# Step 6: Solution
 
 ```js
 // test/index.test.js
@@ -611,7 +693,7 @@ test('GET /users', async t => {
 
 ---
 
-# Step 5: Trying it out
+# Step 6: Trying it out
 
 #### Run the tests
 
@@ -638,7 +720,7 @@ All files |        0 |        0 |        0 |        0 |                   |
 
 ---
 
-# Step 6: Serialization
+# Step 7: Serialization
 
 <div class="dense">
 
@@ -651,14 +733,14 @@ https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/
 
 ---
 
-# Step 6: Exercise 💻
+# Step 7: Exercise 💻
 
 - Validate the response in the users route
 - Ensure that the response is serialized properly and contains the required property `username` in each array item
 
 ---
 
-# Step 6: Solution
+# Step 7: Solution
 
 ```js
 // routes/users.js
@@ -683,7 +765,7 @@ export default async function users(fastify) {
 
 ---
 
-# Step 6: Trying it out
+# Step 7: Trying it out
 
 #### Make the response invalid
 
@@ -709,13 +791,13 @@ curl http://localhost:3000/users
 
 ---
 
-# Step 7: Authentication
+# Step 8: Authentication
 
 - [`@fastify/jwt`](https://github.com/fastify/fastify-jwt) contains JWT utils for Fastify, internally uses [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
 ---
 
-# Step 7: Exercise 💻
+# Step 8: Exercise 💻
 
 - Change `index.js` so that it:
 
@@ -723,7 +805,7 @@ curl http://localhost:3000/users
 
 ---
 
-# Step 7: Solution
+# Step 8: Solution
 
 ```js
 // index.js
@@ -754,7 +836,7 @@ export default buildServer
 
 ---
 
-# Step 7: Exercise /2 💻
+# Step 8: Exercise /2 💻
 
 - Change `routes/login.js` to add an auth check:
 
@@ -766,7 +848,7 @@ export default buildServer
 
 ---
 
-# Step 7: Exercise /2 💻
+# Step 8: Exercise /2 💻
 
 - Still on `routes/login.js`:
 
@@ -776,7 +858,7 @@ export default buildServer
 
 ---
 
-# Step 7: Solution
+# Step 8: Solution
 
 ```js
 // routes/login.js
@@ -805,7 +887,7 @@ export default async function login(fastify) {
 
 ---
 
-# Step 7: Trying it out
+# Step 8: Trying it out
 
 #### With right credentials
 
@@ -823,7 +905,7 @@ http://localhost:3000/login
 
 ---
 
-# Step 7: Trying it out /2
+# Step 8: Trying it out /2
 
 #### With wrong credentials
 
@@ -843,7 +925,7 @@ http://localhost:3000/login
 
 ---
 
-# Step 8: Config
+# Step 9: Config
 
 <div class="dense">
 
@@ -857,7 +939,7 @@ http://localhost:3000/login
 
 ---
 
-# Step 8: Exercise 💻
+# Step 9: Exercise 💻
 
 <div class="dense">
 
@@ -872,7 +954,7 @@ http://localhost:3000/login
 
 ---
 
-# Step 8: Solution
+# Step 9: Solution
 
 ```js
 // config.js
@@ -893,7 +975,7 @@ export default envSchema({
 
 ---
 
-# Step 8: Solution /2
+# Step 9: Solution /2
 
 ```js
 // server.js
@@ -916,7 +998,7 @@ start()
 
 ---
 
-# Step 8: Solution /3
+# Step 9: Solution /3
 
 ```js
 // index.js
@@ -942,7 +1024,7 @@ export default buildServer
 
 ---
 
-# Step 9: Decorators
+# Step 10: Decorators
 
 <div class="dense">
 
@@ -962,7 +1044,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 ---
 
-# Step 9: Exercise 💻
+# Step 10: Exercise 💻
 
 <div class="dense">
 
@@ -980,7 +1062,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 ---
 
-# Step 9: Solution
+# Step 10: Solution
 
 ```js
 // plugins/authenticate.js
@@ -1007,7 +1089,7 @@ export default authenticate
 
 ---
 
-# Step 9: Solution/2
+# Step 10: Solution/2
 
 ```js
 // index.js
@@ -1035,7 +1117,7 @@ export default buildServer
 
 ---
 
-# Step 10: Hooks
+# Step 11: Hooks
 
 - In this step we're going to build on the previous step by using a fastify hook with our decorator for the protected route
 
@@ -1049,7 +1131,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 ---
 
-# Step 10: Exercise 💻
+# Step 11: Exercise 💻
 
 <div class="dense">
 
@@ -1064,7 +1146,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 ---
 
-# Step 10: Solution
+# Step 11: Solution
 
 ```js
 // routes/user/index.js
@@ -1092,7 +1174,7 @@ export default async function user(fastify) {
 
 # Steps 9 & 10: Trying it out
 
-💡 you need a valid JWT by logging in via the `POST /login` route
+> 💡 you need a valid JWT by logging in via the `POST /login` route
 
 #### Hit the user route with a token in the headers
 
@@ -1119,7 +1201,7 @@ curl http://localhost:3000/user \
 
 ---
 
-# Step 11: Fastify autoload
+# Step 12: Fastify autoload
 
 <div class="dense">
 
@@ -1131,7 +1213,7 @@ curl http://localhost:3000/user \
 
 ---
 
-# Step 11: Exercise 💻
+# Step 12: Exercise 💻
 
 <div class="dense">
 
@@ -1151,7 +1233,7 @@ curl http://localhost:3000/user \
 
 ---
 
-# Step 11: Solution
+# Step 12: Solution
 
 ```js
 // index.js
@@ -1180,7 +1262,7 @@ function buildServer(config) {
 
 ---
 
-# Step 11: Solution /2
+# Step 12: Solution /2
 
 ```js
 // routes/user/index.js
@@ -1197,7 +1279,7 @@ export default async function user(fastify) {
 
 ---
 
-# Step 12: Database 🏆
+# Step 13: Database 🏆
 
 <div class="dense">
 
@@ -1219,7 +1301,7 @@ npm run db:migrate
 
 ---
 
-# Step 12: Exercise 💻
+# Step 13: Exercise 💻
 
 <div class="dense">
 
@@ -1234,7 +1316,7 @@ npm run db:migrate
 
 ---
 
-# Step 12: Solution
+# Step 13: Solution
 
 ```js
 // index.js
@@ -1253,7 +1335,7 @@ export default buildServer
 
 ---
 
-# Step 12: Exercise 💻
+# Step 13: Exercise 💻
 
 Change `routes/login.js`:
 
@@ -1271,7 +1353,7 @@ Change `routes/login.js`:
 
 ---
 
-# Step 12: Solution
+# Step 13: Solution
 
 ```js
 // routes/login.js
@@ -1299,7 +1381,7 @@ export default async function login(fastify) {
 
 ---
 
-# Step 12: Exercise 💻
+# Step 13: Exercise 💻
 
 <div class="dense">
 
@@ -1311,7 +1393,7 @@ export default async function login(fastify) {
 
 ---
 
-# Step 12: Solution
+# Step 13: Solution
 
 ```js
 // routes/users/index.js
@@ -1340,7 +1422,7 @@ export default async function users(fastify) {
 
 ---
 
-# Step 13: Exercise 💻
+# Step 14: Exercise 💻
 
 <div class="dense">
 
@@ -1353,7 +1435,7 @@ export default async function users(fastify) {
 
 ---
 
-# Step 13: Solution/1
+# Step 14: Solution/1
 
 ```ts
 // routes/login.ts
@@ -1385,7 +1467,7 @@ const schema = {
 
 ---
 
-# Step 13: Solution/2
+# Step 14: Solution/2
 
 ```ts
 // routes/login.ts
@@ -1410,7 +1492,7 @@ export default async function login(fastify: FastifyInstance) {
 
 ---
 
-# Step 13: Solution/3
+# Step 14: Solution/3
 
 ```ts
 // plugins/authenticate.ts
@@ -1436,7 +1518,7 @@ export default fp(authenticate)
 
 ---
 
-# Step 13: Solution/4
+# Step 14: Solution/4
 
 ```ts
 // @types/index.d.ts
