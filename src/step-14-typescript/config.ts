@@ -6,6 +6,7 @@ const schema = S.object()
   .prop('JWT_SECRET', S.string().required())
   .prop('LOG_LEVEL', S.string().default('info'))
   .prop('PRETTY_PRINT', S.string().default(true))
+  .valueOf()
 
 export default envSchema<EnvConfig>({
   schema,
