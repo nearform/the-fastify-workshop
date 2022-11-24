@@ -554,7 +554,7 @@ http://localhost:3000/login
 
 # Step 5 Constraints
 
-- Route validation can also be constrained to match properties of the request. By default fastify supports `version` (via `Accept-Version` header) and `host` (via `Host` header)
+- Route matching can also be constrained to match properties of the request. By default fastify supports `version` (via `Accept-Version` header) and `host` (via `Host` header)
 
 > 🏆 Custom constraints can be added via [`find-my-way`](https://github.com/delvedor/find-my-way)
 
