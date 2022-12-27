@@ -37,7 +37,7 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/http-errors": "^2.0.1",
-    "@types/node": "^18.11.17",
+    "@types/node": "^18.11.18",
     "@types/sinon": "^10.0.13",
     "@types/tap": "^15.0.7",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
