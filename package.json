@@ -18,7 +18,7 @@
     "test": "cross-env TS_NODE_FILES=1 c8 tap --no-cov -j1 --ts"
   },
   "dependencies": {
-    "@fastify/autoload": "^5.6.0",
+    "@fastify/autoload": "^5.7.0",
     "@fastify/jwt": "^6.5.0",
     "@fastify/postgres": "^5.2.0",
     "@nearform/sql": "^1.10.0",
