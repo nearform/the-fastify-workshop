@@ -583,7 +583,7 @@ https://www.fastify.io/docs/latest/Reference/Routes/#constraints
 export default async function version(fastify) {
   fastify.route({ 
     method: 'GET',
-    url: '/verion',
+    url: '/version',
     constraints: { version: '1.0.0' },
     handler: async (req) => {
       return { version: '1.0.0' }
