@@ -30,7 +30,7 @@
     "fastify": "^4.12.0",
     "fluent-json-schema": "^4.0.0",
     "http-errors": "^2.0.0",
-    "pg": "^8.8.0",
+    "pg": "^8.9.0",
     "pino-pretty": "^9.1.1",
     "slidev-theme-nearform": "^1.4.2"
   },
