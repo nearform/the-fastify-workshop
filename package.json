@@ -32,7 +32,7 @@
     "http-errors": "^2.0.0",
     "pg": "^8.10.0",
     "pino-pretty": "^9.4.0",
-    "slidev-theme-nearform": "^1.5.0"
+    "slidev-theme-nearform": "^1.5.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
