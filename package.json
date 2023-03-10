@@ -21,7 +21,7 @@
     "@fastify/autoload": "^5.7.1",
     "@fastify/jwt": "^6.7.0",
     "@fastify/postgres": "^5.2.0",
-    "@nearform/sql": "^1.10.1",
+    "@nearform/sql": "^1.10.2",
     "@sinclair/typebox": "^0.25.24",
     "@slidev/cli": "^0.40.3",
     "@vueuse/shared": "^9.13.0",
