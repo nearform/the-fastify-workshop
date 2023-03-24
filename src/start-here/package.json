@@ -5,7 +5,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server",
+    "start": "node --watch server",
     "test": "echo 'todo'"
   }
 }
