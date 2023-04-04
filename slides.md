@@ -944,7 +944,7 @@ http://localhost:3000/login
 <div class="dense">
 
 - Create a `config.js` file which:
-  - Uses `env-schema` to load a `JWT_SECRET` environmnent variable, with fallback to a `.env` file
+  - Uses `env-schema` to load a `JWT_SECRET` environment variable, with fallback to a `.env` file
   - Validates its value with `fluent-json-schema`
 - Change `server.js` so that it imports the `config.js` module and provides it to the `buildServer` function
 - Change `index.js` so that it:
@@ -1205,7 +1205,7 @@ curl http://localhost:3000/user \
 
 <div class="dense">
 
-- [`@fastify/autoload`](https://github.com/fastify/@fastify/autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
+- [`@fastify/autoload`](https://github.com/fastify/fastify-autoload) is a convenience plugin for Fastify that loads all plugins found in a directory and automatically configures routes matching the folder structure
 - Note that as we only refactor in this step we don't have a try it out slide. You can try things from earlier steps and expect them to work
 - In this step we have also introduced integration tests. You can see these running if you run `npm run test`
 
@@ -1283,7 +1283,7 @@ export default async function user(fastify) {
 
 <div class="dense">
 
-- Use [`@fastify/postgres`](https://github.com/fastify/@fastify/postgres), which allows to share the same PostgreSQL connection pool in every part of your server
+- Use [`@fastify/postgres`](https://github.com/fastify/fastify-postgres), which allows to share the same PostgreSQL connection pool in every part of your server
 - Use [`@nearform/sql`](https://github.com/nearform/sql) to create database queries using template strings without introducing SQL injection vulnerabilities
 
 Make sure you setup the db first with:
@@ -1427,7 +1427,7 @@ export default async function users(fastify) {
 <div class="dense">
 
 - Let's create an Fastify application using **TypeScript**.
-- We will transpose the application that you did in the [Step 09](#step-9-decorators) to TypeScript
+- We will transpose the application that you did in the [Step 10](/59) to TypeScript
 - Use `declaration merging` to add the custom `authenticate` decorator property to `FastifyInstance`
 - Use [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox) to transform JSON Schema into types
 
