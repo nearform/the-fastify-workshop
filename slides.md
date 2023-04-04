@@ -1427,7 +1427,7 @@ export default async function users(fastify) {
 <div class="dense">
 
 - Let's create an Fastify application using **TypeScript**.
-- We will transpose the application that you did in the [Step 10](/59) to TypeScript
+- We will transpose the application that you did in the [Step 10](./59) to TypeScript
 - Use `declaration merging` to add the custom `authenticate` decorator property to `FastifyInstance`
 - Use [`@sinclair/typebox`](https://www.npmjs.com/package/@sinclair/typebox) to transform JSON Schema into types
 
