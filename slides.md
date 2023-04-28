@@ -1308,7 +1308,7 @@ npm run db:migrate
 - Change `config.js` to support a `PG_CONNECTION_STRING` variable
 - Enrich `.env` with:
   ```txt
-  PG_CONNECTION_STRING=postgres://postgres:postgres@localhost:5433/postgres
+  PG_CONNECTION_STRING=postgres://postgres:postgres@0.0.0.0:5433/postgres
   ```
 - Register `@fastify/postgres` in `index.js`, providing the variable's value as the `connectionString` plugin option
 
