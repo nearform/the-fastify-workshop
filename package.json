@@ -11,9 +11,9 @@
     "build": "slidev build",
     "start": "slidev --open",
     "export": "slidev export",
-    "db:up": "docker-compose up -d",
+    "db:up": "docker compose up -d",
     "db:migrate": "postgrator",
-    "db:down": "docker-compose down",
+    "db:down": "docker compose down",
     "lint": "eslint --ext .ts,.js ./src",
     "test": "cross-env TS_NODE_FILES=1 c8 tap --no-cov -j1 --ts"
   },
