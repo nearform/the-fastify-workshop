@@ -13,7 +13,7 @@ lineNumbers: false
 
 <div class="copyright">
 
-© Copyright 2019-2022 NearForm Ltd. All Rights Reserved.
+<Copyright />
 
 </div>
 
