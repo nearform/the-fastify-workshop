@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@fastify/autoload": "^5.7.1",
-    "@fastify/jwt": "^7.1.0",
+    "@fastify/jwt": "^7.2.0",
     "@fastify/postgres": "^5.2.0",
     "@nearform/sql": "^1.10.4",
     "@sinclair/typebox": "^0.28.20",
