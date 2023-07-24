@@ -31,7 +31,7 @@
     "fluent-json-schema": "^4.1.0",
     "http-errors": "^2.0.0",
     "pg": "^8.11.1",
-    "pino-pretty": "^10.0.1",
+    "pino-pretty": "^10.1.0",
     "slidev-theme-nearform": "^1.5.5"
   },
   "devDependencies": {
