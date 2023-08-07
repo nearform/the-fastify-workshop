@@ -45,7 +45,7 @@
     "c8": "^8.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.46.0",
-    "eslint-plugin-sql": "^2.3.2",
+    "eslint-plugin-sql": "^2.4.4",
     "postgrator-cli": "^7.0.0",
     "prettier": "^3.0.0",
     "sinon": "^15.2.0",
