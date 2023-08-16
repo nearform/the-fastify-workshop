@@ -50,3 +50,11 @@ ol {
 #slide-shapes-transitions-image img {
   height: 25rem;
 }
+
+.slidev-layout {
+  display: flex;
+  flex-direction: column;
+}
+.slidev-code-wrapper {
+  overflow-y: auto;
+}
