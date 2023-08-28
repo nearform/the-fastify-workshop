@@ -51,7 +51,7 @@
     "sinon": "^15.2.0",
     "tap": "^16.3.8",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "tap": {
     "node-arg": [
