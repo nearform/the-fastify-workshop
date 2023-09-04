@@ -35,7 +35,7 @@
     "slidev-theme-nearform": "^1.5.5"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.0",
+    "@tsconfig/node16": "^16.1.1",
     "@types/http-errors": "^2.0.1",
     "@types/node": "^20.5.9",
     "@types/sinon": "^10.0.16",
