@@ -1135,7 +1135,7 @@ https://www.fastify.io/docs/latest/Reference/Hooks/
 
 <div class="dense">
 
-- Create a `GET /` route in `routes/user/index.js`
+- Create a `GET /user` route in `routes/user/index.js`
 - Require authentication using the `onRequest` Fastify hook
 - Use the `fastify.authenticate` decorator
 - Return the information about the currently authenticated user in the response
@@ -1172,7 +1172,7 @@ export default async function user(fastify) {
 
 ---
 
-# Steps 9 & 10: Trying it out
+# Steps 10 & 11: Trying it out
 
 > 💡 you need a valid JWT by logging in via the `POST /login` route
 
