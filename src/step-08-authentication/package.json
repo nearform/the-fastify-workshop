@@ -6,6 +6,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node server",
-    "test": "tap --disable-coverage --allow-empty-coverage"
+    "test": "tap --allow-empty-coverage && c8 report --check-coverage --temp-directory .tap/coverage --100"
   }
 }
