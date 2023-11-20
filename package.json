@@ -38,7 +38,7 @@
     "@tsconfig/node18": "^18.2.2",
     "@types/http-errors": "^2.0.2",
     "@types/node": "^20.8.6",
-    "@types/sinon": "^10.0.17",
+    "@types/sinon": "^17.0.1",
     "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.62.0",
@@ -48,7 +48,7 @@
     "eslint-plugin-sql": "^2.4.4",
     "postgrator-cli": "^7.0.0",
     "prettier": "^3.0.3",
-    "sinon": "^16.0.0",
+    "sinon": "^17.0.1",
     "tap": "^18.5.7",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
