@@ -1,5 +1,8 @@
 {
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["sql", "@typescript-eslint"],
   "parserOptions": {
@@ -12,6 +15,9 @@
   },
   "rules": {
     "sql/format": "error",
-    "sql/no-unsafe-query": ["error", { "allowLiteral": false }]
+    "sql/no-unsafe-query": [
+      "error",
+      { "allowLiteral": false, "sqlTag": "SQL" }
+    ]
   }
 }
