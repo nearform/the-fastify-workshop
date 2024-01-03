@@ -1,3 +1,4 @@
 coverage-report:
   - none
 jobs: 1
+timeout: 120
