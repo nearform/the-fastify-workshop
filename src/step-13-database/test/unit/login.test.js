@@ -21,7 +21,7 @@ test('POST /login', async t => {
     })
 
     t.equal(res.statusCode, 400)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test('returns 400 with partial credentials', async t => {
@@ -36,7 +36,7 @@ test('POST /login', async t => {
     })
 
     t.equal(res.statusCode, 400)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test('returns 401 with wrong credentials', async t => {
@@ -52,7 +52,7 @@ test('POST /login', async t => {
     })
 
     t.equal(res.statusCode, 401)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test(
@@ -72,7 +72,7 @@ test('POST /login', async t => {
       })
 
       t.equal(res.statusCode, 401)
-      await fastify.close()
+      t.teardown(() => fastify.close())
     }
   )
 
@@ -91,7 +91,7 @@ test('POST /login', async t => {
     })
 
     t.equal(res.statusCode, 500)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test('obtains a token with right credentials', async t => {
@@ -113,7 +113,7 @@ test('POST /login', async t => {
 
     t.equal(res.statusCode, 200)
     t.equal(res.json().token, 'jwt token')
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test('stores the signed JWT', async () => {
@@ -137,6 +137,6 @@ test('POST /login', async t => {
     sinon.assert.calledWith(fastify.jwt.sign, {
       username: 'alice'
     })
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 })

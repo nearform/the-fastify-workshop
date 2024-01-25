@@ -10,6 +10,7 @@ test('Startup', async t => {
     await fastify.ready()
 
     t.ok(fastify.jwt)
+    t.teardown(() => fastify.close())
   })
 })
 

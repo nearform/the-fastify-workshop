@@ -22,7 +22,7 @@ test('GET /', async t => {
 
     sinon.assert.called(fastify.authenticate)
     t.equal(res.statusCode, 401)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test('returns error when database errors', async t => {
@@ -34,7 +34,7 @@ test('GET /', async t => {
     const res = await fastify.inject('/')
 
     t.equal(res.statusCode, 500)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test('returns users loaded from the database', async t => {
@@ -49,6 +49,6 @@ test('GET /', async t => {
 
     t.equal(res.statusCode, 200)
     t.same(res.json(), [{ id: 1, username: 'alice' }])
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 })

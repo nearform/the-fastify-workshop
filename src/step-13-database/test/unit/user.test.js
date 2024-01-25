@@ -21,7 +21,7 @@ test('GET /', async t => {
 
     sinon.assert.called(fastify.authenticate)
     t.equal(res.statusCode, 401)
-    await fastify.close()
+    t.teardown(() => fastify.close())
   })
 
   t.test(
@@ -37,7 +37,7 @@ test('GET /', async t => {
 
       t.equal(res.statusCode, 200)
       t.same(res.json(), { username: 'alice' })
-      await fastify.close()
+      t.teardown(() => fastify.close())
     }
   )
 })

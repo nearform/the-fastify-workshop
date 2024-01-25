@@ -21,6 +21,7 @@ test('GET /user', async t => {
 
     sinon.assert.called(fastify.authenticate)
     t.equal(res.statusCode, 401)
+    t.teardown(() => fastify.close())
   })
 
   t.test(
@@ -36,6 +37,7 @@ test('GET /user', async t => {
 
       t.equal(res.statusCode, 200)
       t.same(res.json(), { username: 'alice' })
+      t.teardown(() => fastify.close())
     }
   )
 })

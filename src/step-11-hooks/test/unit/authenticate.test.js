@@ -24,6 +24,7 @@ test('authenticate', async t => {
 
     await t.resolves(fastify.authenticate(req, reply))
     sinon.assert.calledWith(reply.send, error)
+    t.teardown(() => fastify.close())
   })
 
   t.test(
@@ -38,6 +39,7 @@ test('authenticate', async t => {
 
       await t.resolves(fastify.authenticate(req, reply))
       sinon.assert.notCalled(reply.send)
+      t.teardown(() => fastify.close())
     }
   )
 })
