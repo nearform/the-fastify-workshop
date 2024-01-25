@@ -1,5 +1,5 @@
 import t from 'tap'
-import sinon, { SinonStub } from 'sinon'
+import sinon from 'sinon'
 import errors from 'http-errors'
 import fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import pluginAuthenticate from '../plugins/authenticate'
@@ -19,10 +19,11 @@ t.test('authenticate', async (t) => {
     const req = <FastifyRequest>{}
     req.jwtVerify = sinon.stub().rejects(error)
     const reply = <FastifyReply>{}
-    reply.send = sinon.stub()
+    const sendStub = sinon.stub()
+    reply.send = sendStub
 
     await t.resolves(fastify.authenticate(req, reply))
-    sinon.assert.calledWith(<SinonStub>reply.send, error)
+    t.same(sendStub.firstCall.args, [error])
     t.teardown(() => fastify.close())
   })
 
@@ -36,10 +37,11 @@ t.test('authenticate', async (t) => {
       const req = <FastifyRequest>{}
       req.jwtVerify = sinon.stub().resolves()
       const reply = <FastifyReply>{}
-      reply.send = sinon.stub()
+      const sendStub = sinon.stub()
+      reply.send = sendStub
 
       await t.resolves(fastify.authenticate(req, reply))
-      sinon.assert.notCalled(<SinonStub>reply.send)
+      t.ok(sendStub.notCalled)
       t.teardown(() => fastify.close())
     }
   )

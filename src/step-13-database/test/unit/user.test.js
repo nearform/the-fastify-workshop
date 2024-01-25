@@ -19,7 +19,7 @@ test('GET /', async t => {
 
     const res = await fastify.inject('/')
 
-    sinon.assert.called(fastify.authenticate)
+    t.ok(fastify.authenticate.called)
     t.equal(res.statusCode, 401)
     t.teardown(() => fastify.close())
   })

@@ -133,10 +133,10 @@ test('POST /login', async t => {
       },
     })
 
-    sinon.assert.called(fastify.jwt.sign)
-    sinon.assert.calledWith(fastify.jwt.sign, {
+    t.ok(fastify.jwt.sign.called)
+    t.same(fastify.jwt.sign.firstCall.args, [{
       username: 'alice'
-    })
+    }])
     t.teardown(() => fastify.close())
   })
 })

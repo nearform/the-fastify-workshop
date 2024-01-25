@@ -23,7 +23,7 @@ test('authenticate', async t => {
     const reply = { send: sinon.stub() }
 
     await t.resolves(fastify.authenticate(req, reply))
-    sinon.assert.calledWith(reply.send, error)
+    t.same(reply.send.firstCall.args, [error])
     t.teardown(() => fastify.close())
   })
 
@@ -38,7 +38,7 @@ test('authenticate', async t => {
       const reply = { send: sinon.stub() }
 
       await t.resolves(fastify.authenticate(req, reply))
-      sinon.assert.notCalled(reply.send)
+      t.ok(reply.send.notCalled)
       t.teardown(() => fastify.close())
     }
   )
