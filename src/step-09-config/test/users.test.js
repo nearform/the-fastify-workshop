@@ -17,5 +17,6 @@ test('GET /users', async t => {
       { username: 'alice' },
       { username: 'bob' },
     ])
+    await fastify.close()
   })
 })
