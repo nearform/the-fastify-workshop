@@ -12,9 +12,9 @@ test('server', async t => {
     fastify = buildServer(config)
   })
 
-  t.teardown(() => fastify.close())
-
   t.test('authenticates users and lists users', async t => {
+    t.teardown(() => fastify.close())
+
     const loginRes = await fastify.inject({
       url: '/login',
       method: 'POST',

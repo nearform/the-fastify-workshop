@@ -6,11 +6,11 @@ import config from '../../config.js'
 test('Startup', async t => {
   t.test('it registers the JWT plugin', async t => {
     const fastify = buildServer(config)
+    t.teardown(() => fastify.close())
 
     await fastify.ready()
 
     t.ok(fastify.jwt)
-    t.teardown(() => fastify.close())
   })
 })
 

@@ -17,6 +17,7 @@ test('authenticate', async t => {
     const fastify = await buildServer({
       JWT_SECRET: 'supersecret',
     })
+    t.teardown(() => fastify.close())
 
     const error = errors.Unauthorized()
     const req = { jwtVerify: sinon.stub().rejects(error) }
@@ -24,7 +25,6 @@ test('authenticate', async t => {
 
     await t.resolves(fastify.authenticate(req, reply))
     t.same(reply.send.firstCall.args, [error])
-    t.teardown(() => fastify.close())
   })
 
   t.test(
@@ -33,6 +33,7 @@ test('authenticate', async t => {
       const fastify = await buildServer({
         JWT_SECRET: 'supersecret',
       })
+      t.teardown(() => fastify.close())
 
       const req = { jwtVerify: sinon.stub().resolves() }
       const reply = { send: sinon.stub() }
@@ -40,7 +41,6 @@ test('authenticate', async t => {
       await t.resolves(fastify.authenticate(req, reply))
 
       t.ok(reply.send.notCalled)
-      t.teardown(() => fastify.close())
     }
   )
 })

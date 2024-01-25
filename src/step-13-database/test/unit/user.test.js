@@ -14,6 +14,7 @@ function buildServer() {
 test('GET /', async t => {
   t.test('returns error when authentication fails', async t => {
     const fastify = buildServer()
+    t.teardown(() => fastify.close())
 
     fastify.authenticate.rejects(errors.Unauthorized())
 
@@ -21,13 +22,13 @@ test('GET /', async t => {
 
     t.ok(fastify.authenticate.called)
     t.equal(res.statusCode, 401)
-    t.teardown(() => fastify.close())
   })
 
   t.test(
     'returns current user when authentication succeeds',
     async t => {
       const fastify = buildServer()
+      t.teardown(() => fastify.close())
 
       fastify.authenticate.callsFake(async request => {
         request.user = { username: 'alice' }
@@ -37,7 +38,6 @@ test('GET /', async t => {
 
       t.equal(res.statusCode, 200)
       t.same(res.json(), { username: 'alice' })
-      t.teardown(() => fastify.close())
     }
   )
 })
