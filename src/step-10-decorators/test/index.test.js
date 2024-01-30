@@ -12,4 +12,3 @@ test('Startup', async t => {
     t.ok(fastify.jwt)
   })
 })
-
