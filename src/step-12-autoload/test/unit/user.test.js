@@ -36,6 +36,6 @@ test('GET /', async t => {
 
       t.equal(res.statusCode, 200)
       t.same(res.json(), { username: 'alice' })
-    }
+    },
   )
 })
