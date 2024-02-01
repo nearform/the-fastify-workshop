@@ -3,6 +3,7 @@ async function authenticate(fastify, opts) {
     secret: opts.JWT_SECRET,
   })
 
+
   fastify.decorate('authenticate', async (req, reply) => {
     try {
       await req.jwtVerify()

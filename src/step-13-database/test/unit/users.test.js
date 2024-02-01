@@ -1,9 +1,9 @@
-import t from 'tap'
 import fastify from 'fastify'
 import sinon from 'sinon'
 import errors from 'http-errors'
 
-const { test } = t
+import { test } from 'node:test'
+import assert from 'node:assert'
 
 function buildServer() {
   return fastify()
@@ -13,7 +13,7 @@ function buildServer() {
 }
 
 test('GET /', async t => {
-  t.test('returns error when authentication fails', async t => {
+  await t.test('returns error when authentication fails', async t => {
     const fastify = buildServer()
 
     fastify.authenticate.rejects(errors.Unauthorized())
@@ -21,11 +21,11 @@ test('GET /', async t => {
     const res = await fastify.inject('/')
 
     sinon.assert.called(fastify.authenticate)
-    t.equal(res.statusCode, 401)
+    assert.equal(res.statusCode, 401)
     await fastify.close()
   })
 
-  t.test('returns error when database errors', async t => {
+  await t.test('returns error when database errors', async t => {
     const fastify = buildServer()
 
     fastify.authenticate.resolves()
@@ -33,11 +33,11 @@ test('GET /', async t => {
 
     const res = await fastify.inject('/')
 
-    t.equal(res.statusCode, 500)
+    assert.equal(res.statusCode, 500)
     await fastify.close()
   })
 
-  t.test('returns users loaded from the database', async t => {
+  await t.test('returns users loaded from the database', async t => {
     const fastify = buildServer()
 
     fastify.authenticate.resolves()
@@ -47,8 +47,8 @@ test('GET /', async t => {
 
     const res = await fastify.inject('/')
 
-    t.equal(res.statusCode, 200)
-    t.same(res.json(), [{ id: 1, username: 'alice' }])
+    assert.equal(res.statusCode, 200)
+    assert.deepEqual(res.json(), [{ id: 1, username: 'alice' }])
     await fastify.close()
   })
 })

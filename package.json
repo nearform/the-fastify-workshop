@@ -15,7 +15,7 @@
     "db:migrate": "postgrator",
     "db:down": "docker compose down",
     "lint": "eslint --ext .ts,.js ./src",
-    "test": "tap && c8 report --check-coverage --temp-directory .tap/coverage --100"
+    "test": "c8 --check-coverage --100 node --test"
   },
   "dependencies": {
     "@fastify/autoload": "^5.7.1",
@@ -39,7 +39,6 @@
     "@types/http-errors": "^2.0.2",
     "@types/node": "^20.8.6",
     "@types/sinon": "^17.0.1",
-    "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.62.0",
     "c8": "^8.0.1",
@@ -49,7 +48,6 @@
     "postgrator-cli": "^7.0.0",
     "prettier": "^3.0.3",
     "sinon": "^17.0.1",
-    "tap": "^18.7.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },

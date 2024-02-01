@@ -1,8 +1,9 @@
-import t from 'tap'
+  
 import fastify from 'fastify'
 import sinon from 'sinon'
 
-const { test } = t
+import {test} from "node:test"
+import assert from "node:assert"
 
 function buildServer() {
   return fastify()
@@ -11,7 +12,7 @@ function buildServer() {
 }
 
 test('POST /login', async t => {
-  t.test('returns 400 with missing credentials', async t => {
+  await t.test('returns 400 with missing credentials', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -19,10 +20,10 @@ test('POST /login', async t => {
       method: 'POST',
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
   })
 
-  t.test('returns 400 with partial credentials', async t => {
+  await t.test('returns 400 with partial credentials', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -33,10 +34,10 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
   })
 
-  t.test('returns 401 with wrong credentials', async t => {
+  await t.test('returns 401 with wrong credentials', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -48,10 +49,10 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 401)
+    assert.equal(res.statusCode, 401)
   })
 
-  t.test('obtains a token with right credentials', async t => {
+  await t.test('obtains a token with right credentials', async t => {
     const fastify = buildServer()
 
     fastify.jwt.sign.returns('jwt token')
@@ -65,7 +66,7 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 200)
-    t.equal(res.json().token, 'jwt token')
+    assert.equal(res.statusCode, 200)
+    assert.equal(res.json().token, 'jwt token')
   })
 })

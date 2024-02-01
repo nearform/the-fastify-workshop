@@ -1,11 +1,10 @@
-import t from 'tap'
-
-const { test } = t
+import { test } from 'node:test'
+import assert from 'node:assert'
 
 import buildServer from '../index.js'
 
 test('POST /login', async t => {
-  t.test('returns 400 with an invalid post payload', async t => {
+  await t.test('returns 400 with an invalid post payload', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -17,10 +16,10 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
   })
 
-  t.test('returns the data with valid post payload', async t => {
+  await t.test('returns the data with valid post payload', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -32,8 +31,8 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 200)
-    t.same(res.json(), {
+    assert.equal(res.statusCode, 200)
+    assert.deepEqual(res.json(), {
       username: 'alice',
       password: 'alice',
     })

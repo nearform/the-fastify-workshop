@@ -1,9 +1,10 @@
-import t from 'tap'
+  
 import sinon from 'sinon'
 import errors from 'http-errors'
 import fastify from 'fastify'
 
-const { test } = t
+import {test} from "node:test"
+import assert from "node:assert"
 
 function buildServer(opts) {
   return fastify().register(
@@ -13,7 +14,7 @@ function buildServer(opts) {
 }
 
 test('authenticate', async t => {
-  t.test('replies with error when authentication fails', async t => {
+  await t.test('replies with error when authentication fails', async t => {
     const fastify = await buildServer({
       JWT_SECRET: 'supersecret',
     })
@@ -22,11 +23,11 @@ test('authenticate', async t => {
     const req = { jwtVerify: sinon.stub().rejects(error) }
     const reply = { send: sinon.stub() }
 
-    await t.resolves(fastify.authenticate(req, reply))
+    await assert.doesNotReject(fastify.authenticate(req, reply))
     sinon.assert.calledWith(reply.send, error)
   })
 
-  t.test(
+  await t.test(
     'resolves successfully when authentication succeeds',
     async t => {
       const fastify = await buildServer({
@@ -36,7 +37,7 @@ test('authenticate', async t => {
       const req = { jwtVerify: sinon.stub().resolves() }
       const reply = { send: sinon.stub() }
 
-      await t.resolves(fastify.authenticate(req, reply))
+      await assert.doesNotReject(fastify.authenticate(req, reply))
       sinon.assert.notCalled(reply.send)
     }
   )

@@ -1,4 +1,4 @@
-import t from 'tap'
+  
 import sinon, { SinonStub } from 'sinon'
 import errors from 'http-errors'
 import fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
@@ -10,8 +10,8 @@ async function buildServer(opts: { JWT_SECRET: string }): Promise<FastifyInstanc
   return app
 }
 
-t.test('authenticate', async (t) => {
-  t.test('replies with error when authentication fails', async (t) => {
+await t.test('authenticate', async (t) => {
+  await t.test('replies with error when authentication fails', async (t) => {
     const fastify = await buildServer({
       JWT_SECRET: 'supersecret',
     })
@@ -21,11 +21,11 @@ t.test('authenticate', async (t) => {
     const reply = <FastifyReply>{}
     reply.send = sinon.stub()
 
-    await t.resolves(fastify.authenticate(req, reply))
+    await assert.doesNotReject(fastify.authenticate(req, reply))
     sinon.assert.calledWith(<SinonStub>reply.send, error)
   })
 
-  t.test(
+  await t.test(
     'resolves successfully when authentication succeeds',
     async t => {
       const fastify = await buildServer({
@@ -37,7 +37,7 @@ t.test('authenticate', async (t) => {
       const reply = <FastifyReply>{}
       reply.send = sinon.stub()
 
-      await t.resolves(fastify.authenticate(req, reply))
+      await assert.doesNotReject(fastify.authenticate(req, reply))
       sinon.assert.notCalled(<SinonStub>reply.send)
     }
   )
