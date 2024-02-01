@@ -4,8 +4,6 @@ import { test } from 'node:test'
 import fastify from 'fastify'
 import sinon from 'sinon'
 
-
-
 function buildServer() {
   return fastify()
     .decorate('jwt', { sign: sinon.stub() })

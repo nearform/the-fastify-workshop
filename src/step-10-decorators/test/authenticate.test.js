@@ -5,8 +5,6 @@ import fastify from 'fastify'
 import errors from 'http-errors'
 import sinon from 'sinon'
 
-
-
 function buildServer(opts) {
   return fastify().register(
     import('../plugins/authenticate.js'),
