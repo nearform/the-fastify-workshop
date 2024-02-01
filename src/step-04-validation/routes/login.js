@@ -19,6 +19,6 @@ export default async function login(fastify) {
     async req => {
       const { username, password } = req.body
       return { username, password }
-    }
+    },
   )
 }

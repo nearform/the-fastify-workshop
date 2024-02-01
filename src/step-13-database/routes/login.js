@@ -23,7 +23,7 @@ export default async function login(fastify) {
     const {
       rows: [user],
     } = await fastify.pg.query(
-      SQL`SELECT id, username FROM users WHERE username = ${username}`
+      SQL`SELECT id, username FROM users WHERE username = ${username}`,
     )
 
     if (!user) {

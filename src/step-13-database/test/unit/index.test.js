@@ -1,16 +1,16 @@
-import { test } from 'tap'
+import { test } from 'node:test'
+import assert from 'node:assert/strict'
 
 import buildServer from '../../index.js'
 import config from '../../config.js'
 
 test('Startup', async t => {
-  t.test('it registers the JWT plugin', async t => {
+  await t.test('it registers the JWT plugin', async () => {
     const fastify = buildServer(config)
 
     await fastify.ready()
 
-    t.ok(fastify.jwt)
+    assert.ok(fastify.jwt)
     await fastify.close()
   })
 })
-

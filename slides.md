@@ -653,7 +653,7 @@ https://www.fastify.io/docs/latest/Guides/Testing/
 <div class="dense">
 
 - Write a unit test for the `index.js` module
-- Use `node-tap`
+- Use `node --test`
 - Use `fastify.inject`
 - Check that GETting the `/users` route:
   - Responds with status code 200
@@ -669,21 +669,20 @@ https://www.fastify.io/docs/latest/Guides/Testing/
 
 ```js
 // test/index.test.js
-import t from 'tap'
-
 import buildServer from '../index.js'
 
-const { test } = t
+import {test} from "node:test"
+import assert from "node:assert/strict"
 
 test('GET /users', async t => {
-  t.test('returns users', async t => {
+  await t.test('returns users', async t => {
     const fastify = buildServer()
 
     const res = await fastify.inject('/users')
 
-    t.equal(res.statusCode, 200)
+    assert.equal(res.statusCode, 200)
 
-    t.same(res.json(), [
+    assert.deepEqual(res.json(), [
       { username: 'alice' },
       { username: 'bob' },
     ])
@@ -699,22 +698,21 @@ test('GET /users', async t => {
 
 ```bash
 ❯ npm run test
-$ tap
-test/index.test.js 1> [1612531547285] INFO (63699 on Softwares-MBP): Fastify is starting up!
-test/index.test.js 1> [1612531547371] INFO (63699 on Softwares-MBP): incoming request
-test/index.test.js 1>     ...
- PASS  test/index.test.js 2 OK 123.827ms
+$ node --test
+[10:30:06.058] INFO (1601): Fastify is starting up!
+[10:30:06.098] INFO (1601): incoming request
+     ...
+ ✔ test/index.test.js (123.827ms)
 
-🌈 SUMMARY RESULTS 🌈
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.373708
 
-Suites:   1 passed, 1 of 1 completed
-Asserts:  2 passed, of 2
-Time:     770.511ms
-----------|----------|----------|----------|----------|-------------------|
-File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
-----------|----------|----------|----------|----------|-------------------|
-All files |        0 |        0 |        0 |        0 |                   |
-----------|----------|----------|----------|----------|-------------------|
 ✨  Done in 2.70s.
 ```
 

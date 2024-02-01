@@ -1,16 +1,17 @@
-import t from 'tap'
-import buildServer from '../index'
-import config from '../config'
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
 
-t.test('GET /users', async t => {
-  t.test('returns users', async t => {
+import config from '../config'
+import buildServer from '../index'
+
+test('GET /users', async t => {
+  await t.test('returns users', async () => {
     const fastify = buildServer(config)
 
     const res = await fastify.inject('/users')
 
-    t.equal(res.statusCode, 200)
-
-    t.same(res.json(), [
+    assert.equal(res.statusCode, 200)
+    assert.deepEqual(res.json(), [
       { username: 'alice' },
       { username: 'bob' },
     ])

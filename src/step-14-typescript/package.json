@@ -5,6 +5,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "ts-node-dev --project ./tsconfig.json server.ts",
-    "test": "cross-env TS_NODE_FILES=1 tap --ts"
+    "test": "npx c8 node --test -r ts-node/register ./test/*.test.ts"
   }
 }

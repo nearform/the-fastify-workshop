@@ -13,6 +13,6 @@ export default async function user(fastify) {
       onRequest: [fastify.authenticate],
       schema,
     },
-    async req => req.user
+    async req => req.user,
   )
 }

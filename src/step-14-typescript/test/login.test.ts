@@ -1,4 +1,6 @@
-import t from 'tap'
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
+
 import fastify, { FastifyInstance } from 'fastify'
 import sinon from 'sinon'
 import loginRoute from '../routes/login'
@@ -9,8 +11,8 @@ function buildServer(): FastifyInstance {
     .register(loginRoute)
 }
 
-t.test('POST /login', async t => {
-  t.test('returns 400 with missing credentials', async t => {
+test('POST /login', async t => {
+  await t.test('returns 400 with missing credentials', async () => {
     const app = buildServer()
 
     const res = await app.inject({
@@ -18,10 +20,10 @@ t.test('POST /login', async t => {
       method: 'POST',
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
   })
 
-  t.test('returns 400 with partial credentials', async t => {
+  await t.test('returns 400 with partial credentials', async () => {
     const app = buildServer()
 
     const res = await app.inject({
@@ -32,10 +34,10 @@ t.test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
   })
 
-  t.test('returns 401 with wrong credentials', async t => {
+  await t.test('returns 401 with wrong credentials', async () => {
     const app = buildServer()
 
     const res = await app.inject({
@@ -47,10 +49,10 @@ t.test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 401)
+    assert.equal(res.statusCode, 401)
   })
 
-  t.test('obtains a token with right credentials', async t => {
+  await t.test('obtains a token with right credentials', async () => {
     const app = buildServer()
 
     app.jwt.sign = sinon.stub().returns('jwt token')
@@ -64,7 +66,7 @@ t.test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 200)
-    t.equal(res.json().token, 'jwt token')
+    assert.equal(res.statusCode, 200)
+    assert.equal(res.json().token, 'jwt token')
   })
 })
