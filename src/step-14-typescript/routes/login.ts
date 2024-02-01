@@ -6,7 +6,7 @@ const BodySchema = Type.Strict(
   Type.Object({
     username: Type.String(),
     password: Type.String(),
-  })
+  }),
 )
 
 type BodySchema = Static<typeof BodySchema>
@@ -14,7 +14,7 @@ type BodySchema = Static<typeof BodySchema>
 const ResponseSchema = Type.Strict(
   Type.Object({
     token: Type.String(),
-  })
+  }),
 )
 
 type ResponseSchema = Static<typeof ResponseSchema>
@@ -31,7 +31,7 @@ export default async function login(fastify: FastifyInstance) {
     '/login',
     { schema },
     async (
-      req: FastifyRequest<{ Body: BodySchema }>
+      req: FastifyRequest<{ Body: BodySchema }>,
     ): Promise<ResponseSchema> => {
       const { username, password } = req.body
 
@@ -40,6 +40,6 @@ export default async function login(fastify: FastifyInstance) {
       }
 
       return { token: fastify.jwt.sign({ username }) }
-    }
+    },
   )
 }

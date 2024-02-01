@@ -8,7 +8,7 @@ const { test } = t
 function buildServer(opts) {
   return fastify().register(
     import('../plugins/authenticate.js'),
-    opts
+    opts,
   )
 }
 
@@ -38,6 +38,6 @@ test('authenticate', async t => {
 
       await t.resolves(fastify.authenticate(req, reply))
       sinon.assert.notCalled(reply.send)
-    }
+    },
   )
 })

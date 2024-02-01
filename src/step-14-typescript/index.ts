@@ -1,4 +1,5 @@
 import Fastify, { FastifyInstance } from 'fastify'
+
 import loginRoute from './routes/login'
 import usersRoute from './routes/users'
 import authenticatePlugin from './plugins/authenticate'

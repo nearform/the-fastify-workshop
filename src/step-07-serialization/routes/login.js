@@ -22,7 +22,8 @@ export default async function login(fastify) {
      * @type {import('fastify').RouteHandler<{ Body: { username: string; password: string } }>}
      * */
     async req => {
-    const { username, password } = req.body
-    return { username, password }
-  })
+      const { username, password } = req.body
+      return { username, password }
+    },
+  )
 }

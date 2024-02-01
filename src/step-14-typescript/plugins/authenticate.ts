@@ -9,7 +9,7 @@ import fp from 'fastify-plugin'
 
 async function authenticate(
   fastify: FastifyInstance,
-  opts: FastifyPluginOptions
+  opts: FastifyPluginOptions,
 ): Promise<void> {
   fastify.register(fastifyJwt, {
     secret: opts.JWT_SECRET,
@@ -23,7 +23,7 @@ async function authenticate(
       } catch (err) {
         reply.send(err)
       }
-    }
+    },
   )
 }
 

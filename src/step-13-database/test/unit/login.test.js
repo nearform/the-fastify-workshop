@@ -73,7 +73,7 @@ test('POST /login', async t => {
 
       t.equal(res.statusCode, 401)
       await fastify.close()
-    }
+    },
   )
 
   t.test('returns 500 when database errors', async t => {
@@ -135,7 +135,7 @@ test('POST /login', async t => {
 
     sinon.assert.called(fastify.jwt.sign)
     sinon.assert.calledWith(fastify.jwt.sign, {
-      username: 'alice'
+      username: 'alice',
     })
     await fastify.close()
   })

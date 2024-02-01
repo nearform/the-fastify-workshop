@@ -13,4 +13,3 @@ test('Startup', async t => {
     await fastify.close()
   })
 })
-

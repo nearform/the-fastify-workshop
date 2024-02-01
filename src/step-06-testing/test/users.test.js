@@ -12,9 +12,6 @@ test('GET /users', async t => {
 
     t.equal(res.statusCode, 200)
 
-    t.same(res.json(), [
-      { username: 'alice' },
-      { username: 'bob' },
-    ])
+    t.same(res.json(), [{ username: 'alice' }, { username: 'bob' }])
   })
 })
