@@ -1,8 +1,8 @@
-import t from 'tap'
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
+
 import fastify from 'fastify'
 import sinon from 'sinon'
-
-const { test } = t
 
 function buildServer() {
   return fastify()
@@ -12,7 +12,7 @@ function buildServer() {
 }
 
 test('POST /login', async t => {
-  t.test('returns 400 with missing credentials', async t => {
+  await t.test('returns 400 with missing credentials', async () => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -20,11 +20,11 @@ test('POST /login', async t => {
       method: 'POST',
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
     await fastify.close()
   })
 
-  t.test('returns 400 with partial credentials', async t => {
+  await t.test('returns 400 with partial credentials', async () => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -35,11 +35,11 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 400)
+    assert.equal(res.statusCode, 400)
     await fastify.close()
   })
 
-  t.test('returns 401 with wrong credentials', async t => {
+  await t.test('returns 401 with wrong credentials', async () => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -51,13 +51,13 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 401)
+    assert.equal(res.statusCode, 401)
     await fastify.close()
   })
 
-  t.test(
+  await t.test(
     'returns 401 when user is not found in database',
-    async t => {
+    async () => {
       const fastify = buildServer()
 
       fastify.pg.query.resolves({ rows: [] })
@@ -71,12 +71,12 @@ test('POST /login', async t => {
         },
       })
 
-      t.equal(res.statusCode, 401)
+      assert.equal(res.statusCode, 401)
       await fastify.close()
     },
   )
 
-  t.test('returns 500 when database errors', async t => {
+  await t.test('returns 500 when database errors', async () => {
     const fastify = buildServer()
 
     fastify.pg.query.rejects(new Error('boom'))
@@ -90,11 +90,11 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 500)
+    assert.equal(res.statusCode, 500)
     await fastify.close()
   })
 
-  t.test('obtains a token with right credentials', async t => {
+  await t.test('obtains a token with right credentials', async () => {
     const fastify = buildServer()
 
     fastify.pg.query.resolves({
@@ -111,12 +111,12 @@ test('POST /login', async t => {
       },
     })
 
-    t.equal(res.statusCode, 200)
-    t.equal(res.json().token, 'jwt token')
+    assert.equal(res.statusCode, 200)
+    assert.equal(res.json().token, 'jwt token')
     await fastify.close()
   })
 
-  t.test('stores the signed JWT', async () => {
+  await t.test('stores the signed JWT', async () => {
     const fastify = buildServer()
 
     fastify.pg.query.resolves({

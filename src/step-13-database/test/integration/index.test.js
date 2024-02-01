@@ -1,9 +1,8 @@
-import t from 'tap'
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
 
-import buildServer from '../../index.js'
 import config from '../../config.js'
-
-const { test } = t
+import buildServer from '../../index.js'
 
 test('server', async t => {
   let fastify
@@ -12,9 +11,9 @@ test('server', async t => {
     fastify = buildServer(config)
   })
 
-  t.teardown(() => fastify.close())
+  t.afterEach(() => fastify.close())
 
-  t.test('authenticates users and lists users', async t => {
+  await t.test('authenticates users and lists users', async () => {
     const loginRes = await fastify.inject({
       url: '/login',
       method: 'POST',
@@ -26,8 +25,8 @@ test('server', async t => {
 
     const { token } = await loginRes.json()
 
-    t.equal(loginRes.statusCode, 200)
-    t.type(token, 'string')
+    assert.equal(loginRes.statusCode, 200)
+    assert.equal(typeof token, 'string')
 
     const usersRes = await fastify.inject({
       url: '/users',
@@ -36,13 +35,13 @@ test('server', async t => {
       },
     })
 
-    t.equal(usersRes.statusCode, 200)
+    assert.equal(usersRes.statusCode, 200)
 
     const users = await usersRes.json()
 
-    t.ok(Array.isArray(users))
+    assert.ok(Array.isArray(users))
 
-    t.same(users, [
+    assert.deepEqual(users, [
       { id: 1, username: 'alice' },
       { id: 2, username: 'bob' },
     ])

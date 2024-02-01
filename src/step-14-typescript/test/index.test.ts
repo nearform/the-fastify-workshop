@@ -1,6 +1,9 @@
-import t from 'tap'
-import sinon, { SinonStub } from 'sinon'
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
+
 import errors from 'http-errors'
+import sinon, { SinonStub } from 'sinon'
+
 import fastify, {
   FastifyInstance,
   FastifyReply,
@@ -17,24 +20,27 @@ async function buildServer(opts: {
   return app
 }
 
-t.test('authenticate', async t => {
-  t.test('replies with error when authentication fails', async t => {
-    const fastify = await buildServer({
-      JWT_SECRET: 'supersecret',
-    })
-    const error = new errors.Unauthorized()
-    const req = <FastifyRequest>{}
-    req.jwtVerify = sinon.stub().rejects(error)
-    const reply = <FastifyReply>{}
-    reply.send = sinon.stub()
+test('authenticate', async t => {
+  await t.test(
+    'replies with error when authentication fails',
+    async () => {
+      const fastify = await buildServer({
+        JWT_SECRET: 'supersecret',
+      })
+      const error = new errors.Unauthorized()
+      const req = <FastifyRequest>{}
+      req.jwtVerify = sinon.stub().rejects(error)
+      const reply = <FastifyReply>{}
+      reply.send = sinon.stub()
 
-    await t.resolves(fastify.authenticate(req, reply))
-    sinon.assert.calledWith(<SinonStub>reply.send, error)
-  })
+      await assert.doesNotReject(fastify.authenticate(req, reply))
+      sinon.assert.calledWith(<SinonStub>reply.send, error)
+    },
+  )
 
-  t.test(
+  await t.test(
     'resolves successfully when authentication succeeds',
-    async t => {
+    async () => {
       const fastify = await buildServer({
         JWT_SECRET: 'supersecret',
       })
@@ -44,7 +50,7 @@ t.test('authenticate', async t => {
       const reply = <FastifyReply>{}
       reply.send = sinon.stub()
 
-      await t.resolves(fastify.authenticate(req, reply))
+      await assert.doesNotReject(fastify.authenticate(req, reply))
       sinon.assert.notCalled(<SinonStub>reply.send)
     },
   )
