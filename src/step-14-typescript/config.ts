@@ -1,4 +1,5 @@
 import { join } from 'path'
+
 import envSchema from 'env-schema'
 import S from 'fluent-json-schema'
 

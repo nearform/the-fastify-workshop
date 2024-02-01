@@ -1,5 +1,6 @@
-import buildServer from './index'
 import configSchema from './config'
+
+import buildServer from './index'
 
 const fastify = buildServer(configSchema)
 
