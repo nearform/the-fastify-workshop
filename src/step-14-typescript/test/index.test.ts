@@ -3,7 +3,6 @@ import { test } from 'node:test'
 
 import errors from 'http-errors'
 import sinon, { SinonStub } from 'sinon'
-
 import fastify, {
   FastifyInstance,
   FastifyReply,
