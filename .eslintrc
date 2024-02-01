@@ -2,9 +2,10 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["sql", "@typescript-eslint"],
+  "plugins": ["sql", "@typescript-eslint", "eslint-plugin-import"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2020,
@@ -14,6 +15,19 @@
     "node": true,
   },
   "rules": {
+    "import/order": [
+      "error",
+      {
+        "newlines-between":"always",
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index",
+        ],
+      },
+    ],
     "sql/format": "error",
     "sql/no-unsafe-query": ["error", { "sqlTag": "SQL" }],
   },
