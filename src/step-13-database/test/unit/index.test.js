@@ -1,5 +1,5 @@
 import { test } from 'node:test'
-import assert from 'node:assert'
+import assert from 'node:assert/strict'
 
 import buildServer from '../../index.js'
 import config from '../../config.js'
