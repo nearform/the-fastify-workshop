@@ -6,7 +6,7 @@ import buildServer from '../index.js'
 test('POST /login', async t => {
   await t.test(
     'returns 400 with an invalid post payload',
-    async t => {
+    async () => {
       const fastify = buildServer()
 
       const res = await fastify.inject({
@@ -24,7 +24,7 @@ test('POST /login', async t => {
 
   await t.test(
     'returns the data with valid post payload',
-    async t => {
+    async () => {
       const fastify = buildServer()
 
       const res = await fastify.inject({

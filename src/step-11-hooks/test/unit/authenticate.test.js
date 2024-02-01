@@ -1,35 +1,37 @@
-  
-import sinon from 'sinon'
-import errors from 'http-errors'
-import fastify from 'fastify'
+import assert from 'node:assert'
+import { test } from 'node:test'
 
-import {test} from "node:test"
-import assert from "node:assert"
+import fastify from 'fastify'
+import errors from 'http-errors'
+import sinon from 'sinon'
 
 function buildServer(opts) {
   return fastify().register(
     import('../../plugins/authenticate.js'),
-    opts
+    opts,
   )
 }
 
 test('authenticate', async t => {
-  await t.test('replies with error when authentication fails', async t => {
-    const fastify = await buildServer({
-      JWT_SECRET: 'supersecret',
-    })
+  await t.test(
+    'replies with error when authentication fails',
+    async () => {
+      const fastify = await buildServer({
+        JWT_SECRET: 'supersecret',
+      })
 
-    const error = errors.Unauthorized()
-    const req = { jwtVerify: sinon.stub().rejects(error) }
-    const reply = { send: sinon.stub() }
+      const error = errors.Unauthorized()
+      const req = { jwtVerify: sinon.stub().rejects(error) }
+      const reply = { send: sinon.stub() }
 
-    await assert.doesNotReject(fastify.authenticate(req, reply))
-    sinon.assert.calledWith(reply.send, error)
-  })
+      await assert.doesNotReject(fastify.authenticate(req, reply))
+      sinon.assert.calledWith(reply.send, error)
+    },
+  )
 
   await t.test(
     'resolves successfully when authentication succeeds',
-    async t => {
+    async () => {
       const fastify = await buildServer({
         JWT_SECRET: 'supersecret',
       })
@@ -39,6 +41,6 @@ test('authenticate', async t => {
 
       await assert.doesNotReject(fastify.authenticate(req, reply))
       sinon.assert.notCalled(reply.send)
-    }
+    },
   )
 })

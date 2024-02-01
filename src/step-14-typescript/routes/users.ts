@@ -5,8 +5,8 @@ const ResponseSchema = Type.Strict(
   Type.Array(
     Type.Object({
       username: Type.String(),
-    })
-  )
+    }),
+  ),
 )
 
 type ResponseSchema = Static<typeof ResponseSchema>
@@ -25,6 +25,6 @@ export default async function users(fastify: FastifyInstance) {
       req.log.info('Users route called')
 
       return [{ username: 'alice' }, { username: 'bob' }]
-    }
+    },
   )
 }

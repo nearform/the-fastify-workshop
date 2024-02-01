@@ -1,9 +1,11 @@
-import sinon from 'sinon'
-import errors from 'http-errors'
-import fastify from 'fastify'
-
-import { test } from 'node:test'
 import assert from 'node:assert'
+import { test } from 'node:test'
+
+import fastify from 'fastify'
+import errors from 'http-errors'
+import sinon from 'sinon'
+
+
 
 function buildServer(opts) {
   return fastify().register(
@@ -15,7 +17,7 @@ function buildServer(opts) {
 await test('authenticate', async t => {
   await t.test(
     'replies with error when authentication fails',
-    async t => {
+    async () => {
       const fastify = await buildServer({
         JWT_SECRET: 'supersecret',
       })
@@ -33,7 +35,7 @@ await test('authenticate', async t => {
 
   await t.test(
     'resolves successfully when authentication succeeds',
-    async t => {
+    async () => {
       const fastify = await buildServer({
         JWT_SECRET: 'supersecret',
       })

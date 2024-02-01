@@ -1,8 +1,8 @@
-import buildServer from '../../index.js'
-import config from '../../config.js'
-
-import { test } from 'node:test'
 import assert from 'node:assert'
+import { test } from 'node:test'
+
+import config from '../../config.js'
+import buildServer from '../../index.js'
 
 test('server', async t => {
   let fastify
@@ -15,7 +15,7 @@ test('server', async t => {
 
   await t.test(
     'authenticates user and returns current user',
-    async t => {
+    async () => {
       const loginRes = await fastify.inject({
         url: '/login',
         method: 'POST',

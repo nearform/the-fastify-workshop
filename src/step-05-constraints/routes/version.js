@@ -2,7 +2,7 @@
  * @type {import('fastify').FastifyPluginAsync}
  * */
 export default async function version(fastify) {
-  fastify.route({ 
+  fastify.route({
     method: 'GET',
     url: '/version',
     constraints: { version: '1.0.0' },

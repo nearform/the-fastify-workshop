@@ -1,9 +1,9 @@
-import fastify from 'fastify'
-import sinon from 'sinon'
-import errors from 'http-errors'
-
-import { test } from 'node:test'
 import assert from 'node:assert'
+import { test } from 'node:test'
+
+import fastify from 'fastify'
+import errors from 'http-errors'
+import sinon from 'sinon'
 
 function buildServer() {
   return fastify()
@@ -13,19 +13,22 @@ function buildServer() {
 }
 
 test('GET /', async t => {
-  await t.test('returns error when authentication fails', async t => {
-    const fastify = buildServer()
+  await t.test(
+    'returns error when authentication fails',
+    async () => {
+      const fastify = buildServer()
 
-    fastify.authenticate.rejects(errors.Unauthorized())
+      fastify.authenticate.rejects(errors.Unauthorized())
 
-    const res = await fastify.inject('/')
+      const res = await fastify.inject('/')
 
-    sinon.assert.called(fastify.authenticate)
-    assert.equal(res.statusCode, 401)
-    await fastify.close()
-  })
+      sinon.assert.called(fastify.authenticate)
+      assert.equal(res.statusCode, 401)
+      await fastify.close()
+    },
+  )
 
-  await t.test('returns error when database errors', async t => {
+  await t.test('returns error when database errors', async () => {
     const fastify = buildServer()
 
     fastify.authenticate.resolves()
@@ -37,7 +40,7 @@ test('GET /', async t => {
     await fastify.close()
   })
 
-  await t.test('returns users loaded from the database', async t => {
+  await t.test('returns users loaded from the database', async () => {
     const fastify = buildServer()
 
     fastify.authenticate.resolves()

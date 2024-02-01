@@ -5,7 +5,7 @@ import buildServer from '../../index.js'
 import config from '../../config.js'
 
 test('Startup', async t => {
-  await t.test('it registers the JWT plugin', async t => {
+  await t.test('it registers the JWT plugin', async () => {
     const fastify = buildServer(config)
 
     await fastify.ready()
@@ -14,4 +14,3 @@ test('Startup', async t => {
     await fastify.close()
   })
 })
-

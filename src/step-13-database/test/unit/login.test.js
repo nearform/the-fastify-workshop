@@ -1,8 +1,8 @@
+import assert from 'node:assert'
+import { test } from 'node:test'
+
 import fastify from 'fastify'
 import sinon from 'sinon'
-
-import { test } from 'node:test'
-import assert from 'node:assert'
 
 function buildServer() {
   return fastify()
@@ -12,7 +12,7 @@ function buildServer() {
 }
 
 test('POST /login', async t => {
-  await t.test('returns 400 with missing credentials', async t => {
+  await t.test('returns 400 with missing credentials', async () => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -24,7 +24,7 @@ test('POST /login', async t => {
     await fastify.close()
   })
 
-  await t.test('returns 400 with partial credentials', async t => {
+  await t.test('returns 400 with partial credentials', async () => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -39,7 +39,7 @@ test('POST /login', async t => {
     await fastify.close()
   })
 
-  await t.test('returns 401 with wrong credentials', async t => {
+  await t.test('returns 401 with wrong credentials', async () => {
     const fastify = buildServer()
 
     const res = await fastify.inject({
@@ -57,7 +57,7 @@ test('POST /login', async t => {
 
   await t.test(
     'returns 401 when user is not found in database',
-    async t => {
+    async () => {
       const fastify = buildServer()
 
       fastify.pg.query.resolves({ rows: [] })
@@ -76,7 +76,7 @@ test('POST /login', async t => {
     },
   )
 
-  await t.test('returns 500 when database errors', async t => {
+  await t.test('returns 500 when database errors', async () => {
     const fastify = buildServer()
 
     fastify.pg.query.rejects(new Error('boom'))
@@ -94,7 +94,7 @@ test('POST /login', async t => {
     await fastify.close()
   })
 
-  await t.test('obtains a token with right credentials', async t => {
+  await t.test('obtains a token with right credentials', async () => {
     const fastify = buildServer()
 
     fastify.pg.query.resolves({

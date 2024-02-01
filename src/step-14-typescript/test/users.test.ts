@@ -1,10 +1,11 @@
-import { test } from 'node:test'
 import assert from 'node:assert'
-import buildServer from '../index'
+import { test } from 'node:test'
+
 import config from '../config'
+import buildServer from '../index'
 
 test('GET /users', async t => {
-  await t.test('returns users', async t => {
+  await t.test('returns users', async () => {
     const fastify = buildServer(config)
 
     const res = await fastify.inject('/users')
