@@ -672,7 +672,7 @@ https://www.fastify.io/docs/latest/Guides/Testing/
 import buildServer from '../index.js'
 
 import {test} from "node:test"
-import assert from "node:assert"
+import assert from "node:assert/strict"
 
 test('GET /users', async t => {
   await t.test('returns users', async t => {
