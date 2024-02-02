@@ -20,9 +20,9 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: |
-          echo $CONNECTION_STR
-          npm ci
-          npm run db:migrate
+          pg_isready
+          # npm ci
+          # npm run db:migrate
           # npm run lint
           # npm test
         env:
