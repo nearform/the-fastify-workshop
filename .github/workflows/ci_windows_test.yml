@@ -9,51 +9,11 @@ on:
       - master
 
 jobs:
-  setup-database:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:alpine
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5433:5432
-        options:
-          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
-          --health-retries 5
-    steps:
-      - uses: actions/checkout@v4
-
-  build_windows_container_test:
-    runs-on: windows-latest
-    
-    services:
-      postgres:
-        image: postgres:alpine
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5433:5432
-        options:
-          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
-          --health-retries 5
-    
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-      - run: |
-          npm ci
-          npm run db:migrate
-          # npm run lint
-          # npm test
-
-
   build_windows:
-    needs: setup-database
     runs-on: windows-latest
     steps:
+      - name: Setup PostgreSQL for Linux/macOS/Windows
+        uses: ikalnytskyi/action-setup-postgres@v5
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
