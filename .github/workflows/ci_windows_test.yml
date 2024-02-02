@@ -15,14 +15,16 @@ jobs:
       - name: Setup PostgreSQL for Linux/macOS/Windows
         uses: ikalnytskyi/action-setup-postgres@v5
         id: postgres
+        with:
+          port: 5433
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
       - run: |
           pg_isready
-          # npm ci
-          # npm run db:migrate
+          npm ci
+          npm run db:migrate
           # npm run lint
           # npm test
         env:
