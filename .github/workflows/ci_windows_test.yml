@@ -19,7 +19,10 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: |
+          echo $CONNECTION_STR
           npm ci
           npm run db:migrate
           # npm run lint
           # npm test
+        env:
+          CONNECTION_STR: ${{ steps.postgres.outputs.connection-uri }}
