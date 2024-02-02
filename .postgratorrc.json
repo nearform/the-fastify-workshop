@@ -1,7 +1,7 @@
 {
   "migrationPattern": "migrations/*",
   "driver": "pg",
-  "host": "127.0.0.1",
+  "host": "localhost",
   "port": 5433,
   "database": "postgres",
   "username": "postgres",
