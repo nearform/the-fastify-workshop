@@ -1,3 +1,7 @@
+# vim: set filetype=yaml :
 coverage-report:
   - none
 jobs: 1
+plugin:
+  - "@tapjs/tsx"
+  - "!@tapjs/typescript"
