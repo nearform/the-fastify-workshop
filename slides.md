@@ -5,11 +5,11 @@ highlighter: shiki
 lineNumbers: false
 ---
 
-<img class=logo src="/images/nearform.svg">
+<img class="logo" src="/images/nearform.svg">
 
 # The Fastify Workshop
 
-<img src="/assets/fastify.png" style="width: 30%;">
+<img src="/assets/fastify-light.svg" style="width: 30%;">
 
 <div class="copyright">
 
@@ -1049,8 +1049,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 - Create a `plugins/authentication.js` plugin which:
 
   - Registers `@fastify/jwt` with a secret provided via plugin options
-
-  > 💡 move the plugin registration from `index.js` to the new plugin module
+    > 💡 move the plugin registration from `index.js` to the new plugin module
 
   - Exposes an `authenticate` decorator on the Fastify instance which verifies the authentication token and responds with an error if invalid
 
