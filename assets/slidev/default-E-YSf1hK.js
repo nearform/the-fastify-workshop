@@ -1,0 +1,1 @@
+import{o,b as t,f as s}from"../modules/vue-Dkcc_ArA.js";import{_ as r}from"../index-BuublKFa.js";const a={},n={class:"slidev-layout default"};function l(e,c){return o(),t("div",n,[s(e.$slots,"default")])}const _=r(a,[["render",l],["__file","/home/runner/work/the-fastify-workshop/the-fastify-workshop/node_modules/@slidev/client/layouts/default.vue"]]);export{_ as I};
