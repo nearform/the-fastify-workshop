@@ -22,7 +22,7 @@
     "@fastify/jwt": "^8.0.1",
     "@fastify/postgres": "^5.2.0",
     "@nearform/sql": "^1.10.5",
-    "@sinclair/typebox": "^0.32.35",
+    "@sinclair/typebox": "^0.33.4",
     "@slidev/cli": "^0.49.23",
     "@vueuse/shared": "^10.11.1",
     "desm": "^1.3.0",
