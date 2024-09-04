@@ -25,7 +25,7 @@
 
 #### Run automated tests on a single project
 
-- `npm test -w src/step-05-testing`
+- `npm test -w src/step-06-testing`
 
 ## Running the modules
 
