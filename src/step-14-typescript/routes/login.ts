@@ -2,20 +2,16 @@ import { Type, Static } from '@sinclair/typebox'
 import { FastifyInstance, FastifyRequest } from 'fastify'
 import errors from 'http-errors'
 
-const BodySchema = Type.Strict(
-  Type.Object({
-    username: Type.String(),
-    password: Type.String(),
-  }),
-)
+const BodySchema = Type.Object({
+  username: Type.String(),
+  password: Type.String(),
+})
 
 type BodySchema = Static<typeof BodySchema>
 
-const ResponseSchema = Type.Strict(
-  Type.Object({
-    token: Type.String(),
-  }),
-)
+const ResponseSchema = Type.Object({
+  token: Type.String(),
+})
 
 type ResponseSchema = Static<typeof ResponseSchema>
 
