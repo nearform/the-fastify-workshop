@@ -49,7 +49,7 @@ jobs:
           npm test
           
   automerge:
-    needs: build
+    needs: [build, build_windows]
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
