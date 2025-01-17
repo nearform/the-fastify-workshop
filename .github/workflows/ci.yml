@@ -7,7 +7,7 @@ on:
     branches:
       - master
 jobs:
-  build:
+  build_linux:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -42,14 +42,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - run: |
-          pg_isready
-          npm ci
-          npm run db:migrate
-          npm test
-          
+      - run: npm ci
+      - run: npm run db:migrate
+      - run: npm test
+
   automerge:
-    needs: [build, build_windows]
+    needs: [build_linux, build_windows]
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
