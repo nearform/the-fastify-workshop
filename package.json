@@ -20,7 +20,7 @@
   "dependencies": {
     "@fastify/autoload": "^6.0.3",
     "@fastify/jwt": "^9.0.2",
-    "@fastify/postgres": "^6.0.1",
+    "@fastify/postgres": "^6.0.2",
     "@nearform/sql": "^1.10.5",
     "@sinclair/typebox": "^0.34.13",
     "@slidev/cli": "^51.0.2",
