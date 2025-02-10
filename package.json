@@ -49,7 +49,7 @@
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-sql": "^3.2.1",
     "postgrator-cli": "^9.0.1",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.0",
     "sinon": "^19.0.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.3"
