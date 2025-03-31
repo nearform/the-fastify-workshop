@@ -50,7 +50,7 @@
     "eslint-plugin-sql": "^3.2.1",
     "postgrator-cli": "^9.0.1",
     "prettier": "^3.5.1",
-    "sinon": "^19.0.4",
+    "sinon": "^20.0.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2"
   }
