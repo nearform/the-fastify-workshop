@@ -519,7 +519,7 @@ export default async function login(fastify) {
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "alice" }'
+-d '{ "username": "alice", "password": "alice" }' \
 http://localhost:3000/login
 ```
 
@@ -538,7 +538,7 @@ http://localhost:3000/login
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
--d '{ "name": "alice", "passcode": "alice" }'
+-d '{ "name": "alice", "passcode": "alice" }' \
 http://localhost:3000/login
 ```
 
@@ -891,7 +891,7 @@ export default async function login(fastify) {
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "alice" }'
+-d '{ "username": "alice", "password": "alice" }' \
 http://localhost:3000/login
 ```
 
@@ -909,7 +909,7 @@ http://localhost:3000/login
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
--d '{ "username": "alice", "password": "wrong" }'
+-d '{ "username": "alice", "password": "wrong" }' \
 http://localhost:3000/login
 ```
 
@@ -1046,7 +1046,7 @@ https://www.fastify.io/docs/latest/Reference/Decorators/
 
 <div class="dense">
 
-- Create a `plugins/authentication.js` plugin which:
+- Create a `plugins/authenticate.js` plugin which:
 
   - Registers `@fastify/jwt` with a secret provided via plugin options
     > 💡 move the plugin registration from `index.js` to the new plugin module
