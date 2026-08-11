@@ -27,13 +27,13 @@ test('authenticate', async t => {
         JWT_SECRET: 'supersecret',
       })
       const error = new errors.Unauthorized()
-      const req = <FastifyRequest>{}
+      const req = {} as FastifyRequest
       req.jwtVerify = sinon.stub().rejects(error)
-      const reply = <FastifyReply>{}
+      const reply = {} as FastifyReply
       reply.send = sinon.stub()
 
       await assert.doesNotReject(fastify.authenticate(req, reply))
-      sinon.assert.calledWith(<SinonStub>reply.send, error)
+      sinon.assert.calledWith(reply.send as SinonStub, error)
     },
   )
 
@@ -44,13 +44,13 @@ test('authenticate', async t => {
         JWT_SECRET: 'supersecret',
       })
 
-      const req = <FastifyRequest>{}
+      const req = {} as FastifyRequest
       req.jwtVerify = sinon.stub().resolves()
-      const reply = <FastifyReply>{}
+      const reply = {} as FastifyReply
       reply.send = sinon.stub()
 
       await assert.doesNotReject(fastify.authenticate(req, reply))
-      sinon.assert.notCalled(<SinonStub>reply.send)
+      sinon.assert.notCalled(reply.send as SinonStub)
     },
   )
 })
