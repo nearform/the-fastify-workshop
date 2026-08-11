@@ -28,6 +28,7 @@ jobs:
           npm ci
           npm run db:migrate
           npm run lint
+          npm run typecheck
           npm test
 
   build_windows:

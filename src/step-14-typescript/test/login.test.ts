@@ -6,10 +6,17 @@ import sinon from 'sinon'
 
 import loginRoute from '../routes/login'
 
+// The `jwt` decorator type, as Fastify sees it once `@fastify/jwt` is registered.
+type Jwt = FastifyInstance['jwt']
+
 function buildServer(): FastifyInstance {
-  return fastify()
-    .decorate('jwt', { sign: sinon.stub() })
-    .register(loginRoute)
+  // These tests only exercise `sign`, so stub just that. Typing the stub against
+  // the real signature keeps its arguments checked; the assertion then widens only
+  // the container, since a one-key object can't satisfy all of `Jwt`.
+  const sign = sinon.stub<Parameters<Jwt['sign']>, string>()
+  const jwt = { sign } as unknown as Jwt
+
+  return fastify().decorate('jwt', jwt).register(loginRoute)
 }
 
 test('POST /login', async t => {
