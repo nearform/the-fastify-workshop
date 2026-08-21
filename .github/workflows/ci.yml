@@ -28,6 +28,7 @@ jobs:
           npm ci
           npm run db:migrate
           npm run lint
+          npm run typecheck
           npm test
 
   build_windows:
@@ -44,6 +45,7 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci
       - run: npm run db:migrate
+      - run: npm run typecheck
       - run: npm test
 
   automerge:

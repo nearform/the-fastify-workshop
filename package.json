@@ -15,7 +15,8 @@
     "db:migrate": "postgrator",
     "db:down": "docker compose down",
     "lint": "eslint ./src",
-    "test": "c8 --check-coverage --100 node --test \"src/**/test/**/*.test.js\""
+    "test": "c8 --check-coverage --100 node --test \"src/**/test/**/*.test.js\"",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fastify/autoload": "^6.3.1",
