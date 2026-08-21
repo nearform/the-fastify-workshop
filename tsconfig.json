@@ -1,4 +1,9 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
+  // This config typechecks the Node examples under `src/`. `include` is left at its
+  // default so any new `.ts` is gated automatically. Slidev-layer `.ts` (anything
+  // importing `.vue` or `~icons/*`) can't compile under `node16` resolution and
+  // belongs in this list rather than being "fixed" — Vite builds it without
+  // typechecking. `components.d.ts` is generated and pulls in `@slidev/client`.
   "exclude": ["node_modules", "components.d.ts"]
 }
