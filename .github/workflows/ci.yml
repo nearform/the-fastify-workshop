@@ -45,6 +45,7 @@ jobs:
           node-version-file: .nvmrc
       - run: npm ci
       - run: npm run db:migrate
+      - run: npm run typecheck
       - run: npm test
 
   automerge:
