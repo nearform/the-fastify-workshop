@@ -19,7 +19,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@fastify/autoload": "^6.3.1",
+    "@fastify/autoload": "^6.5.0",
     "@fastify/jwt": "^10.2.1",
     "@fastify/postgres": "^6.0.2",
     "@nearform/sql": "^1.10.5",
