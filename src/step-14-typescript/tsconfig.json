@@ -5,5 +5,10 @@
   },
   "compilerOptions": {
     "esModuleInterop": true,
+    // TypeScript 6 raises TS5011 unless `rootDir` is
+    // explicit: this step's scripts hand ts-node only
+    // `./test/*.test.ts` or only `server.ts`, so it
+    // infers `./test` / `./routes` as the common root.
+    "rootDir": ".",
   },
 }
