@@ -4,6 +4,14 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # TypeScript 7 (the native compiler) dropped the JS compiler API that
+    # @typescript-eslint, eslint-plugin-sql and ts-node-dev load via
+    # `require("typescript")`, so `npm ci` and `npm run lint` both break on it.
+    # Remove this once typescript-eslint ships tsgo support. See #1584.
+    ignore:
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: github-actions
     directory: /
     schedule:
