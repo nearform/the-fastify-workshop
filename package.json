@@ -49,7 +49,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.3",
-    "eslint-plugin-sql": "^3.2.1",
+    "eslint-plugin-sql": "^3.4.1",
     "globals": "^16.0.0",
     "postgrator-cli": "^9.0.1",
     "prettier": "^3.9.6",
