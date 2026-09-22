@@ -2,7 +2,7 @@ const js = require('@eslint/js')
 const tsParser = require('@typescript-eslint/parser')
 const tsPlugin = require('@typescript-eslint/eslint-plugin')
 const importPlugin = require('eslint-plugin-import')
-const sqlPlugin = require('eslint-plugin-sql')
+const sqlPlugin = require('eslint-plugin-sql').default
 const prettierRecommended = require('eslint-plugin-prettier/recommended')
 const globals = require('globals')
 
