@@ -1,7 +1,7 @@
 const js = require('@eslint/js')
 const tsParser = require('@typescript-eslint/parser')
 const tsPlugin = require('@typescript-eslint/eslint-plugin')
-const importPlugin = require('eslint-plugin-import')
+const importPlugin = require('eslint-plugin-import-x')
 const sqlPlugin = require('eslint-plugin-sql').default
 const prettierRecommended = require('eslint-plugin-prettier/recommended')
 const globals = require('globals')
@@ -26,10 +26,10 @@ module.exports = [
     },
     plugins: {
       sql: sqlPlugin,
-      import: importPlugin,
+      'import-x': importPlugin,
     },
     rules: {
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           'newlines-between': 'always',
